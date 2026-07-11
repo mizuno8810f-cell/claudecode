@@ -15,14 +15,11 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="app__header">
-        <h1>{gameData.title}</h1>
-      </header>
-
       {snapshot.cleared ? (
         <ClearScreen title={gameData.title} />
       ) : (
         <>
+          <InventoryBar engine={engine} snapshot={snapshot} />
           <RoomStage engine={engine} snapshot={snapshot} />
           <InventoryBar engine={engine} snapshot={snapshot} />
           <MessageOverlay engine={engine} snapshot={snapshot} />
