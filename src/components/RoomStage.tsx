@@ -1,0 +1,81 @@
+import { useState } from "react";
+import type { GameEngine, EngineSnapshot } from "../engine";
+import { ObjectSprite } from "./ObjectSprite";
+
+interface RoomStageProps {
+  engine: GameEngine;
+  snapshot: EngineSnapshot;
+}
+
+export function RoomStage({ engine, snapshot }: RoomStageProps) {
+  const [bgFailed, setBgFailed] = useState(false);
+  const room = engine.getCurrentRoom();
+  const background = engine.getBackgroundImage();
+  const objects = engine.getDisplayedObjects();
+  const isZoomed = snapshot.navigationStack.length > 0;
+
+  if (!room) return null;
+
+  return (
+    <div className="room-stage">
+      <div className="room-stage__viewport">
+        {background && !bgFailed ? (
+          <img
+            className="room-stage__background"
+            src={background}
+            alt={room.name}
+            draggable={false}
+            onError={() => setBgFailed(true)}
+          />
+        ) : (
+          <div className="room-stage__background room-stage__background--fallback">{room.name}</div>
+        )}
+
+        {objects.map((obj) => {
+          const runtime = snapshot.objectStates[obj.id];
+          if (!runtime) return null;
+          return (
+            <ObjectSprite
+              key={obj.id}
+              def={obj}
+              runtime={runtime}
+              onTouch={(id) => void engine.touch(id)}
+            />
+          );
+        })}
+
+        {isZoomed && (
+          <button
+            type="button"
+            className="room-stage__back"
+            onClick={() => void engine.back()}
+            disabled={snapshot.locked}
+          >
+            ← 戻る
+          </button>
+        )}
+
+        {!isZoomed && room.leftRoomId && (
+          <button
+            type="button"
+            className="room-stage__nav room-stage__nav--left"
+            onClick={() => engine.moveRoom("left")}
+            disabled={snapshot.locked}
+          >
+            ‹
+          </button>
+        )}
+        {!isZoomed && room.rightRoomId && (
+          <button
+            type="button"
+            className="room-stage__nav room-stage__nav--right"
+            onClick={() => engine.moveRoom("right")}
+            disabled={snapshot.locked}
+          >
+            ›
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

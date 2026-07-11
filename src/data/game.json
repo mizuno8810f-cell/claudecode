@@ -1,0 +1,1309 @@
+{
+  "gameId": "escape_game_001",
+  "title": "古い書斎からの脱出",
+  "initialStageId": "stage_1",
+  "initialRoomId": "room_entrance",
+  "stages": [
+    {
+      "id": "stage_1",
+      "name": "古い部屋からの脱出",
+      "rooms": [
+        {
+          "id": "room_entrance",
+          "name": "玄関",
+          "background": "images/room_entrance.png",
+          "leftRoomId": null,
+          "rightRoomId": "room_living",
+          "objects": [
+            {
+              "id": "door_exit",
+              "name": "玄関の扉",
+              "type": "door",
+              "image": "images/door_exit.png",
+              "visible": true,
+              "enabled": true,
+              "state": "locked",
+              "position": {
+                "x": 340,
+                "y": 80,
+                "width": 200,
+                "height": 380
+              },
+              "children": [],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [
+                    {
+                      "type": "enabled",
+                      "key": "door_exit",
+                      "operator": "equals",
+                      "value": true
+                    },
+                    {
+                      "type": "objectState",
+                      "key": "door_exit",
+                      "operator": "equals",
+                      "value": "unlocked"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "showMessage",
+                      "text": "扉を開けて脱出した!"
+                    },
+                    {
+                      "type": "nextStage"
+                    }
+                  ]
+                },
+                {
+                  "type": "touch",
+                  "conditions": [
+                    {
+                      "type": "objectState",
+                      "key": "door_exit",
+                      "operator": "equals",
+                      "value": "locked"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "showMessage",
+                      "text": "鍵がかかっていて開かない"
+                    }
+                  ]
+                },
+                {
+                  "type": "watchState",
+                  "conditions": [
+                    {
+                      "type": "globalState",
+                      "key": "safeOpened",
+                      "operator": "equals",
+                      "value": true
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "setObjectState",
+                      "targetId": "door_exit",
+                      "value": "unlocked"
+                    },
+                    {
+                      "type": "playSound",
+                      "sound": "sounds/unlock.mp3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "room_living",
+          "name": "リビング",
+          "background": "images/room_living.png",
+          "leftRoomId": "room_entrance",
+          "rightRoomId": "room_study",
+          "objects": [
+            {
+              "id": "bookshelf",
+              "name": "本棚",
+              "type": "zoom",
+              "image": "images/bookshelf.png",
+              "visible": true,
+              "enabled": true,
+              "state": "closed",
+              "position": {
+                "x": 100,
+                "y": 120,
+                "width": 200,
+                "height": 280
+              },
+              "children": [
+                {
+                  "id": "book",
+                  "name": "古い本",
+                  "type": "object",
+                  "image": "images/book.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "default",
+                  "position": {
+                    "x": 80,
+                    "y": 220,
+                    "width": 160,
+                    "height": 60
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "book",
+                          "operator": "equals",
+                          "value": "default"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book",
+                          "value": "moved"
+                        },
+                        {
+                          "type": "showObject",
+                          "targetId": "key_on_book"
+                        },
+                        {
+                          "type": "showMessage",
+                          "text": "本の後ろに鍵が隠されていた"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "key_on_book",
+                  "name": "鍵",
+                  "type": "item",
+                  "image": "images/key.png",
+                  "visible": false,
+                  "enabled": true,
+                  "state": "default",
+                  "position": {
+                    "x": 140,
+                    "y": 230,
+                    "width": 60,
+                    "height": 40
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "key"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "key_on_book"
+                        },
+                        {
+                          "type": "showMessage",
+                          "text": "鍵を手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [],
+                  "events": [
+                    {
+                      "type": "pushNavigation",
+                      "targetId": "bookshelf"
+                    }
+                  ]
+                },
+                {
+                  "type": "onBack",
+                  "conditions": [],
+                  "events": [
+                    {
+                      "type": "setObjectState",
+                      "targetId": "bookshelf",
+                      "value": "closed"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "room_study",
+          "name": "書斎",
+          "background": "images/room_study.png",
+          "leftRoomId": "room_living",
+          "rightRoomId": null,
+          "objects": [
+            {
+              "id": "locked_drawer",
+              "name": "引き出し",
+              "type": "object",
+              "image": "images/drawer.png",
+              "visible": true,
+              "enabled": true,
+              "state": "locked",
+              "position": {
+                "x": 60,
+                "y": 260,
+                "width": 200,
+                "height": 100
+              },
+              "children": [],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [
+                    {
+                      "type": "objectState",
+                      "key": "locked_drawer",
+                      "operator": "equals",
+                      "value": "locked"
+                    },
+                    {
+                      "type": "selectedItem",
+                      "key": "selectedItemId",
+                      "operator": "equals",
+                      "value": "key"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "setObjectState",
+                      "targetId": "locked_drawer",
+                      "value": "open"
+                    },
+                    {
+                      "type": "showObject",
+                      "targetId": "note_in_drawer"
+                    },
+                    {
+                      "type": "clearSelectedItem"
+                    },
+                    {
+                      "type": "showMessage",
+                      "text": "引き出しが開いた"
+                    }
+                  ]
+                },
+                {
+                  "type": "touch",
+                  "conditions": [
+                    {
+                      "type": "objectState",
+                      "key": "locked_drawer",
+                      "operator": "equals",
+                      "value": "locked"
+                    },
+                    {
+                      "type": "selectedItem",
+                      "key": "selectedItemId",
+                      "operator": "notEquals",
+                      "value": "key"
+                    }
+                  ],
+                  "events": [
+                    {
+                      "type": "showMessage",
+                      "text": "引き出しに鍵がかかっている"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "note_in_drawer",
+              "name": "メモ",
+              "type": "item",
+              "image": "images/note.png",
+              "visible": false,
+              "enabled": true,
+              "state": "default",
+              "position": {
+                "x": 110,
+                "y": 280,
+                "width": 60,
+                "height": 40
+              },
+              "children": [],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [],
+                  "events": [
+                    {
+                      "type": "addItem",
+                      "itemId": "note"
+                    },
+                    {
+                      "type": "hideObject",
+                      "targetId": "note_in_drawer"
+                    },
+                    {
+                      "type": "showMessage",
+                      "text": "メモを見つけた:「4 - 8 - 1 - 2」"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "safe",
+              "name": "金庫",
+              "type": "inputPanel",
+              "image": "images/safe.png",
+              "visible": true,
+              "enabled": true,
+              "state": "locked",
+              "position": {
+                "x": 320,
+                "y": 200,
+                "width": 200,
+                "height": 160
+              },
+              "children": [
+                {
+                  "id": "dial_1",
+                  "name": "ダイヤル",
+                  "type": "object",
+                  "image": "images/dial_1.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "0",
+                  "position": {
+                    "x": 40,
+                    "y": 140,
+                    "width": 60,
+                    "height": 90
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "4"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "5"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "6"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "8"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "9"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_1",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "dial_2",
+                  "name": "ダイヤル",
+                  "type": "object",
+                  "image": "images/dial_2.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "0",
+                  "position": {
+                    "x": 120,
+                    "y": 140,
+                    "width": 60,
+                    "height": 90
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "4"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "5"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "6"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "8"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "9"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_2",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "dial_3",
+                  "name": "ダイヤル",
+                  "type": "object",
+                  "image": "images/dial_3.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "0",
+                  "position": {
+                    "x": 200,
+                    "y": 140,
+                    "width": 60,
+                    "height": 90
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "5"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "6"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "8"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "9"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_3",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "dial_4",
+                  "name": "ダイヤル",
+                  "type": "object",
+                  "image": "images/dial_4.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "0",
+                  "position": {
+                    "x": 280,
+                    "y": 140,
+                    "width": 60,
+                    "height": 90
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "2"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "3"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "4"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "5"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "5"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "6"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "6"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "8"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "8"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "9"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "9"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "dial_4",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "id": "confirm_button",
+                  "name": "確定ボタン",
+                  "type": "object",
+                  "image": "images/confirm_button.png",
+                  "visible": true,
+                  "enabled": true,
+                  "state": "default",
+                  "position": {
+                    "x": 360,
+                    "y": 260,
+                    "width": 100,
+                    "height": 50
+                  },
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "input",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "key": "note",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "objectState",
+                          "key": "dial_1",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "key": "dial_2",
+                          "operator": "equals",
+                          "value": "8"
+                        },
+                        {
+                          "type": "objectState",
+                          "key": "dial_3",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "key": "dial_4",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setGlobalState",
+                          "key": "safeOpened",
+                          "value": true
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe",
+                          "value": "unlocked"
+                        },
+                        {
+                          "type": "showMessage",
+                          "text": "カチッと音がした!"
+                        },
+                        {
+                          "type": "popNavigation"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [],
+                  "events": [
+                    {
+                      "type": "pushNavigation",
+                      "targetId": "safe"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage_2",
+      "name": "脱出成功",
+      "rooms": [
+        {
+          "id": "room_ending",
+          "name": "エンディング",
+          "background": "images/room_ending.png",
+          "leftRoomId": null,
+          "rightRoomId": null,
+          "objects": [
+            {
+              "id": "exit_sign",
+              "name": "脱出成功の看板",
+              "type": "text",
+              "image": "images/exit_sign.png",
+              "visible": true,
+              "enabled": true,
+              "state": "default",
+              "position": {
+                "x": 200,
+                "y": 180,
+                "width": 240,
+                "height": 120
+              },
+              "children": [],
+              "triggers": [
+                {
+                  "type": "touch",
+                  "conditions": [],
+                  "events": [
+                    {
+                      "type": "showMessage",
+                      "text": "おめでとうございます!脱出成功!"
+                    },
+                    {
+                      "type": "clearGame"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "key",
+      "name": "鍵",
+      "image": "images/key.png",
+      "description": "古びた真鍮の鍵"
+    },
+    {
+      "id": "note",
+      "name": "メモ",
+      "image": "images/note.png",
+      "description": "数字が書かれたメモ"
+    }
+  ]
+}

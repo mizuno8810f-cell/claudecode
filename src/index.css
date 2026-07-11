@@ -1,0 +1,244 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  background: #1a1a1a;
+  color: #eee;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 16px;
+  gap: 16px;
+}
+
+.app__header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+  text-align: center;
+}
+
+.room-stage {
+  display: flex;
+  justify-content: center;
+}
+
+.room-stage__viewport {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  max-width: 100%;
+  aspect-ratio: 640 / 480;
+  background: #333;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.room-stage__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+.room-stage__background--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #888;
+  background: repeating-linear-gradient(45deg, #2a2a2a, #2a2a2a 10px, #262626 10px, #262626 20px);
+}
+
+.object-sprite {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: filter 0.15s ease;
+}
+
+.object-sprite:hover {
+  filter: brightness(1.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.object-sprite--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.object-sprite img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.object-sprite__fallback {
+  font-size: 0.75rem;
+  color: #fff;
+  text-align: center;
+  padding: 4px;
+  word-break: break-word;
+}
+
+.object-sprite__state {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  font-size: 0.65rem;
+  color: #ffd54f;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.room-stage__back,
+.room-stage__nav {
+  position: absolute;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.room-stage__back {
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+}
+
+.room-stage__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.room-stage__nav--left {
+  left: 8px;
+}
+
+.room-stage__nav--right {
+  right: 8px;
+}
+
+.room-stage__back:disabled,
+.room-stage__nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.inventory-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 8px;
+  max-width: 640px;
+}
+
+.inventory-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 64px;
+  padding: 6px;
+  background: #2a2a2a;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  color: #eee;
+  cursor: pointer;
+  font-size: 0.7rem;
+}
+
+.inventory-item img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.inventory-item--selected {
+  border-color: #ffd54f;
+  background: #3a331a;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.overlay__message {
+  background: #fff;
+  color: #222;
+  padding: 20px 24px;
+  border-radius: 8px;
+  max-width: 80vw;
+  text-align: center;
+  cursor: default;
+}
+
+.overlay__message p {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+}
+
+.overlay__message button {
+  padding: 6px 24px;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.overlay__image {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+
+.clear-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 20px;
+}
+
+.clear-screen h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  color: #ffd54f;
+}
