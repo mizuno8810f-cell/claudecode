@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GameEngine, EngineSnapshot } from "../engine";
 import { ObjectSprite } from "./ObjectSprite";
+import { DevGrid } from "./DevGrid";
 
 interface RoomStageProps {
   engine: GameEngine;
@@ -20,6 +21,7 @@ const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack"> = 
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const [bgFailed, setBgFailed] = useState(false);
+  const [showGrid, setShowGrid] = useState(false);
   const room = engine.getCurrentRoom();
   const background = engine.getBackgroundImage();
   const objects = engine.getDisplayedObjects();
@@ -31,7 +33,18 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
 
   return (
     <div className="room-stage">
-      <div className="room-stage__header">{room.name}</div>
+      <div className="room-stage__header">
+        {room.name}
+        <button
+          type="button"
+          className={`room-stage__grid-toggle${showGrid ? " room-stage__grid-toggle--on" : ""}`}
+          onClick={() => setShowGrid((v) => !v)}
+          aria-label="座標グリッド表示切替（開発用）"
+          title="座標グリッド（開発用）"
+        >
+          #
+        </button>
+      </div>
       <div className="room-stage__viewport">
         {background && !bgFailed ? (
           <img
@@ -77,6 +90,8 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         })}
 
         {zoomScene === "cornerRack" && <div className="corner-rack-scene__fold-line" />}
+
+        {showGrid && <DevGrid />}
 
         {isZoomed && (
           <button

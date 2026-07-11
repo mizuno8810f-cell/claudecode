@@ -26,6 +26,7 @@ body {
 }
 
 .room-stage__header {
+  position: relative;
   width: 100%;
   padding: 10px 14px;
   background: #262626;
@@ -36,6 +37,30 @@ body {
   font-weight: 600;
   text-align: center;
   color: #f2f2f2;
+}
+
+/* Development-only coordinate-grid toggle. Safe to remove with DevGrid. */
+.room-stage__grid-toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: #333;
+  color: #aaa;
+  border: 1px solid #454545;
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.room-stage__grid-toggle--on {
+  background: #b3261e;
+  color: #fff;
+  border-color: #b3261e;
 }
 
 .room-stage__viewport {
@@ -166,6 +191,45 @@ body {
   transform: translateX(-50%);
   background: #8a877c;
   pointer-events: none;
+}
+
+/* ---- Development-only coordinate grid (DevGrid). Delete this block with the
+   DevGrid component and its toggle to fully remove the dev overlay. ---- */
+.dev-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.dev-grid__v,
+.dev-grid__h {
+  position: absolute;
+  background: rgba(220, 40, 40, 0.5);
+}
+
+.dev-grid__v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+
+.dev-grid__h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.dev-grid__label {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(179, 38, 30, 0.9);
+  padding: 0 3px;
+  border-radius: 2px;
+  white-space: nowrap;
 }
 
 .object-sprite {
