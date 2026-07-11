@@ -42,12 +42,12 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         ) : zoomScene === "sofa" ? (
           <div className="room-stage__background sofa-scene">
             <div className="sofa-scene__desk-sliver" />
+            <div className="sofa-scene__carpet" />
             <div className="sofa-scene__body">
               <div className="sofa-scene__armrest sofa-scene__armrest--left" />
               <div className="sofa-scene__armrest sofa-scene__armrest--right" />
               <div className="sofa-scene__backrest" />
             </div>
-            <div className="sofa-scene__wall-gap" />
           </div>
         ) : isZoomed ? (
           <div className="room-stage__background room-stage__background--zoom-fallback">

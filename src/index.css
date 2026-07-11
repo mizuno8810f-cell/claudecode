@@ -83,7 +83,8 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #143a28;
+  /* Ground/wall — the carpet strip below is the only green in this scene. */
+  background: #ffffff;
 }
 
 .sofa-scene__desk-sliver {
@@ -91,59 +92,55 @@ body {
   left: 5%;
   top: 0;
   width: 90%;
-  height: 10%;
+  height: 16%;
   background: #8b5e3c;
   border-radius: 0 0 4px 4px;
+}
+
+.sofa-scene__carpet {
+  position: absolute;
+  left: 5%;
+  top: 16%;
+  width: 90%;
+  height: 10%;
+  background: #143a28;
 }
 
 .sofa-scene__body {
   position: absolute;
   left: 5%;
-  top: 17.5%;
+  top: 26%;
   width: 90%;
-  height: 75%;
-  background: #8a8f94;
+  height: 50%;
+  background: #9aa0a6;
   border: 2px solid #6b7075;
   border-radius: 6px;
+  overflow: hidden;
 }
 
 .sofa-scene__armrest {
   position: absolute;
-  top: 8px;
-  bottom: 8px;
+  top: 0;
+  bottom: 0;
   width: 40px;
-  background: #75797d;
-  border: 2px solid #5c6064;
-  border-radius: 4px;
+  background: #6b7075;
 }
 
 .sofa-scene__armrest--left {
-  left: 8px;
+  left: 0;
 }
 
 .sofa-scene__armrest--right {
-  right: 8px;
+  right: 0;
 }
 
 .sofa-scene__backrest {
   position: absolute;
-  left: 56px;
-  right: 56px;
-  bottom: 8px;
-  height: 40px;
-  background: #75797d;
-  border: 2px solid #5c6064;
-  border-radius: 4px;
-}
-
-.sofa-scene__wall-gap {
-  position: absolute;
-  left: 5%;
+  left: 40px;
+  right: 40px;
   bottom: 0;
-  width: 90%;
-  height: 7.5%;
-  background: #ffffff;
-  border-radius: 0 0 4px 4px;
+  height: 40px;
+  background: #6b7075;
 }
 
 .object-sprite {
