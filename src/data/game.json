@@ -9,10 +9,18 @@
       "name": "ステージ1",
       "rooms": [
         {
+          "id": "room_kitchen",
+          "name": "キッチン",
+          "background": "images/room_kitchen.png",
+          "leftRoomId": null,
+          "rightRoomId": "room_livingroom",
+          "objects": []
+        },
+        {
           "id": "room_livingroom",
           "name": "リビングルーム",
           "background": "images/room_livingroom.png",
-          "leftRoomId": null,
+          "leftRoomId": "room_kitchen",
           "rightRoomId": "room_workingspace",
           "objects": []
         },
@@ -29,14 +37,6 @@
           "name": "ベッドルーム",
           "background": "images/room_bedroom.png",
           "leftRoomId": "room_workingspace",
-          "rightRoomId": "room_kitchen",
-          "objects": []
-        },
-        {
-          "id": "room_kitchen",
-          "name": "キッチン",
-          "background": "images/room_kitchen.png",
-          "leftRoomId": "room_bedroom",
           "rightRoomId": null,
           "objects": []
         }
