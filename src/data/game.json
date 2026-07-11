@@ -156,7 +156,7 @@
               "id": "livingroom_corner_rack_shelf",
               "name": "棚",
               "type": "decoration",
-              "position": { "x": 20, "y": 20, "width": 360, "height": 360 },
+              "position": { "x": 110, "y": 20, "width": 180, "height": 360 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
