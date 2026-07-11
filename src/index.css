@@ -83,8 +83,8 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  /* Ground (grayish-white, matches the room-level floor/ceiling color). */
-  background: #e8e7e4;
+  /* Ground — deliberately darker than the wall so the two read as distinct. */
+  background: #cbc8bf;
 }
 
 .sofa-scene__desk-sliver {
@@ -150,7 +150,7 @@ body {
   width: 100%;
   height: 24%;
   background: #ffffff;
-  border-top: 2px solid #d6d5d1;
+  border-top: 3px solid #8a877c;
 }
 
 .object-sprite {
