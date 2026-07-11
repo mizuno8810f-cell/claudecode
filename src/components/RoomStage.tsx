@@ -12,8 +12,9 @@ interface RoomStageProps {
  * used until real art exists. Which object gets a custom scene (vs. the
  * generic zoom fallback) is decided per instructions, not automatically.
  */
-const ZOOM_BACKGROUND_SCENES: Record<string, "sofa"> = {
+const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain"> = {
   livingroom_sofa: "sofa",
+  livingroom_trash_can: "plain",
 };
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
@@ -50,6 +51,8 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             </div>
             <div className="sofa-scene__wall" />
           </div>
+        ) : zoomScene === "plain" ? (
+          <div className="room-stage__background room-stage__background--fallback" />
         ) : isZoomed ? (
           <div className="room-stage__background room-stage__background--zoom-fallback">
             <div className="room-stage__zoom-surface" />

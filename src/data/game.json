@@ -147,8 +147,31 @@
             {
               "id": "livingroom_trash_can",
               "name": "ゴミ箱",
-              "type": "decoration",
+              "type": "object",
               "position": { "x": 20, "y": 328, "width": 50, "height": 72 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": ["livingroom_trash_can_pile"],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        { "type": "pushNavigation", "targetId": "livingroom_trash_can" }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "livingroom_trash_can_pile",
+              "name": "ゴミ",
+              "type": "decoration",
+              "position": { "x": 20, "y": 20, "width": 360, "height": 360 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
