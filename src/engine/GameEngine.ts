@@ -15,7 +15,7 @@ export interface EngineSnapshot {
   selectedItemId: string | null;
   globalState: Record<string, unknown>;
   objectStates: Record<string, ObjectRuntimeState>;
-  message: string | null;
+  toast: string | null;
   image: string | null;
   cleared: boolean;
   locked: boolean;
@@ -53,8 +53,9 @@ export class GameEngine {
   private readonly watchMemory = new Map<string, boolean>();
 
   private snapshot: EngineSnapshot;
-  private messageResolver: (() => void) | null = null;
   private imageResolver: (() => void) | null = null;
+  private toastSeq = 0;
+  private readonly toastDurationMs = 2500;
 
   constructor(game: GameData) {
     this.game = game;
@@ -90,7 +91,7 @@ export class GameEngine {
       selectedItemId: null,
       globalState: {},
       objectStates,
-      message: null,
+      toast: null,
       image: null,
       cleared: false,
       locked: false,
@@ -254,12 +255,18 @@ export class GameEngine {
     this.emit({ roomId: targetId, navigationStack: [] });
   }
 
-  dismissMessage(): void {
-    if (!this.snapshot.message) return;
-    this.emit({ message: null });
-    const resolve = this.messageResolver;
-    this.messageResolver = null;
-    resolve?.();
+  /** Fire-and-forget toast: shows briefly at the top, then auto-clears. */
+  private showToast(text: string): void {
+    const seq = ++this.toastSeq;
+    this.emit({ toast: text });
+    setTimeout(() => {
+      if (this.toastSeq === seq) this.emit({ toast: null });
+    }, this.toastDurationMs);
+  }
+
+  dismissToast(): void {
+    this.toastSeq++;
+    if (this.snapshot.toast) this.emit({ toast: null });
   }
 
   dismissImage(): void {
@@ -336,10 +343,8 @@ export class GameEngine {
         this.emit({ navigationStack: this.snapshot.navigationStack.slice(0, -1) });
         return;
       case "showMessage":
-        this.emit({ message: event.message });
-        return new Promise<void>((resolve) => {
-          this.messageResolver = resolve;
-        });
+        this.showToast(event.message);
+        return;
       case "showImage":
         this.emit({ image: event.image });
         return new Promise<void>((resolve) => {

@@ -241,8 +241,8 @@ describe("navigation", () => {
   });
 });
 
-describe("locking and sequential message events", () => {
-  it("locks input while a showMessage is awaiting dismissal, then continues the event list", async () => {
+describe("showMessage toast", () => {
+  it("shows a non-blocking toast and continues the event list, then unlocks", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
       makeObject({
@@ -261,18 +261,15 @@ describe("locking and sequential message events", () => {
       }),
     );
     const engine = new GameEngine(game);
-    const touchPromise = engine.touch("sign");
+    await engine.touch("sign");
 
-    expect(engine.getSnapshot().message).toBe("hello");
-    expect(engine.getSnapshot().locked).toBe(true);
-    expect(engine.getSnapshot().globalState.afterMessage).toBeUndefined();
-
-    engine.dismissMessage();
-    await touchPromise;
-
-    expect(engine.getSnapshot().message).toBeNull();
+    // The toast is shown and the following event ran without needing dismissal.
+    expect(engine.getSnapshot().toast).toBe("hello");
     expect(engine.getSnapshot().globalState.afterMessage).toBe(true);
     expect(engine.getSnapshot().locked).toBe(false);
+
+    engine.dismissToast();
+    expect(engine.getSnapshot().toast).toBeNull();
   });
 });
 

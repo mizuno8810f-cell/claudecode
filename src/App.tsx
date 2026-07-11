@@ -3,7 +3,7 @@ import { GameEngine, useGameSnapshot, type GameData } from "./engine";
 import gameDataJson from "./data/game.json";
 import { RoomStage } from "./components/RoomStage";
 import { InventoryBar } from "./components/InventoryBar";
-import { MessageOverlay } from "./components/MessageOverlay";
+import { Toast } from "./components/Toast";
 import { ImageOverlay } from "./components/ImageOverlay";
 import { ClearScreen } from "./components/ClearScreen";
 
@@ -21,7 +21,7 @@ export default function App() {
         <>
           <RoomStage engine={engine} snapshot={snapshot} />
           <InventoryBar engine={engine} snapshot={snapshot} />
-          <MessageOverlay engine={engine} snapshot={snapshot} />
+          <Toast engine={engine} snapshot={snapshot} />
           <ImageOverlay engine={engine} snapshot={snapshot} />
         </>
       )}
