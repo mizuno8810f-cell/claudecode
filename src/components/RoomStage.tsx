@@ -29,11 +29,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             onError={() => setBgFailed(true)}
           />
         ) : (
-          <div className="room-stage__background room-stage__background--fallback">
-            <div className="room-stage__ceiling" />
-            <div className="room-stage__wall" />
-            <div className="room-stage__floor" />
-          </div>
+          <div className="room-stage__background room-stage__background--fallback" />
         )}
 
         {objects.map((obj) => {
