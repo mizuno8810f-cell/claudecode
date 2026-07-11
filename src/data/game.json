@@ -27,13 +27,13 @@
               "id": "livingroom_sofa",
               "name": "グレーのソファ",
               "type": "object",
-              "position": { "x": 100, "y": 256, "width": 200, "height": 144 },
+              "position": { "x": 80, "y": 256, "width": 240, "height": 144 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
+                  "children": ["livingroom_sofa_key", "livingroom_sofa_cushion"],
                   "triggers": [
                     {
                       "type": "touch",
@@ -43,6 +43,36 @@
                       ]
                     }
                   ]
+                }
+              }
+            },
+            {
+              "id": "livingroom_sofa_key",
+              "name": "鍵",
+              "type": "item",
+              "position": { "x": 123, "y": 259, "width": 60, "height": 40 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "livingroom_sofa_cushion",
+              "name": "クッション",
+              "type": "decoration",
+              "position": { "x": 23, "y": 134, "width": 140, "height": 140 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
                 }
               }
             },
@@ -118,7 +148,7 @@
               "id": "livingroom_trash_can",
               "name": "ゴミ箱",
               "type": "decoration",
-              "position": { "x": 40, "y": 328, "width": 50, "height": 72 },
+              "position": { "x": 20, "y": 328, "width": 50, "height": 72 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -133,7 +163,7 @@
               "id": "livingroom_side_rack",
               "name": "サイドラック",
               "type": "decoration",
-              "position": { "x": 323, "y": 112, "width": 55, "height": 288 },
+              "position": { "x": 333, "y": 112, "width": 55, "height": 288 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",

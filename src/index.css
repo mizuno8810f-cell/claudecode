@@ -89,9 +89,9 @@ body {
 
 .sofa-scene__desk-sliver {
   position: absolute;
-  left: 5%;
+  left: 2%;
   top: 0;
-  width: 90%;
+  width: 96%;
   height: 16%;
   background: #8b5e3c;
   border-radius: 0 0 4px 4px;
@@ -110,9 +110,9 @@ body {
 
 .sofa-scene__body {
   position: absolute;
-  left: 5%;
+  left: 2%;
   top: 26%;
-  width: 90%;
+  width: 96%;
   height: 50%;
   background: #9aa0a6;
   border: 2px solid #6b7075;
