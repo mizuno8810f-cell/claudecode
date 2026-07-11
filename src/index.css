@@ -155,6 +155,19 @@ body {
   border-top: 3px solid #8a877c;
 }
 
+.corner-rack-scene__fold-line {
+  /* Marks where the two panels of the corner unit meet. Rendered after the
+     objects so it stays visible on top of the full-frame rack object. */
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  transform: translateX(-50%);
+  background: #8a877c;
+  pointer-events: none;
+}
+
 .object-sprite {
   position: absolute;
   display: flex;

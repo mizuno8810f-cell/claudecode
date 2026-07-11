@@ -132,8 +132,31 @@
             {
               "id": "livingroom_corner_rack",
               "name": "コーナーラック",
-              "type": "decoration",
+              "type": "object",
               "position": { "x": 0, "y": 112, "width": 55, "height": 288 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": ["livingroom_corner_rack_shelf"],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        { "type": "pushNavigation", "targetId": "livingroom_corner_rack" }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "livingroom_corner_rack_shelf",
+              "name": "棚",
+              "type": "decoration",
+              "position": { "x": 20, "y": 20, "width": 360, "height": 360 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
