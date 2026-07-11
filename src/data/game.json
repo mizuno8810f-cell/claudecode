@@ -72,7 +72,7 @@
               "id": "livingroom_trash_can",
               "name": "ゴミ箱",
               "type": "decoration",
-              "position": { "x": 40, "y": 290, "width": 50, "height": 110 },
+              "position": { "x": 40, "y": 328, "width": 50, "height": 72 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
