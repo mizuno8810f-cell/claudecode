@@ -2,11 +2,21 @@ import { useState } from "react";
 import type { GameEngine, EngineSnapshot } from "../engine";
 import { ObjectSprite } from "./ObjectSprite";
 import { DevGrid } from "./DevGrid";
+import { ROOM_CANVAS_SIZE } from "../constants";
 
 interface RoomStageProps {
   engine: GameEngine;
   snapshot: EngineSnapshot;
 }
+
+/**
+ * Decorative vertical lines painted onto a room's background (behind objects),
+ * keyed by room id. Values are x-coordinates in the 0..ROOM_CANVAS_SIZE space.
+ */
+const ROOM_BG_VLINES: Record<string, number[]> = {
+  room_workingspace: [300],
+  room_kitchen: [200, 300],
+};
 
 /**
  * Hand-authored placeholder background scenes for specific zoomed objects,
@@ -75,11 +85,15 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           <div className="room-stage__background room-stage__background--fallback" />
         )}
 
-        {/* Room-level background decoration: workingspace vertical line at x=300
-            (75% of the 0..400 canvas). Rendered behind the objects. */}
-        {!isZoomed && room.id === "room_workingspace" && (
-          <div className="room-bg-vline" style={{ left: "75%" }} />
-        )}
+        {/* Room-level background decoration: vertical lines behind the objects. */}
+        {!isZoomed &&
+          (ROOM_BG_VLINES[room.id] ?? []).map((x) => (
+            <div
+              key={x}
+              className="room-bg-vline"
+              style={{ left: `${(x / ROOM_CANVAS_SIZE) * 100}%` }}
+            />
+          ))}
 
         {objects.map((obj) => {
           const runtime = snapshot.objectStates[obj.id];
