@@ -182,6 +182,17 @@ body {
   border-bottom: 3px solid #8a877c;
 }
 
+.room-bg-vline {
+  /* A vertical line painted onto a room's background, behind its objects. */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-1px);
+  background: #b0aca0;
+  pointer-events: none;
+}
+
 .corner-rack-scene__fold-line {
   /* Marks where the two panels of the corner unit meet. Rendered after the
      objects so it stays visible on top of the full-frame rack object. */

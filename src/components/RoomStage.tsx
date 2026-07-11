@@ -75,6 +75,12 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           <div className="room-stage__background room-stage__background--fallback" />
         )}
 
+        {/* Room-level background decoration: workingspace vertical line at x=300
+            (75% of the 0..400 canvas). Rendered behind the objects. */}
+        {!isZoomed && room.id === "room_workingspace" && (
+          <div className="room-bg-vline" style={{ left: "75%" }} />
+        )}
+
         {objects.map((obj) => {
           const runtime = snapshot.objectStates[obj.id];
           if (!runtime) return null;
