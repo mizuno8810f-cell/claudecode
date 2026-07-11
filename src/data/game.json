@@ -228,7 +228,83 @@
           "background": "images/room_workingspace.png",
           "leftRoomId": "room_livingroom",
           "rightRoomId": "room_bedroom",
-          "objects": []
+          "objects": [
+            {
+              "id": "workingspace_curtain",
+              "name": "カーテン",
+              "type": "decoration",
+              "position": { "x": 10, "y": 50, "width": 290, "height": 300 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_aircon",
+              "name": "エアコン",
+              "type": "decoration",
+              "position": { "x": 200, "y": 0, "width": 100, "height": 50 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_shelf",
+              "name": "棚",
+              "type": "decoration",
+              "position": { "x": 240, "y": 150, "width": 60, "height": 250 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_desk",
+              "name": "仕事机",
+              "type": "decoration",
+              "position": { "x": 0, "y": 20, "width": 150, "height": 20 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_door",
+              "name": "扉",
+              "type": "door",
+              "position": { "x": 320, "y": 50, "width": 80, "height": 350 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            }
+          ]
         },
         {
           "id": "room_bedroom",
