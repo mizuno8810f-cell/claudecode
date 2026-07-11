@@ -14,7 +14,68 @@
           "background": "images/room_kitchen.png",
           "leftRoomId": null,
           "rightRoomId": "room_livingroom",
-          "objects": []
+          "objects": [
+            {
+              "id": "kitchen_fridge",
+              "name": "冷蔵庫",
+              "type": "decoration",
+              "position": { "x": 100, "y": 100, "width": 100, "height": 300 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "kitchen_trash_can",
+              "name": "ゴミ箱",
+              "type": "decoration",
+              "position": { "x": 0, "y": 200, "width": 100, "height": 100 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "kitchen_counter",
+              "name": "キッチン",
+              "type": "decoration",
+              "position": { "x": 300, "y": 200, "width": 100, "height": 200 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "kitchen_cupboard",
+              "name": "食器棚",
+              "type": "decoration",
+              "position": { "x": 0, "y": 50, "width": 100, "height": 100 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            }
+          ]
         },
         {
           "id": "room_livingroom",
