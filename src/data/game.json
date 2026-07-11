@@ -41,7 +41,7 @@
             {
               "id": "livingroom_desk",
               "name": "机",
-              "type": "decoration",
+              "type": "object",
               "position": { "x": 100, "y": 328, "width": 200, "height": 72 },
               "visible": true,
               "enabled": true,
@@ -49,7 +49,15 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        { "type": "pushNavigation", "targetId": "livingroom_desk" }
+                      ]
+                    }
+                  ]
                 }
               }
             },
