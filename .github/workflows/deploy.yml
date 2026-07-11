@@ -2,7 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # Deploy the stable branch and the active development branch, so the
+    # latest in-progress work is always live at the Pages URL.
+    branches: [main, claude/escape-game-json-spec-akp4ec]
   workflow_dispatch:
 
 # Allow the GITHUB_TOKEN to deploy to Pages and verify the deployment origin.
