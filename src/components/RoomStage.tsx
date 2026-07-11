@@ -7,12 +7,23 @@ interface RoomStageProps {
   snapshot: EngineSnapshot;
 }
 
+/**
+ * Hand-authored placeholder background scenes for specific zoomed objects,
+ * used until real art exists. Which object gets a custom scene (vs. the
+ * generic zoom fallback) is decided per instructions, not automatically.
+ */
+const ZOOM_BACKGROUND_SCENES: Record<string, "sofa"> = {
+  livingroom_sofa: "sofa",
+};
+
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const [bgFailed, setBgFailed] = useState(false);
   const room = engine.getCurrentRoom();
   const background = engine.getBackgroundImage();
   const objects = engine.getDisplayedObjects();
   const isZoomed = snapshot.navigationStack.length > 0;
+  const zoomTargetId = snapshot.navigationStack[snapshot.navigationStack.length - 1];
+  const zoomScene = zoomTargetId ? ZOOM_BACKGROUND_SCENES[zoomTargetId] : undefined;
 
   if (!room) return null;
 
@@ -28,6 +39,16 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             draggable={false}
             onError={() => setBgFailed(true)}
           />
+        ) : zoomScene === "sofa" ? (
+          <div className="room-stage__background sofa-scene">
+            <div className="sofa-scene__desk-sliver" />
+            <div className="sofa-scene__body">
+              <div className="sofa-scene__armrest sofa-scene__armrest--left" />
+              <div className="sofa-scene__armrest sofa-scene__armrest--right" />
+              <div className="sofa-scene__backrest" />
+            </div>
+            <div className="sofa-scene__wall-gap" />
+          </div>
         ) : isZoomed ? (
           <div className="room-stage__background room-stage__background--zoom-fallback">
             <div className="room-stage__zoom-surface" />

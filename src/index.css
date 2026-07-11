@@ -79,6 +79,73 @@ body {
   border-radius: 4px;
 }
 
+.sofa-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #143a28;
+}
+
+.sofa-scene__desk-sliver {
+  position: absolute;
+  left: 5%;
+  top: 0;
+  width: 90%;
+  height: 10%;
+  background: #8b5e3c;
+  border-radius: 0 0 4px 4px;
+}
+
+.sofa-scene__body {
+  position: absolute;
+  left: 5%;
+  top: 17.5%;
+  width: 90%;
+  height: 75%;
+  background: #8a8f94;
+  border: 2px solid #6b7075;
+  border-radius: 6px;
+}
+
+.sofa-scene__armrest {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  width: 40px;
+  background: #75797d;
+  border: 2px solid #5c6064;
+  border-radius: 4px;
+}
+
+.sofa-scene__armrest--left {
+  left: 8px;
+}
+
+.sofa-scene__armrest--right {
+  right: 8px;
+}
+
+.sofa-scene__backrest {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  bottom: 8px;
+  height: 40px;
+  background: #75797d;
+  border: 2px solid #5c6064;
+  border-radius: 4px;
+}
+
+.sofa-scene__wall-gap {
+  position: absolute;
+  left: 5%;
+  bottom: 0;
+  width: 90%;
+  height: 7.5%;
+  background: #ffffff;
+  border-radius: 0 0 4px 4px;
+}
+
 .object-sprite {
   position: absolute;
   display: flex;

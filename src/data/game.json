@@ -26,7 +26,7 @@
             {
               "id": "livingroom_sofa",
               "name": "グレーのソファ",
-              "type": "decoration",
+              "type": "object",
               "position": { "x": 100, "y": 256, "width": 200, "height": 144 },
               "visible": true,
               "enabled": true,
@@ -34,7 +34,15 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        { "type": "pushNavigation", "targetId": "livingroom_sofa" }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -65,7 +73,7 @@
               "id": "livingroom_desk_box",
               "name": "箱",
               "type": "decoration",
-              "position": { "x": 223, "y": 180, "width": 70, "height": 110 },
+              "position": { "x": 223, "y": 170, "width": 70, "height": 110 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -80,7 +88,7 @@
               "id": "livingroom_desk_tissue",
               "name": "ティッシュケース",
               "type": "decoration",
-              "position": { "x": 308, "y": 200, "width": 50, "height": 90 },
+              "position": { "x": 308, "y": 190, "width": 50, "height": 90 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
