@@ -6,10 +6,11 @@ interface ObjectSpriteProps {
   def: GameObject;
   runtime: ObjectRuntimeState;
   image: string | undefined;
+  devMode?: boolean;
   onTouch: (objectId: string) => void;
 }
 
-export function ObjectSprite({ def, runtime, image, onTouch }: ObjectSpriteProps) {
+export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: ObjectSpriteProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   if (!runtime.visible) return null;
@@ -30,9 +31,12 @@ export function ObjectSprite({ def, runtime, image, onTouch }: ObjectSpriteProps
       {image && !imageFailed ? (
         <img src={image} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
       ) : (
-        <span className="object-sprite__fallback">{def.name}</span>
+        <span className="object-sprite__fallback">
+          {def.name}
+          {devMode && <span className="object-sprite__dev-state">state: {runtime.state}</span>}
+        </span>
       )}
-      {runtime.state !== def.defaultState && (
+      {!devMode && runtime.state !== def.defaultState && (
         <span className="object-sprite__state">{runtime.state}</span>
       )}
     </button>

@@ -104,6 +104,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
               def={obj}
               runtime={runtime}
               image={engine.getCurrentImage(obj.id)}
+              devMode={showGrid}
               onTouch={(id) => void engine.touch(id)}
             />
           );

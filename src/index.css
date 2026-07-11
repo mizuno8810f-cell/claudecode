@@ -285,6 +285,15 @@ body {
   word-break: break-word;
 }
 
+/* Dev-mode state readout shown under the object name (with the coord grid). */
+.object-sprite__dev-state {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #b3261e;
+}
+
 .object-sprite__state {
   position: absolute;
   right: 2px;
