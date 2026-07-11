@@ -48,7 +48,7 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
+                  "children": ["livingroom_desk_box", "livingroom_desk_tissue"],
                   "triggers": [
                     {
                       "type": "touch",
@@ -58,6 +58,36 @@
                       ]
                     }
                   ]
+                }
+              }
+            },
+            {
+              "id": "livingroom_desk_box",
+              "name": "箱",
+              "type": "decoration",
+              "position": { "x": 223, "y": 240, "width": 70, "height": 70 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "livingroom_desk_tissue",
+              "name": "ティッシュケース",
+              "type": "decoration",
+              "position": { "x": 308, "y": 260, "width": 50, "height": 50 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
                 }
               }
             },

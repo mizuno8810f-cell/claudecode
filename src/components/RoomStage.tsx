@@ -28,6 +28,10 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             draggable={false}
             onError={() => setBgFailed(true)}
           />
+        ) : isZoomed ? (
+          <div className="room-stage__background room-stage__background--zoom-fallback">
+            <div className="room-stage__zoom-surface" />
+          </div>
         ) : (
           <div className="room-stage__background room-stage__background--fallback" />
         )}
