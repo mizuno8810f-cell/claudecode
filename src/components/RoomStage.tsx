@@ -60,28 +60,30 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             ← 戻る
           </button>
         )}
+      </div>
 
-        {!isZoomed && room.leftRoomId && (
+      {!isZoomed && (
+        <div className="room-stage__navbar">
           <button
             type="button"
-            className="room-stage__nav room-stage__nav--left"
+            className="room-stage__navbar-btn"
             onClick={() => engine.moveRoom("left")}
-            disabled={snapshot.locked}
+            disabled={snapshot.locked || !room.leftRoomId}
+            aria-label="左の部屋へ"
           >
             ‹
           </button>
-        )}
-        {!isZoomed && room.rightRoomId && (
           <button
             type="button"
-            className="room-stage__nav room-stage__nav--right"
+            className="room-stage__navbar-btn"
             onClick={() => engine.moveRoom("right")}
-            disabled={snapshot.locked}
+            disabled={snapshot.locked || !room.rightRoomId}
+            aria-label="右の部屋へ"
           >
             ›
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

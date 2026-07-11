@@ -69,18 +69,18 @@ body {
 }
 
 .room-stage__ceiling {
-  height: 12%;
+  height: 18%;
   background: #e8e7e4;
   border-bottom: 1px solid #d6d5d1;
 }
 
 .room-stage__wall {
-  height: 48%;
+  height: 64%;
   background: #ffffff;
 }
 
 .room-stage__floor {
-  height: 40%;
+  height: 18%;
   background: #e8e7e4;
   border-top: 1px solid #d6d5d1;
 }
@@ -137,10 +137,12 @@ body {
   pointer-events: none;
 }
 
-.room-stage__back,
-.room-stage__nav {
+.room-stage__back {
   position: absolute;
   z-index: 5;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
   background: rgba(0, 0, 0, 0.55);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -148,32 +150,32 @@ body {
   cursor: pointer;
 }
 
-.room-stage__back {
-  top: 12px;
-  left: 12px;
-  padding: 6px 12px;
-}
-
-.room-stage__nav {
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  line-height: 1;
-}
-
-.room-stage__nav--left {
-  left: 8px;
-}
-
-.room-stage__nav--right {
-  right: 8px;
-}
-
-.room-stage__back:disabled,
-.room-stage__nav:disabled {
+.room-stage__back:disabled {
   opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.room-stage__navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.room-stage__navbar-btn {
+  width: 56px;
+  height: 40px;
+  background: #262626;
+  color: #eee;
+  border: 1px solid #3a3a3a;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.room-stage__navbar-btn:disabled {
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
