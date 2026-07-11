@@ -1379,7 +1379,7 @@
             {
               "id": "workingspace_curtain",
               "name": "カーテン",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 0,
                 "y": 50,
@@ -1388,11 +1388,71 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "morningclose",
               "states": {
-                "default": {
+                "morningclose": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "morningopen"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "morningopen": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "morningclose"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "nightclose": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "nightopen"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "nightopen": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "nightclose"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -1597,7 +1657,7 @@
             {
               "id": "bedroom_bed",
               "name": "ベッド",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 0,
                 "y": 300,
@@ -1610,7 +1670,71 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_bed",
+                          "value": "sleep"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "equals",
+                          "value": "morningclose"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "nightclose"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "equals",
+                          "value": "morningopen"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "morningclose"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "sleep": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_bed",
+                          "value": "default"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
