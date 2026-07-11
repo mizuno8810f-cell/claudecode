@@ -1,21 +1,11 @@
-export type ObjectType =
-  | "object"
-  | "zoom"
-  | "item"
-  | "door"
-  | "inputPanel"
-  | "text";
+/**
+ * Object "type" is descriptive only — Trigger/Event/Condition drive all
+ * behavior, so it is intentionally left open rather than a closed union.
+ * Conventional values: object, item, door, input_panel, text, decoration.
+ */
+export type ObjectType = string;
 
 export type TriggerType = "touch" | "input" | "watchState" | "onBack";
-
-export type ConditionType =
-  | "hasItem"
-  | "selectedItem"
-  | "objectState"
-  | "globalState"
-  | "visible"
-  | "enabled"
-  | "inputValue";
 
 export type Operator =
   | "equals"
@@ -25,12 +15,14 @@ export type Operator =
   | "greaterThan"
   | "lessThan";
 
-export interface Condition {
-  type: ConditionType;
-  key: string;
-  operator: Operator;
-  value: unknown;
-}
+export type Condition =
+  | { type: "hasItem"; itemId: string; operator: Operator; value: unknown }
+  | { type: "selectedItem"; operator: Operator; value: unknown }
+  | { type: "objectState"; targetId: string; operator: Operator; value: unknown }
+  | { type: "globalState"; key: string; operator: Operator; value: unknown }
+  | { type: "visible"; targetId: string; operator: Operator; value: unknown }
+  | { type: "enabled"; targetId: string; operator: Operator; value: unknown }
+  | { type: "inputValue"; targetId: string; operator: Operator; value: unknown };
 
 export type GameEvent =
   | { type: "setObjectState"; targetId: string; value: string }
@@ -46,9 +38,9 @@ export type GameEvent =
   | { type: "navigateRoom"; roomId: string }
   | { type: "pushNavigation"; targetId: string }
   | { type: "popNavigation" }
-  | { type: "showMessage"; text: string }
+  | { type: "showMessage"; message: string }
   | { type: "showImage"; image: string }
-  | { type: "playSound"; sound: string }
+  | { type: "playSound"; soundId: string }
   | { type: "nextStage"; stageId?: string }
   | { type: "clearGame" };
 
@@ -65,17 +57,28 @@ export interface Position {
   height: number;
 }
 
+/** State-specific slice of an object: image, visible children, and behavior. */
+export interface ObjectState {
+  image?: string;
+  children: string[];
+  triggers: Trigger[];
+}
+
+/**
+ * Object-wide info (id/name/type/position/visible/enabled/defaultState) plus
+ * a `states` map holding everything that changes per state. The *current*
+ * state, visible, and enabled are runtime concerns owned by the engine, not
+ * this definition — see GameEngine's ObjectRuntimeState.
+ */
 export interface GameObject {
   id: string;
   name: string;
   type: ObjectType;
-  image?: string;
+  position: Position;
   visible: boolean;
   enabled: boolean;
-  state: string;
-  position: Position;
-  children: GameObject[];
-  triggers: Trigger[];
+  defaultState: string;
+  states: Record<string, ObjectState>;
 }
 
 export interface Room {

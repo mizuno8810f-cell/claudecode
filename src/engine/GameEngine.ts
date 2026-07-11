@@ -1,4 +1,4 @@
-import type { GameData, GameEvent, GameObject, Item, Room, Trigger } from "./types";
+import type { GameData, GameEvent, GameObject, Item, ObjectState, Room, Trigger } from "./types";
 import { evaluateConditions, type ConditionContext } from "./conditions";
 
 export interface ObjectRuntimeState {
@@ -29,18 +29,25 @@ interface IndexedObject {
   stageId: string;
 }
 
+const EMPTY_STATE: ObjectState = { image: undefined, children: [], triggers: [] };
 const WATCH_STATE_MAX_DEPTH = 10;
 
 /**
  * Executes the JSON-defined game graph. React components only read
  * `getSnapshot()` / `getDisplayedObjects()` and call the public action
  * methods below — no puzzle-specific logic lives outside this class.
+ *
+ * Objects are flat within a room: a state's `children` are id references
+ * into that same flat object list, not inline nested definitions. An
+ * object counts as "root" (shown directly in the room) unless some other
+ * object's state lists it as a child.
  */
 export class GameEngine {
   private readonly game: GameData;
   private readonly objectIndex = new Map<string, IndexedObject>();
   private readonly roomIndex = new Map<string, { room: Room; stageId: string }>();
   private readonly itemIndex = new Map<string, Item>();
+  private readonly rootObjectIds = new Set<string>();
   private readonly stageOrder: string[] = [];
   private readonly listeners = new Set<Listener>();
   private readonly watchMemory = new Map<string, boolean>();
@@ -55,24 +62,25 @@ export class GameEngine {
       this.stageOrder.push(stage.id);
       for (const room of stage.rooms) {
         this.roomIndex.set(room.id, { room, stageId: stage.id });
-        this.indexObjects(room.objects, room.id, stage.id);
+        for (const obj of room.objects) {
+          this.objectIndex.set(obj.id, { def: obj, roomId: room.id, stageId: stage.id });
+          this.rootObjectIds.add(obj.id);
+        }
+      }
+    }
+    for (const [, { def }] of this.objectIndex) {
+      for (const state of Object.values(def.states)) {
+        for (const childId of state.children) this.rootObjectIds.delete(childId);
       }
     }
     for (const item of game.items) this.itemIndex.set(item.id, item);
     this.snapshot = this.buildInitialSnapshot();
   }
 
-  private indexObjects(objects: GameObject[], roomId: string, stageId: string) {
-    for (const obj of objects) {
-      this.objectIndex.set(obj.id, { def: obj, roomId, stageId });
-      if (obj.children.length) this.indexObjects(obj.children, roomId, stageId);
-    }
-  }
-
   private buildInitialSnapshot(): EngineSnapshot {
     const objectStates: Record<string, ObjectRuntimeState> = {};
     for (const [id, { def }] of this.objectIndex) {
-      objectStates[id] = { visible: def.visible, enabled: def.enabled, state: def.state };
+      objectStates[id] = { visible: def.visible, enabled: def.enabled, state: def.defaultState };
     }
     return {
       stageId: this.game.initialStageId,
@@ -132,18 +140,35 @@ export class GameEngine {
     return this.snapshot.objectStates[objectId];
   }
 
+  /** Resolves the state slice (image/children/triggers) an object is currently in. */
+  private getCurrentObjectState(objectId: string): ObjectState {
+    const def = this.objectIndex.get(objectId)?.def;
+    if (!def) return EMPTY_STATE;
+    const stateKey = this.snapshot.objectStates[objectId]?.state ?? def.defaultState;
+    return def.states[stateKey] ?? def.states[def.defaultState] ?? EMPTY_STATE;
+  }
+
+  getCurrentImage(objectId: string): string | undefined {
+    return this.getCurrentObjectState(objectId).image;
+  }
+
   getCurrentRoom(): Room | undefined {
     return this.roomIndex.get(this.snapshot.roomId)?.room;
   }
 
-  /** Objects currently on screen: room-level objects, or the children of the zoomed-in object. */
+  /** Objects currently on screen: room-level root objects, or the current state's children. */
   getDisplayedObjects(): GameObject[] {
     const room = this.getCurrentRoom();
     if (!room) return [];
     const stack = this.snapshot.navigationStack;
-    if (stack.length === 0) return room.objects;
+    if (stack.length === 0) {
+      return room.objects.filter((o) => this.rootObjectIds.has(o.id));
+    }
     const topId = stack[stack.length - 1];
-    return this.objectIndex.get(topId)?.def.children ?? [];
+    const childIds = this.getCurrentObjectState(topId).children;
+    return childIds
+      .map((id) => this.objectIndex.get(id)?.def)
+      .filter((def): def is GameObject => def !== undefined);
   }
 
   getBackgroundImage(): string | undefined {
@@ -152,7 +177,7 @@ export class GameEngine {
     const stack = this.snapshot.navigationStack;
     if (stack.length === 0) return room.background;
     const topId = stack[stack.length - 1];
-    return this.objectIndex.get(topId)?.def.image ?? room.background;
+    return this.getCurrentObjectState(topId).image ?? room.background;
   }
 
   private conditionContext(): ConditionContext {
@@ -168,11 +193,12 @@ export class GameEngine {
 
   async touch(objectId: string): Promise<void> {
     if (this.snapshot.locked || this.snapshot.cleared) return;
-    const entry = this.objectIndex.get(objectId);
-    if (!entry) return;
+    if (!this.objectIndex.has(objectId)) return;
     const state = this.snapshot.objectStates[objectId];
     if (!state?.visible || !state?.enabled) return;
-    const triggers = entry.def.triggers.filter((t) => t.type === "touch" || t.type === "input");
+    const triggers = this.getCurrentObjectState(objectId).triggers.filter(
+      (t) => t.type === "touch" || t.type === "input",
+    );
     await this.runTriggers(triggers);
   }
 
@@ -181,9 +207,8 @@ export class GameEngine {
     const stack = this.snapshot.navigationStack;
     if (stack.length === 0) return;
     const topId = stack[stack.length - 1];
-    const entry = this.objectIndex.get(topId);
-    if (entry) {
-      const triggers = entry.def.triggers.filter((t) => t.type === "onBack");
+    if (this.objectIndex.has(topId)) {
+      const triggers = this.getCurrentObjectState(topId).triggers.filter((t) => t.type === "onBack");
       await this.runTriggers(triggers);
     }
     const stillOnTop =
@@ -291,7 +316,7 @@ export class GameEngine {
         this.emit({ navigationStack: this.snapshot.navigationStack.slice(0, -1) });
         return;
       case "showMessage":
-        this.emit({ message: event.text });
+        this.emit({ message: event.message });
         return new Promise<void>((resolve) => {
           this.messageResolver = resolve;
         });
@@ -301,7 +326,7 @@ export class GameEngine {
           this.imageResolver = resolve;
         });
       case "playSound":
-        this.playSound(event.sound);
+        this.playSound(event.soundId);
         return;
       case "nextStage": {
         const currentIndex = this.stageOrder.indexOf(this.snapshot.stageId);
@@ -318,10 +343,10 @@ export class GameEngine {
     }
   }
 
-  private playSound(src: string) {
+  private playSound(soundId: string) {
     if (typeof Audio === "undefined") return;
     try {
-      const audio = new Audio(src);
+      const audio = new Audio(`sounds/${soundId}.mp3`);
       void audio.play().catch(() => {});
     } catch {
       // ignore in environments without audio support
@@ -331,11 +356,14 @@ export class GameEngine {
   private async runWatchStatePass(depth = 0): Promise<void> {
     if (depth > WATCH_STATE_MAX_DEPTH) return;
     let firedAny = false;
-    for (const [objectId, entry] of this.objectIndex) {
-      const watchTriggers = entry.def.triggers.filter((t) => t.type === "watchState");
+    for (const objectId of this.objectIndex.keys()) {
+      const stateKey = this.snapshot.objectStates[objectId]?.state ?? "";
+      const watchTriggers = this.getCurrentObjectState(objectId).triggers.filter(
+        (t) => t.type === "watchState",
+      );
       for (let i = 0; i < watchTriggers.length; i++) {
         const trigger = watchTriggers[i];
-        const key = `${objectId}#${i}`;
+        const key = `${objectId}#${stateKey}#${i}`;
         const result = evaluateConditions(trigger.conditions, this.conditionContext());
         const previouslyTrue = this.watchMemory.get(key) ?? false;
         if (result && !previouslyTrue) {

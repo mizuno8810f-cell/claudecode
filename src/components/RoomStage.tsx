@@ -39,6 +39,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
               key={obj.id}
               def={obj}
               runtime={runtime}
+              image={engine.getCurrentImage(obj.id)}
               onTouch={(id) => void engine.touch(id)}
             />
           );

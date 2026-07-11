@@ -29,19 +29,19 @@ export interface ConditionContext {
 export function evaluateCondition(condition: Condition, ctx: ConditionContext): boolean {
   switch (condition.type) {
     case "hasItem":
-      return compare(ctx.inventory.includes(condition.key), condition.operator, condition.value);
+      return compare(ctx.inventory.includes(condition.itemId), condition.operator, condition.value);
     case "selectedItem":
       return compare(ctx.selectedItemId, condition.operator, condition.value);
     case "objectState":
-      return compare(ctx.objectState(condition.key)?.state, condition.operator, condition.value);
+      return compare(ctx.objectState(condition.targetId)?.state, condition.operator, condition.value);
     case "globalState":
       return compare(ctx.globalState[condition.key], condition.operator, condition.value);
     case "visible":
-      return compare(ctx.objectState(condition.key)?.visible, condition.operator, condition.value);
+      return compare(ctx.objectState(condition.targetId)?.visible, condition.operator, condition.value);
     case "enabled":
-      return compare(ctx.objectState(condition.key)?.enabled, condition.operator, condition.value);
+      return compare(ctx.objectState(condition.targetId)?.enabled, condition.operator, condition.value);
     case "inputValue":
-      return compare(ctx.objectState(condition.key)?.state, condition.operator, condition.value);
+      return compare(ctx.objectState(condition.targetId)?.state, condition.operator, condition.value);
   }
 }
 

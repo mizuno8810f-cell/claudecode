@@ -4,10 +4,11 @@ import type { GameObject, ObjectRuntimeState } from "../engine";
 interface ObjectSpriteProps {
   def: GameObject;
   runtime: ObjectRuntimeState;
+  image: string | undefined;
   onTouch: (objectId: string) => void;
 }
 
-export function ObjectSprite({ def, runtime, onTouch }: ObjectSpriteProps) {
+export function ObjectSprite({ def, runtime, image, onTouch }: ObjectSpriteProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   if (!runtime.visible) return null;
@@ -24,17 +25,14 @@ export function ObjectSprite({ def, runtime, onTouch }: ObjectSpriteProps) {
       data-object-id={def.id}
       data-object-state={runtime.state}
     >
-      {def.image && !imageFailed ? (
-        <img
-          src={def.image}
-          alt={def.name}
-          draggable={false}
-          onError={() => setImageFailed(true)}
-        />
+      {image && !imageFailed ? (
+        <img src={image} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
       ) : (
         <span className="object-sprite__fallback">{def.name}</span>
       )}
-      {runtime.state !== "default" && <span className="object-sprite__state">{runtime.state}</span>}
+      {runtime.state !== def.defaultState && (
+        <span className="object-sprite__state">{runtime.state}</span>
+      )}
     </button>
   );
 }

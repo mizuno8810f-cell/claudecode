@@ -1,17 +1,26 @@
 import { describe, expect, it } from "vitest";
 import { GameEngine } from "./GameEngine";
-import type { GameData, GameObject } from "./types";
+import type { GameData, GameObject, ObjectState, Trigger } from "./types";
 
-function obj(partial: Partial<GameObject> & { id: string }): GameObject {
+function singleState(triggers: Trigger[] = []): Record<string, ObjectState> {
+  return { default: { image: undefined, children: [], triggers } };
+}
+
+function makeObject(partial: {
+  id: string;
+  type?: string;
+  visible?: boolean;
+  enabled?: boolean;
+  defaultState?: string;
+  states: Record<string, ObjectState>;
+}): GameObject {
   return {
     name: partial.id,
-    type: "object",
-    visible: true,
-    enabled: true,
-    state: "default",
+    type: partial.type ?? "object",
+    visible: partial.visible ?? true,
+    enabled: partial.enabled ?? true,
     position: { x: 0, y: 0, width: 10, height: 10 },
-    children: [],
-    triggers: [],
+    defaultState: partial.defaultState ?? "default",
     ...partial,
   };
 }
@@ -51,29 +60,41 @@ function buildGame(overrides: Partial<GameData> = {}): GameData {
   };
 }
 
-describe("touch triggers", () => {
-  it("runs matching events in array order and skips non-matching triggers", async () => {
+describe("state-scoped touch triggers", () => {
+  it("dispatches to the triggers of the object's current state only", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "door",
         type: "door",
-        state: "locked",
-        triggers: [
-          {
-            type: "touch",
-            conditions: [{ type: "objectState", key: "door", operator: "equals", value: "locked" }],
-            events: [
-              { type: "setObjectState", targetId: "door", value: "open" },
-              { type: "navigateRoom", roomId: "room_b" },
+        defaultState: "locked",
+        states: {
+          locked: {
+            image: "door_locked.png",
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [],
+                events: [
+                  { type: "setObjectState", targetId: "door", value: "open" },
+                  { type: "navigateRoom", roomId: "room_b" },
+                ],
+              },
             ],
           },
-          {
-            type: "touch",
-            conditions: [{ type: "objectState", key: "door", operator: "equals", value: "open" }],
-            events: [{ type: "navigateRoom", roomId: "room_a" }],
+          open: {
+            image: "door_open.png",
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [],
+                events: [{ type: "navigateRoom", roomId: "room_a" }],
+              },
+            ],
           },
-        ],
+        },
       }),
     );
 
@@ -82,20 +103,24 @@ describe("touch triggers", () => {
 
     expect(engine.getSnapshot().objectStates.door.state).toBe("open");
     expect(engine.getSnapshot().roomId).toBe("room_b");
+
+    // Now in the "open" state, touching runs the open-state trigger instead.
+    await engine.touch("door");
+    expect(engine.getSnapshot().roomId).toBe("room_a");
   });
 
   it("does not fire touch on invisible or disabled objects", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "hidden_thing",
         visible: false,
-        triggers: [{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }],
+        states: singleState([{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }]),
       }),
-      obj({
+      makeObject({
         id: "disabled_thing",
         enabled: false,
-        triggers: [{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }],
+        states: singleState([{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }]),
       }),
     );
     const engine = new GameEngine(game);
@@ -109,10 +134,10 @@ describe("items and selection", () => {
   it("addItem/hasItem/selectItem/clearSelectedItem work end to end", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "key_pickup",
         type: "item",
-        triggers: [
+        states: singleState([
           {
             type: "touch",
             conditions: [],
@@ -121,18 +146,29 @@ describe("items and selection", () => {
               { type: "hideObject", targetId: "key_pickup" },
             ],
           },
-        ],
+        ]),
       }),
-      obj({
+      makeObject({
         id: "lock",
         type: "door",
-        triggers: [
-          {
-            type: "touch",
-            conditions: [{ type: "selectedItem", key: "selectedItemId", operator: "equals", value: "key" }],
-            events: [{ type: "setObjectState", targetId: "lock", value: "open" }, { type: "clearSelectedItem" }],
+        defaultState: "locked",
+        states: {
+          locked: {
+            image: undefined,
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [{ type: "selectedItem", operator: "equals", value: "key" }],
+                events: [
+                  { type: "setObjectState", targetId: "lock", value: "open" },
+                  { type: "clearSelectedItem" },
+                ],
+              },
+            ],
           },
-        ],
+          open: { image: undefined, children: [], triggers: [] },
+        },
       }),
     );
 
@@ -151,23 +187,25 @@ describe("items and selection", () => {
 });
 
 describe("navigation", () => {
-  it("pushNavigation/popNavigation drill into children and onBack fires on back()", async () => {
+  it("pushNavigation/popNavigation drill into a state's children and onBack fires on back()", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "shelf",
         type: "zoom",
-        children: [obj({ id: "book" })],
-        triggers: [
+        states: singleState([
           { type: "touch", conditions: [], events: [{ type: "pushNavigation", targetId: "shelf" }] },
           {
             type: "onBack",
             conditions: [],
-            events: [{ type: "setObjectState", targetId: "shelf", value: "closed" }],
+            events: [{ type: "setGlobalState", key: "shelfClosed", value: true }],
           },
-        ],
+        ]),
       }),
     );
+    // Redefine shelf's single state to reference "book" as a child.
+    game.stages[0].rooms[0].objects[0].states.default.children = ["book"];
+    game.stages[0].rooms[0].objects.push(makeObject({ id: "book", states: singleState([]) }));
 
     const engine = new GameEngine(game);
     await engine.touch("shelf");
@@ -176,7 +214,7 @@ describe("navigation", () => {
 
     await engine.back();
     expect(engine.getSnapshot().navigationStack).toEqual([]);
-    expect(engine.getSnapshot().objectStates.shelf.state).toBe("closed");
+    expect(engine.getSnapshot().globalState.shelfClosed).toBe(true);
   });
 
   it("moveRoom follows leftRoomId/rightRoomId and resets the navigation stack", () => {
@@ -188,33 +226,43 @@ describe("navigation", () => {
     engine.moveRoom("left");
     expect(engine.getSnapshot().roomId).toBe("room_a");
   });
+
+  it("treats an object referenced as a child as non-root, hidden from the room-level view", () => {
+    const game = buildGame();
+    game.stages[0].rooms[0].objects.push(
+      makeObject({
+        id: "shelf",
+        states: { default: { image: undefined, children: ["book"], triggers: [] } },
+      }),
+      makeObject({ id: "book", states: singleState([]) }),
+    );
+    const engine = new GameEngine(game);
+    expect(engine.getDisplayedObjects().map((o) => o.id)).toEqual(["shelf"]);
+  });
 });
 
 describe("locking and sequential message events", () => {
   it("locks input while a showMessage is awaiting dismissal, then continues the event list", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "sign",
         type: "text",
-        triggers: [
+        states: singleState([
           {
             type: "touch",
             conditions: [],
             events: [
-              { type: "showMessage", text: "hello" },
+              { type: "showMessage", message: "hello" },
               { type: "setGlobalState", key: "afterMessage", value: true },
             ],
           },
-        ],
+        ]),
       }),
     );
     const engine = new GameEngine(game);
     const touchPromise = engine.touch("sign");
 
-    // Message shown, event list paused, engine locked.
-    await Promise.resolve();
-    await Promise.resolve();
     expect(engine.getSnapshot().message).toBe("hello");
     expect(engine.getSnapshot().locked).toBe(true);
     expect(engine.getSnapshot().globalState.afterMessage).toBeUndefined();
@@ -232,41 +280,59 @@ describe("watchState edge triggering", () => {
   it("fires only on the false-to-true transition, and can re-fire after going false again", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({
+      makeObject({
         id: "toggle",
-        state: "default",
-        triggers: [
-          {
-            type: "touch",
-            conditions: [{ type: "objectState", key: "toggle", operator: "equals", value: "default" }],
-            events: [{ type: "setObjectState", targetId: "toggle", value: "on" }],
-          },
-          {
-            type: "touch",
-            conditions: [{ type: "objectState", key: "toggle", operator: "equals", value: "on" }],
-            // Manually clear fireCount here (not via the watcher) so a later "true" reading of
-            // fireCount can only have come from the watchState trigger firing again below.
-            events: [
-              { type: "setObjectState", targetId: "toggle", value: "off" },
-              { type: "setGlobalState", key: "fireCount", value: false },
+        defaultState: "default",
+        states: {
+          default: {
+            image: undefined,
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [],
+                events: [{ type: "setObjectState", targetId: "toggle", value: "on" }],
+              },
             ],
           },
-          {
-            type: "touch",
-            conditions: [{ type: "objectState", key: "toggle", operator: "equals", value: "off" }],
-            events: [{ type: "setObjectState", targetId: "toggle", value: "default" }],
+          on: {
+            image: undefined,
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [],
+                // Manually clear fireCount here (not via the watcher) so a later "true" reading
+                // of fireCount can only have come from the watchState trigger firing again below.
+                events: [
+                  { type: "setObjectState", targetId: "toggle", value: "off" },
+                  { type: "setGlobalState", key: "fireCount", value: false },
+                ],
+              },
+            ],
           },
-        ],
+          off: {
+            image: undefined,
+            children: [],
+            triggers: [
+              {
+                type: "touch",
+                conditions: [],
+                events: [{ type: "setObjectState", targetId: "toggle", value: "default" }],
+              },
+            ],
+          },
+        },
       }),
-      obj({
+      makeObject({
         id: "watcher",
-        triggers: [
+        states: singleState([
           {
             type: "watchState",
-            conditions: [{ type: "objectState", key: "toggle", operator: "equals", value: "on" }],
+            conditions: [{ type: "objectState", targetId: "toggle", operator: "equals", value: "on" }],
             events: [{ type: "setGlobalState", key: "fireCount", value: true }],
           },
-        ],
+        ]),
       }),
     );
 
@@ -301,9 +367,9 @@ describe("stage progression and clear", () => {
               leftRoomId: null,
               rightRoomId: null,
               objects: [
-                obj({
+                makeObject({
                   id: "portal",
-                  triggers: [{ type: "touch", conditions: [], events: [{ type: "nextStage" }] }],
+                  states: singleState([{ type: "touch", conditions: [], events: [{ type: "nextStage" }] }]),
                 }),
               ],
             },
@@ -335,7 +401,10 @@ describe("stage progression and clear", () => {
   it("clearGame marks the game as cleared", async () => {
     const game = buildGame();
     game.stages[0].rooms[0].objects.push(
-      obj({ id: "goal", triggers: [{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }] }),
+      makeObject({
+        id: "goal",
+        states: singleState([{ type: "touch", conditions: [], events: [{ type: "clearGame" }] }]),
+      }),
     );
     const engine = new GameEngine(game);
     await engine.touch("goal");
