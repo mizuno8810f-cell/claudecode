@@ -112,22 +112,24 @@ body {
   background: #cbc8bf;
 }
 
+/* The sofa scene is composed upside-down (vertically flipped): the desk
+   sliver/carpet sit at the bottom, the wall at the top. */
 .sofa-scene__desk-sliver {
   position: absolute;
   left: 2%;
-  top: 0;
+  bottom: 0;
   width: 96%;
   height: 16%;
   background: #8b5e3c;
-  border-radius: 0 0 4px 4px;
+  border-radius: 4px 4px 0 0;
 }
 
 .sofa-scene__carpet {
-  /* Runs off-frame at the top/left/right, down to the midpoint of the
-     desk/sofa gap (16% + 26% halved). The desk sliver renders on top. */
+  /* Runs off-frame at the bottom/left/right, up to the midpoint of the
+     desk/sofa gap. The desk sliver renders on top. */
   position: absolute;
   left: 0;
-  top: 0;
+  bottom: 0;
   width: 100%;
   height: 21%;
   background: #143a28;
@@ -136,7 +138,7 @@ body {
 .sofa-scene__body {
   position: absolute;
   left: 2%;
-  top: 26%;
+  top: 24%;
   width: 96%;
   height: 50%;
   background: #9aa0a6;
@@ -165,7 +167,7 @@ body {
   position: absolute;
   left: 40px;
   right: 40px;
-  bottom: 0;
+  top: 0;
   height: 40px;
   background: #6b7075;
 }
@@ -173,11 +175,11 @@ body {
 .sofa-scene__wall {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 0;
   width: 100%;
   height: 24%;
   background: #ffffff;
-  border-top: 3px solid #8a877c;
+  border-bottom: 3px solid #8a877c;
 }
 
 .corner-rack-scene__fold-line {
