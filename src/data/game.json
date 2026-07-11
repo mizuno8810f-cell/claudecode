@@ -82,6 +82,21 @@
                   "triggers": []
                 }
               }
+            },
+            {
+              "id": "livingroom_side_rack",
+              "name": "サイドラック",
+              "type": "decoration",
+              "position": { "x": 323, "y": 112, "width": 55, "height": 288 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
             }
           ]
         },
