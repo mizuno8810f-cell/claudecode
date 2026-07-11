@@ -69,18 +69,18 @@ body {
 }
 
 .room-stage__ceiling {
-  height: 18%;
+  height: 12%;
   background: #e8e7e4;
   border-bottom: 1px solid #d6d5d1;
 }
 
 .room-stage__wall {
-  height: 64%;
+  height: 48%;
   background: #ffffff;
 }
 
 .room-stage__floor {
-  height: 18%;
+  height: 40%;
   background: #e8e7e4;
   border-top: 1px solid #d6d5d1;
 }

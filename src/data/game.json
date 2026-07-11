@@ -22,7 +22,38 @@
           "background": "images/room_livingroom.png",
           "leftRoomId": "room_kitchen",
           "rightRoomId": "room_workingspace",
-          "objects": []
+          "objects": [
+            {
+              "id": "livingroom_desk",
+              "name": "机",
+              "type": "decoration",
+              "position": { "x": 100, "y": 270, "width": 200, "height": 100 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "livingroom_sofa",
+              "name": "グレーのソファ",
+              "type": "decoration",
+              "position": { "x": 100, "y": 170, "width": 200, "height": 70 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            }
+          ]
         },
         {
           "id": "room_workingspace",
