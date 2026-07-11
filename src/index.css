@@ -98,11 +98,13 @@ body {
 }
 
 .sofa-scene__carpet {
+  /* Runs off-frame at the top/left/right, down to the midpoint of the
+     desk/sofa gap (16% + 26% halved). The desk sliver renders on top. */
   position: absolute;
   left: 0;
-  top: 16%;
+  top: 0;
   width: 100%;
-  height: 10%;
+  height: 21%;
   background: #143a28;
 }
 

@@ -41,8 +41,8 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           />
         ) : zoomScene === "sofa" ? (
           <div className="room-stage__background sofa-scene">
-            <div className="sofa-scene__desk-sliver" />
             <div className="sofa-scene__carpet" />
+            <div className="sofa-scene__desk-sliver" />
             <div className="sofa-scene__body">
               <div className="sofa-scene__armrest sofa-scene__armrest--left" />
               <div className="sofa-scene__armrest sofa-scene__armrest--right" />
