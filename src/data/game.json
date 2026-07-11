@@ -57,7 +57,7 @@
               "id": "livingroom_corner_rack",
               "name": "コーナーラック",
               "type": "decoration",
-              "position": { "x": 0, "y": 184, "width": 40, "height": 216 },
+              "position": { "x": 0, "y": 112, "width": 55, "height": 288 },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
