@@ -44,16 +44,23 @@ export function InventoryBar({ engine, snapshot }: InventoryBarProps) {
               type="button"
               key={itemId}
               className={`inventory-slot${selected ? " inventory-slot--selected" : ""}`}
-              onClick={() => engine.selectInventoryItem(itemId)}
+              onClick={() => engine.pressInventoryItem(itemId)}
               disabled={snapshot.locked}
               title={item.description}
+              data-item-id={itemId}
             >
               <img
                 src={item.image}
                 alt={item.name}
                 draggable={false}
-                onError={(e) => (e.currentTarget.style.display = "none")}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.nextElementSibling?.removeAttribute("hidden");
+                }}
               />
+              <span className="inventory-slot__label" hidden>
+                {item.name}
+              </span>
             </button>
           );
         })}

@@ -19,7 +19,12 @@
               "id": "kitchen_fridge",
               "name": "冷蔵庫",
               "type": "decoration",
-              "position": { "x": 100, "y": 100, "width": 100, "height": 300 },
+              "position": {
+                "x": 100,
+                "y": 100,
+                "width": 100,
+                "height": 300
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -34,7 +39,12 @@
               "id": "kitchen_trash_can",
               "name": "ゴミ箱",
               "type": "decoration",
-              "position": { "x": 0, "y": 250, "width": 100, "height": 150 },
+              "position": {
+                "x": 0,
+                "y": 250,
+                "width": 100,
+                "height": 150
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -49,7 +59,12 @@
               "id": "kitchen_counter",
               "name": "キッチン",
               "type": "decoration",
-              "position": { "x": 300, "y": 200, "width": 100, "height": 200 },
+              "position": {
+                "x": 300,
+                "y": 200,
+                "width": 100,
+                "height": 200
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -64,7 +79,12 @@
               "id": "kitchen_cupboard",
               "name": "食器棚",
               "type": "decoration",
-              "position": { "x": 0, "y": 50, "width": 100, "height": 100 },
+              "position": {
+                "x": 0,
+                "y": 50,
+                "width": 100,
+                "height": 100
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -88,19 +108,44 @@
               "id": "livingroom_sofa",
               "name": "グレーのソファ",
               "type": "object",
-              "position": { "x": 80, "y": 256, "width": 240, "height": 144 },
+              "position": {
+                "x": 80,
+                "y": 256,
+                "width": 240,
+                "height": 144
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": ["livingroom_sofa_key", "livingroom_sofa_cushion"],
+                  "children": [
+                    "livingroom_sofa_hint",
+                    "livingroom_sofa_cushion"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
                       "conditions": [],
                       "events": [
-                        { "type": "pushNavigation", "targetId": "livingroom_sofa" }
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "livingroom_sofa"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showObject",
+                          "targetId": "livingroom_sofa_cushion"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "livingroom_sofa_hint"
+                        }
                       ]
                     }
                   ]
@@ -108,17 +153,41 @@
               }
             },
             {
-              "id": "livingroom_sofa_key",
-              "name": "鍵",
+              "id": "livingroom_sofa_hint",
+              "name": "ヒントアイテム",
               "type": "item",
-              "position": { "x": 93, "y": 203, "width": 60, "height": 40 },
-              "visible": true,
+              "position": {
+                "x": 93,
+                "y": 203,
+                "width": 60,
+                "height": 40
+              },
+              "visible": false,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "hint"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "livingroom_sofa_hint"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ヒントアイテムを手に入れた"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -126,14 +195,34 @@
               "id": "livingroom_sofa_cushion",
               "name": "クッション",
               "type": "decoration",
-              "position": { "x": 68, "y": 168, "width": 110, "height": 110 },
+              "position": {
+                "x": 68,
+                "y": 168,
+                "width": 110,
+                "height": 110
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "hideObject",
+                          "targetId": "livingroom_sofa_cushion"
+                        },
+                        {
+                          "type": "showObject",
+                          "targetId": "livingroom_sofa_hint"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -141,19 +230,30 @@
               "id": "livingroom_desk",
               "name": "机",
               "type": "object",
-              "position": { "x": 100, "y": 328, "width": 200, "height": 72 },
+              "position": {
+                "x": 100,
+                "y": 328,
+                "width": 200,
+                "height": 72
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": ["livingroom_desk_box", "livingroom_desk_tissue"],
+                  "children": [
+                    "livingroom_desk_box",
+                    "livingroom_desk_tissue"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
                       "conditions": [],
                       "events": [
-                        { "type": "pushNavigation", "targetId": "livingroom_desk" }
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "livingroom_desk"
+                        }
                       ]
                     }
                   ]
@@ -164,7 +264,12 @@
               "id": "livingroom_desk_box",
               "name": "箱",
               "type": "decoration",
-              "position": { "x": 223, "y": 120, "width": 70, "height": 110 },
+              "position": {
+                "x": 223,
+                "y": 120,
+                "width": 70,
+                "height": 110
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -179,7 +284,12 @@
               "id": "livingroom_desk_tissue",
               "name": "ティッシュケース",
               "type": "decoration",
-              "position": { "x": 308, "y": 120, "width": 50, "height": 90 },
+              "position": {
+                "x": 308,
+                "y": 120,
+                "width": 50,
+                "height": 90
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -194,19 +304,31 @@
               "id": "livingroom_corner_rack",
               "name": "コーナーラック",
               "type": "object",
-              "position": { "x": 0, "y": 112, "width": 55, "height": 288 },
+              "position": {
+                "x": 0,
+                "y": 112,
+                "width": 55,
+                "height": 288
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": ["livingroom_corner_rack_shelf"],
+                  "children": [
+                    "cr_shelf_top",
+                    "cr_shelf_mid",
+                    "cr_shelf_bottom"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
                       "conditions": [],
                       "events": [
-                        { "type": "pushNavigation", "targetId": "livingroom_corner_rack" }
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "livingroom_corner_rack"
+                        }
                       ]
                     }
                   ]
@@ -214,37 +336,32 @@
               }
             },
             {
-              "id": "livingroom_corner_rack_shelf",
-              "name": "棚",
-              "type": "decoration",
-              "position": { "x": 110, "y": 20, "width": 180, "height": 360 },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": []
-                }
-              }
-            },
-            {
               "id": "livingroom_trash_can",
               "name": "ゴミ箱",
               "type": "object",
-              "position": { "x": 20, "y": 328, "width": 50, "height": 72 },
+              "position": {
+                "x": 20,
+                "y": 328,
+                "width": 50,
+                "height": 72
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": ["livingroom_trash_can_pile"],
+                  "children": [
+                    "livingroom_trash_can_pile"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
                       "conditions": [],
                       "events": [
-                        { "type": "pushNavigation", "targetId": "livingroom_trash_can" }
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "livingroom_trash_can"
+                        }
                       ]
                     }
                   ]
@@ -255,7 +372,12 @@
               "id": "livingroom_trash_can_pile",
               "name": "ゴミ",
               "type": "decoration",
-              "position": { "x": 20, "y": 20, "width": 360, "height": 360 },
+              "position": {
+                "x": 20,
+                "y": 20,
+                "width": 360,
+                "height": 360
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -270,7 +392,12 @@
               "id": "livingroom_side_rack",
               "name": "サイドラック",
               "type": "decoration",
-              "position": { "x": 333, "y": 112, "width": 55, "height": 288 },
+              "position": {
+                "x": 333,
+                "y": 112,
+                "width": 55,
+                "height": 288
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -278,6 +405,965 @@
                 "default": {
                   "children": [],
                   "triggers": []
+                }
+              }
+            },
+            {
+              "id": "hint_inspect",
+              "name": "ヒント(拡大)",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [
+                    "hint_front_card"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "hint_front_card",
+              "name": "ヒント",
+              "type": "object",
+              "position": {
+                "x": 100,
+                "y": 100,
+                "width": 200,
+                "height": 200
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "hint_inspect_back"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "hint_inspect_back",
+              "name": "ヒント裏(拡大)",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [
+                    "hint_0713_text"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "hint_0713_text",
+              "name": "0713",
+              "type": "text",
+              "position": {
+                "x": 100,
+                "y": 150,
+                "width": 200,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "cr_shelf_top",
+              "name": "棚(上)",
+              "type": "decoration",
+              "position": {
+                "x": 40,
+                "y": 30,
+                "width": 320,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "cr_shelf_mid",
+              "name": "棚(中)",
+              "type": "object",
+              "position": {
+                "x": 40,
+                "y": 150,
+                "width": 320,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "corner_rack_safe"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cr_shelf_bottom",
+              "name": "棚(下)",
+              "type": "decoration",
+              "position": {
+                "x": 40,
+                "y": 270,
+                "width": 320,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "corner_rack_safe",
+              "name": "金庫",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [
+                    "safe_dial_0",
+                    "safe_dial_1",
+                    "safe_dial_2",
+                    "safe_dial_3",
+                    "safe_confirm"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "safe_dial_0",
+              "name": "ダイヤル",
+              "type": "object",
+              "position": {
+                "x": 60,
+                "y": 150,
+                "width": 60,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_0",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe_dial_1",
+              "name": "ダイヤル",
+              "type": "object",
+              "position": {
+                "x": 140,
+                "y": 150,
+                "width": 60,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_1",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe_dial_2",
+              "name": "ダイヤル",
+              "type": "object",
+              "position": {
+                "x": 220,
+                "y": 150,
+                "width": 60,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_2",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe_dial_3",
+              "name": "ダイヤル",
+              "type": "object",
+              "position": {
+                "x": 300,
+                "y": 150,
+                "width": 60,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe_dial_3",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe_confirm",
+              "name": "確定",
+              "type": "object",
+              "position": {
+                "x": 150,
+                "y": 280,
+                "width": 100,
+                "height": 50
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_3",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "key_a"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "金庫が開いた！鍵Aを手に入れた"
+                        },
+                        {
+                          "type": "popNavigation"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -288,13 +1374,18 @@
           "name": "ワークスペース",
           "background": "images/room_workingspace.png",
           "leftRoomId": "room_livingroom",
-          "rightRoomId": "room_bedroom",
+          "rightRoomId": null,
           "objects": [
             {
               "id": "workingspace_curtain",
               "name": "カーテン",
               "type": "decoration",
-              "position": { "x": 0, "y": 50, "width": 200, "height": 300 },
+              "position": {
+                "x": 0,
+                "y": 50,
+                "width": 200,
+                "height": 300
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -309,7 +1400,12 @@
               "id": "workingspace_aircon",
               "name": "エアコン",
               "type": "decoration",
-              "position": { "x": 200, "y": 0, "width": 100, "height": 50 },
+              "position": {
+                "x": 200,
+                "y": 0,
+                "width": 100,
+                "height": 50
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -324,7 +1420,12 @@
               "id": "workingspace_shelf",
               "name": "棚",
               "type": "decoration",
-              "position": { "x": 240, "y": 150, "width": 60, "height": 250 },
+              "position": {
+                "x": 240,
+                "y": 150,
+                "width": 60,
+                "height": 250
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -339,7 +1440,12 @@
               "id": "workingspace_desk",
               "name": "仕事机",
               "type": "decoration",
-              "position": { "x": 0, "y": 250, "width": 100, "height": 150 },
+              "position": {
+                "x": 0,
+                "y": 250,
+                "width": 100,
+                "height": 150
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -354,14 +1460,108 @@
               "id": "workingspace_door",
               "name": "扉",
               "type": "door",
-              "position": { "x": 320, "y": 50, "width": 80, "height": 350 },
+              "position": {
+                "x": 320,
+                "y": 50,
+                "width": 80,
+                "height": 350
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
               "states": {
                 "default": {
+                  "children": [
+                    "ws_door_panel"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "workingspace_door"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "ws_door_panel",
+              "name": "扉",
+              "type": "door",
+              "position": {
+                "x": 50,
+                "y": 50,
+                "width": 300,
+                "height": 350
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "closed",
+              "states": {
+                "closed": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "key_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "ws_door_panel",
+                          "value": "open"
+                        },
+                        {
+                          "type": "clearSelectedItem"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "鍵Aで扉が開いた"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "key_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "鍵がかかっている"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "open": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "navigateRoom",
+                          "roomId": "room_bedroom"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -371,14 +1571,19 @@
           "id": "room_bedroom",
           "name": "ベッドルーム",
           "background": "images/room_bedroom.png",
-          "leftRoomId": "room_workingspace",
+          "leftRoomId": null,
           "rightRoomId": null,
           "objects": [
             {
               "id": "bedroom_window",
               "name": "窓",
               "type": "decoration",
-              "position": { "x": 0, "y": 20, "width": 300, "height": 230 },
+              "position": {
+                "x": 0,
+                "y": 20,
+                "width": 300,
+                "height": 230
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -393,7 +1598,12 @@
               "id": "bedroom_bed",
               "name": "ベッド",
               "type": "decoration",
-              "position": { "x": 0, "y": 300, "width": 270, "height": 100 },
+              "position": {
+                "x": 0,
+                "y": 300,
+                "width": 270,
+                "height": 100
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -408,7 +1618,12 @@
               "id": "bedroom_rack",
               "name": "ラック",
               "type": "decoration",
-              "position": { "x": 275, "y": 320, "width": 60, "height": 80 },
+              "position": {
+                "x": 275,
+                "y": 320,
+                "width": 60,
+                "height": 80
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -423,7 +1638,12 @@
               "id": "bedroom_trash_can",
               "name": "ゴミ箱",
               "type": "decoration",
-              "position": { "x": 280, "y": 350, "width": 30, "height": 50 },
+              "position": {
+                "x": 280,
+                "y": 350,
+                "width": 30,
+                "height": 50
+              },
               "visible": true,
               "enabled": true,
               "defaultState": "default",
@@ -439,5 +1659,18 @@
       ]
     }
   ],
-  "items": []
+  "items": [
+    {
+      "id": "hint",
+      "name": "ヒントアイテム",
+      "image": "images/hint.png",
+      "description": "何かのヒントが書かれている"
+    },
+    {
+      "id": "key_a",
+      "name": "鍵A",
+      "image": "images/key_a.png",
+      "description": "金庫から出てきた鍵"
+    }
+  ]
 }

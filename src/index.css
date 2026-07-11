@@ -409,6 +409,14 @@ body {
   cursor: default;
 }
 
+.inventory-slot__label {
+  font-size: 0.6rem;
+  line-height: 1.1;
+  color: #eee;
+  text-align: center;
+  word-break: break-word;
+}
+
 .inventory-slot--selected {
   border-color: #ffd54f;
   background: #3a331a;

@@ -224,6 +224,26 @@ export class GameEngine {
     this.emit({ selectedItemId: this.snapshot.selectedItemId === itemId ? null : itemId });
   }
 
+  /**
+   * Inventory tap: first tap selects; tapping an already-selected item opens
+   * its close-up if an inspect object exists (an object whose id is
+   * `${itemId}_inspect`), otherwise deselects. The inspect object is zoomed
+   * via the normal navigation stack, so back/flip reuse existing behavior.
+   */
+  pressInventoryItem(itemId: string): void {
+    if (this.snapshot.locked || this.snapshot.cleared) return;
+    if (this.snapshot.selectedItemId !== itemId) {
+      this.emit({ selectedItemId: itemId });
+      return;
+    }
+    const inspectId = `${itemId}_inspect`;
+    if (this.objectIndex.has(inspectId)) {
+      this.emit({ navigationStack: [...this.snapshot.navigationStack, inspectId] });
+      return;
+    }
+    this.emit({ selectedItemId: null });
+  }
+
   moveRoom(direction: "left" | "right"): void {
     if (this.snapshot.locked || this.snapshot.cleared) return;
     if (this.snapshot.navigationStack.length > 0) return;

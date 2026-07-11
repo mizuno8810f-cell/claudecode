@@ -19,7 +19,6 @@ export default function App() {
         <ClearScreen title={gameData.title} />
       ) : (
         <>
-          <InventoryBar engine={engine} snapshot={snapshot} />
           <RoomStage engine={engine} snapshot={snapshot} />
           <InventoryBar engine={engine} snapshot={snapshot} />
           <MessageOverlay engine={engine} snapshot={snapshot} />
