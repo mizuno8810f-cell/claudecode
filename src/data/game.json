@@ -52,6 +52,36 @@
                   "triggers": []
                 }
               }
+            },
+            {
+              "id": "livingroom_corner_rack",
+              "name": "コーナーラック",
+              "type": "decoration",
+              "position": { "x": 0, "y": 184, "width": 40, "height": 216 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "livingroom_trash_can",
+              "name": "ゴミ箱",
+              "type": "decoration",
+              "position": { "x": 40, "y": 290, "width": 50, "height": 110 },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
             }
           ]
         },
