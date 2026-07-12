@@ -33,7 +33,13 @@ export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: 
       ) : (
         <span className="object-sprite__fallback">
           {def.name}
-          {devMode && <span className="object-sprite__dev-state">state: {runtime.state}</span>}
+          {devMode && (
+            <span className="object-sprite__dev-state">
+              {width}×{height}
+              <br />
+              state: {runtime.state}
+            </span>
+          )}
         </span>
       )}
       {!devMode && runtime.state !== def.defaultState && (
