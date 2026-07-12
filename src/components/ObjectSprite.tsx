@@ -6,11 +6,12 @@ interface ObjectSpriteProps {
   def: GameObject;
   runtime: ObjectRuntimeState;
   image: string | undefined;
-  devMode?: boolean;
+  /** 0 = off, 1 = layout info (pos/size), 2 = state info. */
+  devMode?: number;
   onTouch: (objectId: string) => void;
 }
 
-export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: ObjectSpriteProps) {
+export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: ObjectSpriteProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   if (!runtime.visible) return null;
@@ -33,13 +34,18 @@ export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: 
       ) : (
         <span className="object-sprite__fallback">
           {def.name}
-          {devMode && (
+          {devMode === 1 && (
+            <span className="object-sprite__dev-state">
+              #{def.id}
+              <br />
+              ({x},{y}) {width}×{height}
+            </span>
+          )}
+          {devMode === 2 && (
             <span className="object-sprite__dev-state">
               #{def.id}
               <br />
               type: {def.type}
-              <br />
-              ({x},{y}) {width}×{height}
               <br />
               state: {runtime.state}
               {runtime.state !== def.defaultState ? ` (def:${def.defaultState})` : ""}
@@ -49,7 +55,7 @@ export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: 
           )}
         </span>
       )}
-      {!devMode && runtime.state !== def.defaultState && (
+      {devMode === 0 && runtime.state !== def.defaultState && (
         <span className="object-sprite__state">{runtime.state}</span>
       )}
     </button>

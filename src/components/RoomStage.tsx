@@ -35,7 +35,8 @@ const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const [bgFailed, setBgFailed] = useState(false);
-  const [showGrid, setShowGrid] = useState(false);
+  // Dev overlay mode: 0 = off, 1 = layout (id/pos/size), 2 = state.
+  const [devMode, setDevMode] = useState(0);
   const room = engine.getCurrentRoom();
   const background = engine.getBackgroundImage();
   const objects = engine.getDisplayedObjects();
@@ -55,7 +56,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         def={obj}
         runtime={runtime}
         image={engine.getCurrentImage(obj.id)}
-        devMode={showGrid}
+        devMode={devMode}
         onTouch={(id) => void engine.touch(id)}
       />
     );
@@ -67,12 +68,12 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         {room.name}
         <button
           type="button"
-          className={`room-stage__grid-toggle${showGrid ? " room-stage__grid-toggle--on" : ""}`}
-          onClick={() => setShowGrid((v) => !v)}
-          aria-label="座標グリッド表示切替（開発用）"
-          title="座標グリッド（開発用）"
+          className={`room-stage__grid-toggle${devMode > 0 ? " room-stage__grid-toggle--on" : ""}`}
+          onClick={() => setDevMode((m) => (m + 1) % 3)}
+          aria-label="開発モード切替"
+          title="開発モード: off → #1 レイアウト(座標/サイズ) → #2 状態(state/enabled)"
         >
-          #
+          {devMode === 0 ? "#" : `#${devMode}`}
         </button>
       </div>
       <div className="room-stage__viewport">
@@ -129,7 +130,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           </>
         )}
 
-        {showGrid && <DevGrid />}
+        {devMode > 0 && <DevGrid />}
 
         {isZoomed && (
           <button
