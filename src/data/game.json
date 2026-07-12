@@ -1811,7 +1811,7 @@
                         {
                           "type": "setObjectState",
                           "targetId": "workingspace_curtain",
-                          "value": "morningclose"
+                          "value": "nightopen"
                         }
                       ]
                     }
@@ -1828,6 +1828,42 @@
                           "type": "setObjectState",
                           "targetId": "bedroom_bed",
                           "value": "default"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "equals",
+                          "value": "nightclose"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "morningclose"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "equals",
+                          "value": "nightopen"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_curtain",
+                          "value": "morningopen"
                         }
                       ]
                     }
