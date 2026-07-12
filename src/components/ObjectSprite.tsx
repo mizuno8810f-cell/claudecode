@@ -35,9 +35,16 @@ export function ObjectSprite({ def, runtime, image, devMode = false, onTouch }: 
           {def.name}
           {devMode && (
             <span className="object-sprite__dev-state">
-              {width}×{height}
+              #{def.id}
+              <br />
+              type: {def.type}
+              <br />
+              ({x},{y}) {width}×{height}
               <br />
               state: {runtime.state}
+              {runtime.state !== def.defaultState ? ` (def:${def.defaultState})` : ""}
+              <br />
+              {runtime.enabled ? "enabled" : "disabled"}
             </span>
           )}
         </span>
