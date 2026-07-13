@@ -46,7 +46,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_fridge.png"
                 }
               }
             },
@@ -79,7 +80,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_trash_can.png"
                 }
               }
             },
@@ -112,7 +114,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_counter.png"
                 }
               }
             },
@@ -132,7 +135,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/kitchen_cupboard.png"
                 }
               }
             },
@@ -168,7 +172,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_snack_box__s0.png"
                 },
                 "s1": {
                   "children": [],
@@ -188,7 +193,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_snack_box__s1.png"
                 },
                 "s2": {
                   "children": [],
@@ -203,7 +209,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/kitchen_snack_box__s2.png"
                 }
               }
             },
@@ -266,7 +273,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/ingredient_chicken_rice.png"
                 }
               }
             },
@@ -329,7 +337,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/ingredient_egg.png"
                 }
               }
             },
@@ -392,7 +401,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/ingredient_ketchup.png"
                 }
               }
             },
@@ -457,7 +467,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cooking_station__empty.png"
                 },
                 "step1": {
                   "children": [],
@@ -506,7 +517,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cooking_station__step1.png"
                 },
                 "step2": {
                   "children": [],
@@ -555,7 +567,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cooking_station__step2.png"
                 },
                 "done": {
                   "children": [],
@@ -570,7 +583,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cooking_station__done.png"
                 }
               }
             },
@@ -612,7 +626,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/omurice_text.png"
                 }
               }
             }
@@ -669,7 +684,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_sofa.png"
                 }
               }
             },
@@ -743,7 +759,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_sofa_cushion.png"
                 }
               }
             },
@@ -777,7 +794,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_desk.png"
                 }
               }
             },
@@ -797,7 +815,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/livingroom_desk_box.png"
                 }
               }
             },
@@ -828,7 +847,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_desk_tissue.png"
                 }
               }
             },
@@ -863,7 +883,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_corner_rack.png"
                 }
               }
             },
@@ -896,7 +917,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_trash_can.png"
                 }
               }
             },
@@ -927,7 +949,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/livingroom_trash_can_pile.png"
                 }
               }
             },
@@ -947,7 +970,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/livingroom_side_rack.png"
                 }
               }
             },
@@ -1031,7 +1055,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/hint_front_card.png"
                 }
               }
             },
@@ -1063,7 +1088,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/hint_0713_text.png"
                 }
               }
             },
@@ -1083,7 +1109,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/cr_shelf_top.png"
                 }
               }
             },
@@ -1114,7 +1141,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cr_shelf_mid.png"
                 }
               }
             },
@@ -1149,7 +1177,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cr_shelf_bottom.png"
                 }
               }
             },
@@ -1213,7 +1242,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_0.png"
                 },
                 "1": {
                   "children": [],
@@ -1229,7 +1259,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_1.png"
                 },
                 "2": {
                   "children": [],
@@ -1245,7 +1276,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_2.png"
                 },
                 "3": {
                   "children": [],
@@ -1261,7 +1293,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_3.png"
                 },
                 "4": {
                   "children": [],
@@ -1277,7 +1310,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_4.png"
                 },
                 "5": {
                   "children": [],
@@ -1293,7 +1327,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_5.png"
                 },
                 "6": {
                   "children": [],
@@ -1309,7 +1344,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_6.png"
                 },
                 "7": {
                   "children": [],
@@ -1325,7 +1361,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_7.png"
                 },
                 "8": {
                   "children": [],
@@ -1341,7 +1378,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_8.png"
                 },
                 "9": {
                   "children": [],
@@ -1357,7 +1395,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_9.png"
                 }
               }
             },
@@ -1389,7 +1428,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_0.png"
                 },
                 "1": {
                   "children": [],
@@ -1405,7 +1445,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_1.png"
                 },
                 "2": {
                   "children": [],
@@ -1421,7 +1462,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_2.png"
                 },
                 "3": {
                   "children": [],
@@ -1437,7 +1479,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_3.png"
                 },
                 "4": {
                   "children": [],
@@ -1453,7 +1496,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_4.png"
                 },
                 "5": {
                   "children": [],
@@ -1469,7 +1513,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_5.png"
                 },
                 "6": {
                   "children": [],
@@ -1485,7 +1530,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_6.png"
                 },
                 "7": {
                   "children": [],
@@ -1501,7 +1547,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_7.png"
                 },
                 "8": {
                   "children": [],
@@ -1517,7 +1564,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_8.png"
                 },
                 "9": {
                   "children": [],
@@ -1533,7 +1581,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_9.png"
                 }
               }
             },
@@ -1565,7 +1614,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_0.png"
                 },
                 "1": {
                   "children": [],
@@ -1581,7 +1631,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_1.png"
                 },
                 "2": {
                   "children": [],
@@ -1597,7 +1648,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_2.png"
                 },
                 "3": {
                   "children": [],
@@ -1613,7 +1665,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_3.png"
                 },
                 "4": {
                   "children": [],
@@ -1629,7 +1682,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_4.png"
                 },
                 "5": {
                   "children": [],
@@ -1645,7 +1699,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_5.png"
                 },
                 "6": {
                   "children": [],
@@ -1661,7 +1716,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_6.png"
                 },
                 "7": {
                   "children": [],
@@ -1677,7 +1733,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_7.png"
                 },
                 "8": {
                   "children": [],
@@ -1693,7 +1750,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_8.png"
                 },
                 "9": {
                   "children": [],
@@ -1709,7 +1767,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_9.png"
                 }
               }
             },
@@ -1741,7 +1800,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_0.png"
                 },
                 "1": {
                   "children": [],
@@ -1757,7 +1817,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_1.png"
                 },
                 "2": {
                   "children": [],
@@ -1773,7 +1834,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_2.png"
                 },
                 "3": {
                   "children": [],
@@ -1789,7 +1851,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_3.png"
                 },
                 "4": {
                   "children": [],
@@ -1805,7 +1868,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_4.png"
                 },
                 "5": {
                   "children": [],
@@ -1821,7 +1885,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_5.png"
                 },
                 "6": {
                   "children": [],
@@ -1837,7 +1902,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_6.png"
                 },
                 "7": {
                   "children": [],
@@ -1853,7 +1919,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_7.png"
                 },
                 "8": {
                   "children": [],
@@ -1869,7 +1936,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_8.png"
                 },
                 "9": {
                   "children": [],
@@ -1885,7 +1953,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/dial_9.png"
                 }
               }
             },
@@ -1946,7 +2015,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/safe_confirm.png"
                 }
               }
             },
@@ -1985,7 +2055,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/safe_key_a.png"
                 }
               }
             },
@@ -2016,7 +2087,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cr_figure_1.png"
                 }
               }
             },
@@ -2047,7 +2119,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cr_figure_2.png"
                 }
               }
             },
@@ -2078,7 +2151,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/cr_figure_3.png"
                 }
               }
             }
@@ -2119,7 +2193,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_curtain__morningclose.png"
                 },
                 "morningopen": {
                   "children": [],
@@ -2135,7 +2210,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_curtain__morningopen.png"
                 },
                 "nightclose": {
                   "children": [],
@@ -2151,7 +2227,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_curtain__nightclose.png"
                 },
                 "nightopen": {
                   "children": [],
@@ -2167,7 +2244,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_curtain__nightopen.png"
                 }
               }
             },
@@ -2203,7 +2281,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_aircon__cold.png"
                 },
                 "hot": {
                   "children": [],
@@ -2223,7 +2302,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_aircon__hot.png"
                 }
               }
             },
@@ -2243,7 +2323,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/workingspace_shelf.png"
                 }
               }
             },
@@ -2263,7 +2344,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/workingspace_desk.png"
                 }
               }
             },
@@ -2296,7 +2378,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/workingspace_door.png"
                 }
               }
             },
@@ -2357,7 +2440,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/ws_door_panel__closed.png"
                 },
                 "open": {
                   "children": [],
@@ -2372,7 +2456,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/ws_door_panel__open.png"
                 }
               }
             }
@@ -2414,7 +2499,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/bedroom_door.png"
                 }
               }
             },
@@ -2434,7 +2520,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/bedroom_window.png"
                 }
               }
             },
@@ -2502,7 +2589,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/bedroom_bed__default.png"
                 },
                 "sleep": {
                   "children": [],
@@ -2554,7 +2642,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/bedroom_bed__sleep.png"
                 }
               }
             },
@@ -2574,7 +2663,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [],
+                  "image": "images/bedroom_rack.png"
                 }
               }
             },
@@ -2605,7 +2695,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/bedroom_trash_can.png"
                 }
               }
             },
@@ -2636,7 +2727,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/bedroom_door_panel.png"
                 }
               }
             }

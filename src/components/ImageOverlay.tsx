@@ -1,4 +1,5 @@
 import type { GameEngine, EngineSnapshot } from "../engine";
+import { assetUrl } from "../assets";
 
 interface ImageOverlayProps {
   engine: GameEngine;
@@ -10,7 +11,7 @@ export function ImageOverlay({ engine, snapshot }: ImageOverlayProps) {
 
   return (
     <div className="overlay" onClick={() => engine.dismissImage()}>
-      <img className="overlay__image" src={snapshot.image} alt="" />
+      <img className="overlay__image" src={assetUrl(snapshot.image)} alt="" />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { GameEngine, EngineSnapshot } from "../engine";
+import { assetUrl } from "../assets";
 
 const SLOT_COUNT = 5;
 
@@ -50,7 +51,7 @@ export function InventoryBar({ engine, snapshot }: InventoryBarProps) {
               data-item-id={itemId}
             >
               <img
-                src={item.image}
+                src={assetUrl(item.image)}
                 alt={item.name}
                 draggable={false}
                 onError={(e) => {

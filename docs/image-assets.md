@@ -1,0 +1,104 @@
+# 画像アセット挿入ガイド
+
+## やり方（挿入の口）
+
+1. 画像の指定先は **各オブジェクトの state の `image` フィールド**（`src/data/game.json`）。
+   部屋の背景は各 room の `background`、アイテムのアイコンは各 item の `image`。**すべて設定済み**。
+2. PNG を **`public/images/`** に、下記の名前で置くだけ。プレースホルダから実画像に自動で切り替わる。
+   （パスは GitHub Pages の base `/claudecode/` 込みで自動解決。ファイルが無ければ従来の名前ラベル表示のまま）
+3. state を持つオブジェクトは **state ごとに別画像**（例: カーテンの朝/夜・開/閉、扉の開閉、調理の各段階）。
+4. ダイヤル(safe_dial_0〜3)は数字が同じなので **`dial_0.png`〜`dial_9.png` を4つのダイヤルで共有**。
+
+命名規則: 単一stateは `images/<id>.png`、複数stateは `images/<id>__<state>.png`。
+
+---
+
+## 必要ファイル一覧
+
+### 部屋背景 (room.background)
+- `images/room_kitchen.png`  （キッチン）
+- `images/room_livingroom.png`  （リビングルーム）
+- `images/room_workingspace.png`  （ワークスペース）
+- `images/room_bedroom.png`  （ベッドルーム）
+
+### アイテムアイコン (item.image)
+- `images/hint.png`  （ヒントアイテム）
+- `images/key_a.png`  （鍵A）
+- `images/recipe.png`  （レシピ）
+- `images/chicken_rice.png`  （チキンライス）
+- `images/egg.png`  （卵）
+- `images/ketchup.png`  （ケチャップ）
+
+### オブジェクト (state ごと)
+#### キッチン `room_kitchen`
+- `images/kitchen_fridge.png`  （冷蔵庫）
+- `images/kitchen_trash_can.png`  （ゴミ箱）
+- `images/kitchen_counter.png`  （キッチン）
+- `images/kitchen_cupboard.png`  （食器棚）
+- `images/kitchen_snack_box__s0.png`  （お菓子の箱 state:s0）
+- `images/kitchen_snack_box__s1.png`  （お菓子の箱 state:s1）
+- `images/kitchen_snack_box__s2.png`  （お菓子の箱 state:s2）
+- `images/ingredient_chicken_rice.png`  （チキンライス）
+- `images/ingredient_egg.png`  （卵）
+- `images/ingredient_ketchup.png`  （ケチャップ）
+- `images/cooking_station__empty.png`  （調理台 state:empty）
+- `images/cooking_station__step1.png`  （調理台 state:step1）
+- `images/cooking_station__step2.png`  （調理台 state:step2）
+- `images/cooking_station__done.png`  （調理台 state:done）
+- `images/omurice_text.png`  （ケチャップの文字（仮））
+
+#### リビングルーム `room_livingroom`
+- `images/livingroom_sofa.png`  （グレーのソファ）
+- `images/livingroom_sofa_cushion.png`  （クッション）
+- `images/livingroom_desk.png`  （机）
+- `images/livingroom_desk_box.png`  （箱）
+- `images/livingroom_desk_tissue.png`  （ティッシュケース）
+- `images/livingroom_corner_rack.png`  （コーナーラック）
+- `images/livingroom_trash_can.png`  （ゴミ箱）
+- `images/livingroom_trash_can_pile.png`  （ゴミ）
+- `images/livingroom_side_rack.png`  （サイドラック）
+- `images/hint_front_card.png`  （ヒント）
+- `images/hint_0713_text.png`  （0713）
+- `images/cr_shelf_top.png`  （棚(上)）
+- `images/cr_shelf_mid.png`  （棚(中)）
+- `images/cr_shelf_bottom.png`  （棚(下)）
+- `images/dial_0.png`  （ダイヤル 数字0・4つで共有）
+- `images/dial_1.png`  （ダイヤル 数字1・4つで共有）
+- `images/dial_2.png`  （ダイヤル 数字2・4つで共有）
+- `images/dial_3.png`  （ダイヤル 数字3・4つで共有）
+- `images/dial_4.png`  （ダイヤル 数字4・4つで共有）
+- `images/dial_5.png`  （ダイヤル 数字5・4つで共有）
+- `images/dial_6.png`  （ダイヤル 数字6・4つで共有）
+- `images/dial_7.png`  （ダイヤル 数字7・4つで共有）
+- `images/dial_8.png`  （ダイヤル 数字8・4つで共有）
+- `images/dial_9.png`  （ダイヤル 数字9・4つで共有）
+- `images/safe_confirm.png`  （確定）
+- `images/safe_key_a.png`  （鍵A）
+- `images/cr_figure_1.png`  （フィギュア1）
+- `images/cr_figure_2.png`  （フィギュア2）
+- `images/cr_figure_3.png`  （フィギュア3）
+
+#### ワークスペース `room_workingspace`
+- `images/workingspace_curtain__morningclose.png`  （カーテン state:morningclose）
+- `images/workingspace_curtain__morningopen.png`  （カーテン state:morningopen）
+- `images/workingspace_curtain__nightclose.png`  （カーテン state:nightclose）
+- `images/workingspace_curtain__nightopen.png`  （カーテン state:nightopen）
+- `images/workingspace_aircon__cold.png`  （エアコン state:cold）
+- `images/workingspace_aircon__hot.png`  （エアコン state:hot）
+- `images/workingspace_shelf.png`  （棚）
+- `images/workingspace_desk.png`  （仕事机）
+- `images/workingspace_door.png`  （扉）
+- `images/ws_door_panel__closed.png`  （扉 state:closed）
+- `images/ws_door_panel__open.png`  （扉 state:open）
+
+#### ベッドルーム `room_bedroom`
+- `images/bedroom_door.png`  （扉）
+- `images/bedroom_window.png`  （窓）
+- `images/bedroom_bed__default.png`  （ベッド state:default）
+- `images/bedroom_bed__sleep.png`  （ベッド state:sleep）
+- `images/bedroom_rack.png`  （ラック）
+- `images/bedroom_trash_can.png`  （ゴミ箱）
+- `images/bedroom_door_panel.png`  （扉）
+
+> 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
+> ソファ等のズーム内の見た目(CSSシーン)は画像ではなくCSSで描画。上記 `image` は主に「部屋内での見た目」に使われる。

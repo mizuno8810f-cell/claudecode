@@ -3,6 +3,7 @@ import type { GameEngine, EngineSnapshot } from "../engine";
 import { ObjectSprite } from "./ObjectSprite";
 import { DevGrid } from "./DevGrid";
 import { ROOM_CANVAS_SIZE } from "../constants";
+import { assetUrl } from "../assets";
 
 interface RoomStageProps {
   engine: GameEngine;
@@ -93,7 +94,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             {background && !bgFailed ? (
               <img
                 className="room-stage__background"
-                src={background}
+                src={assetUrl(background)}
                 alt={room.name}
                 draggable={false}
                 onError={() => setBgFailed(true)}

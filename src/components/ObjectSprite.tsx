@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { GameObject, ObjectRuntimeState } from "../engine";
 import { ROOM_CANVAS_SIZE } from "../constants";
+import { assetUrl } from "../assets";
 
 interface ObjectSpriteProps {
   def: GameObject;
@@ -30,7 +31,7 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: Obje
       data-object-state={runtime.state}
     >
       {image && !imageFailed ? (
-        <img src={image} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
+        <img src={assetUrl(image)} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
       ) : (
         <span className="object-sprite__fallback">
           {def.name}
