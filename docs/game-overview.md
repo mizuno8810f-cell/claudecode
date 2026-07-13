@@ -63,12 +63,14 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 ### キッチン `room_kitchen`
 
-- **冷蔵庫** `kitchen_fridge` — type:decoration, 100×300 @(100,100), default:`default`
+- **冷蔵庫** `kitchen_fridge` — type:object, 100×300 @(100,100), default:`default`
+  - `default`: children=[ingredient_chicken_rice, ingredient_egg, ingredient_ketchup] / touch → pushNavigation(kitchen_fridge)
 
 - **ゴミ箱** `kitchen_trash_can` — type:object, 100×150 @(0,250), default:`default`
   - `default`: children=[kitchen_snack_box] / touch → pushNavigation(kitchen_trash_can)
 
-- **キッチン** `kitchen_counter` — type:decoration, 100×200 @(300,200), default:`default`
+- **キッチン** `kitchen_counter` — type:object, 100×200 @(300,200), default:`default`
+  - `default`: children=[cooking_station] / touch → pushNavigation(kitchen_counter)
 
 - **食器棚** `kitchen_cupboard` — type:decoration, 100×100 @(0,50), default:`default`
 
@@ -76,6 +78,26 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `s0`: touch → showMessage("👦お菓子食べ過ぎ"), setObjectState(kitchen_snack_box=s1)
   - `s1`: touch → showMessage("👦太っちゃうよ？"), setObjectState(kitchen_snack_box=s2)
   - `s2`: touch → showMessage("👩内緒で食べよ")
+
+- **チキンライス** `ingredient_chicken_rice` — type:item, 80×140 @(40,130), default:`default`
+  - `default`: touch [hasItem(recipe) == false] → showMessage("まだお腹空いてないな") / touch [hasItem(recipe) == true] → addItem(chicken_rice), hideObject(ingredient_chicken_rice), showMessage("チキンライスを手に入れた")
+
+- **卵** `ingredient_egg` — type:item, 80×140 @(160,130), default:`default`
+  - `default`: touch [hasItem(recipe) == false] → showMessage("まだお腹空いてないな") / touch [hasItem(recipe) == true] → addItem(egg), hideObject(ingredient_egg), showMessage("卵を手に入れた")
+
+- **ケチャップ** `ingredient_ketchup` — type:item, 80×140 @(280,130), default:`default`
+  - `default`: touch [hasItem(recipe) == false] → showMessage("まだお腹空いてないな") / touch [hasItem(recipe) == true] → addItem(ketchup), hideObject(ingredient_ketchup), showMessage("ケチャップを手に入れた")
+
+- **調理台** `cooking_station` — type:object, 180×160 @(110,140), default:`empty`
+  - `empty`: touch [selectedItem == "chicken_rice"] → setObjectState(cooking_station=step1), removeItem(chicken_rice), clearSelectedItem, showMessage("チキンライスを炒めた") / touch [selectedItem != "chicken_rice"] → showMessage("うまくいかない気がする")
+  - `step1`: touch [selectedItem == "egg"] → setObjectState(cooking_station=step2), removeItem(egg), clearSelectedItem, showMessage("卵で包んだ") / touch [selectedItem != "egg"] → showMessage("うまくいかない気がする")
+  - `step2`: touch [selectedItem == "ketchup"] → setObjectState(cooking_station=done), removeItem(ketchup), clearSelectedItem, showMessage("オムライスができた！") / touch [selectedItem != "ketchup"] → showMessage("うまくいかない気がする")
+  - `done`: touch → pushNavigation(omurice_inspect)
+
+- **オムライス(拡大)** `omurice_inspect` — type:object, 0×0 @(0,0), default:`default` ⚠visible:false
+  - `default`: children=[omurice_text]
+
+- **ケチャップの文字（仮）** `omurice_text` — type:text, 240×100 @(80,150), default:`default`
 
 ### リビングルーム `room_livingroom`
 
@@ -239,6 +261,10 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 ## アイテム
 - **ヒントアイテム** `hint` — 何かのヒントが書かれている
 - **鍵A** `key_a` — 金庫から出てきた鍵
+- **レシピ** `recipe` — オムライスの作り方が書かれたメモ
+- **チキンライス** `chicken_rice` — 冷蔵庫のチキンライス
+- **卵** `egg` — 冷蔵庫の卵
+- **ケチャップ** `ketchup` — 冷蔵庫のケチャップ
 
 ---
 

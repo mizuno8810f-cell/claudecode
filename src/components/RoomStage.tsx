@@ -33,6 +33,9 @@ const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "
   bedroom_door: "plain",
   kitchen_trash_can: "plain",
   cr_shelf_bottom: "plain",
+  kitchen_fridge: "plain",
+  kitchen_counter: "plain",
+  omurice_inspect: "plain",
 };
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {

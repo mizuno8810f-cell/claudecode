@@ -18,7 +18,7 @@
             {
               "id": "kitchen_fridge",
               "name": "冷蔵庫",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 100,
                 "y": 100,
@@ -30,8 +30,23 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": []
+                  "children": [
+                    "ingredient_chicken_rice",
+                    "ingredient_egg",
+                    "ingredient_ketchup"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "kitchen_fridge"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -71,7 +86,7 @@
             {
               "id": "kitchen_counter",
               "name": "キッチン",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 300,
                 "y": 200,
@@ -83,8 +98,21 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": []
+                  "children": [
+                    "cooking_station"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "kitchen_counter"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -176,6 +204,415 @@
                       ]
                     }
                   ]
+                }
+              }
+            },
+            {
+              "id": "ingredient_chicken_rice",
+              "name": "チキンライス",
+              "type": "item",
+              "position": {
+                "x": 40,
+                "y": 130,
+                "width": 80,
+                "height": 140
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": false
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "まだお腹空いてないな"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "chicken_rice"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "ingredient_chicken_rice"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "チキンライスを手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "ingredient_egg",
+              "name": "卵",
+              "type": "item",
+              "position": {
+                "x": 160,
+                "y": 130,
+                "width": 80,
+                "height": 140
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": false
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "まだお腹空いてないな"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "egg"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "ingredient_egg"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "卵を手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "ingredient_ketchup",
+              "name": "ケチャップ",
+              "type": "item",
+              "position": {
+                "x": 280,
+                "y": 130,
+                "width": 80,
+                "height": 140
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": false
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "まだお腹空いてないな"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "recipe",
+                          "operator": "equals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "ketchup"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "ingredient_ketchup"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ケチャップを手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cooking_station",
+              "name": "調理台",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 140,
+                "width": 180,
+                "height": 160
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "empty",
+              "states": {
+                "empty": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "chicken_rice"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cooking_station",
+                          "value": "step1"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "chicken_rice"
+                        },
+                        {
+                          "type": "clearSelectedItem"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "チキンライスを炒めた"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "chicken_rice"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "step1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "egg"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cooking_station",
+                          "value": "step2"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "egg"
+                        },
+                        {
+                          "type": "clearSelectedItem"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "卵で包んだ"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "egg"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "step2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cooking_station",
+                          "value": "done"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "ketchup"
+                        },
+                        {
+                          "type": "clearSelectedItem"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "オムライスができた！"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "done": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "omurice_inspect"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "omurice_inspect",
+              "name": "オムライス(拡大)",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [
+                    "omurice_text"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "omurice_text",
+              "name": "ケチャップの文字（仮）",
+              "type": "text",
+              "position": {
+                "x": 80,
+                "y": 150,
+                "width": 240,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
                 }
               }
             }
@@ -2220,6 +2657,30 @@
       "name": "鍵A",
       "image": "images/key_a.png",
       "description": "金庫から出てきた鍵"
+    },
+    {
+      "id": "recipe",
+      "name": "レシピ",
+      "image": "images/recipe.png",
+      "description": "オムライスの作り方が書かれたメモ"
+    },
+    {
+      "id": "chicken_rice",
+      "name": "チキンライス",
+      "image": "images/chicken_rice.png",
+      "description": "冷蔵庫のチキンライス"
+    },
+    {
+      "id": "egg",
+      "name": "卵",
+      "image": "images/egg.png",
+      "description": "冷蔵庫の卵"
+    },
+    {
+      "id": "ketchup",
+      "name": "ケチャップ",
+      "image": "images/ketchup.png",
+      "description": "冷蔵庫のケチャップ"
     }
   ]
 }
