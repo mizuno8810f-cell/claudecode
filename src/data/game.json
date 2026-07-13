@@ -38,7 +38,7 @@
             {
               "id": "kitchen_trash_can",
               "name": "ゴミ箱",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 0,
                 "y": 250,
@@ -50,8 +50,21 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": []
+                  "children": [
+                    "kitchen_snack_box"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "kitchen_trash_can"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -92,6 +105,77 @@
                 "default": {
                   "children": [],
                   "triggers": []
+                }
+              }
+            },
+            {
+              "id": "kitchen_snack_box",
+              "name": "お菓子の箱",
+              "type": "object",
+              "position": {
+                "x": 140,
+                "y": 140,
+                "width": 120,
+                "height": 120
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "s0",
+              "states": {
+                "s0": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "👦お菓子食べ過ぎ"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "kitchen_snack_box",
+                          "value": "s1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "s1": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "👦太っちゃうよ？"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "kitchen_snack_box",
+                          "value": "s2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "s2": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "👩内緒で食べよ"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -296,7 +380,18 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "使ったら捨てましょう"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -384,7 +479,18 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "こちらが深淵を覗いている時、深淵もまたこちらを覗いているのだ"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -578,7 +684,7 @@
             {
               "id": "cr_shelf_bottom",
               "name": "棚(下)",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 40,
                 "y": 270,
@@ -590,8 +696,23 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": []
+                  "children": [
+                    "cr_figure_1",
+                    "cr_figure_2",
+                    "cr_figure_3"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "cr_shelf_bottom"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -1430,6 +1551,99 @@
                   ]
                 }
               }
+            },
+            {
+              "id": "cr_figure_1",
+              "name": "フィギュア1",
+              "type": "object",
+              "position": {
+                "x": 50,
+                "y": 110,
+                "width": 80,
+                "height": 180
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "フィギュア1のセリフ（仮）"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cr_figure_2",
+              "name": "フィギュア2",
+              "type": "object",
+              "position": {
+                "x": 160,
+                "y": 110,
+                "width": 80,
+                "height": 180
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "フィギュア2のセリフ（仮）"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cr_figure_3",
+              "name": "フィギュア3",
+              "type": "object",
+              "position": {
+                "x": 270,
+                "y": 110,
+                "width": 80,
+                "height": 180
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "フィギュア3のセリフ（仮）"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           ]
         },
@@ -1523,7 +1737,7 @@
             {
               "id": "workingspace_aircon",
               "name": "エアコン",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 200,
                 "y": 0,
@@ -1532,11 +1746,47 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "cold",
               "states": {
-                "default": {
+                "cold": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "👦寒い"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_aircon",
+                          "value": "hot"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "hot": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "👩暑い"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_aircon",
+                          "value": "cold"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -1894,7 +2144,7 @@
             {
               "id": "bedroom_trash_can",
               "name": "ゴミ箱",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 320,
                 "y": 350,
@@ -1907,7 +2157,18 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": []
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "なんか臭い…"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },

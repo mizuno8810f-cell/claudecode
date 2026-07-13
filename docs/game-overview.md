@@ -65,11 +65,17 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **冷蔵庫** `kitchen_fridge` — type:decoration, 100×300 @(100,100), default:`default`
 
-- **ゴミ箱** `kitchen_trash_can` — type:decoration, 100×150 @(0,250), default:`default`
+- **ゴミ箱** `kitchen_trash_can` — type:object, 100×150 @(0,250), default:`default`
+  - `default`: children=[kitchen_snack_box] / touch → pushNavigation(kitchen_trash_can)
 
 - **キッチン** `kitchen_counter` — type:decoration, 100×200 @(300,200), default:`default`
 
 - **食器棚** `kitchen_cupboard` — type:decoration, 100×100 @(0,50), default:`default`
+
+- **お菓子の箱** `kitchen_snack_box` — type:object, 120×120 @(140,140), default:`s0`
+  - `s0`: touch → showMessage("👦お菓子食べ過ぎ"), setObjectState(kitchen_snack_box=s1)
+  - `s1`: touch → showMessage("👦太っちゃうよ？"), setObjectState(kitchen_snack_box=s2)
+  - `s2`: touch → showMessage("👩内緒で食べよ")
 
 ### リビングルーム `room_livingroom`
 
@@ -88,6 +94,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **箱** `livingroom_desk_box` — type:decoration, 70×110 @(223,120), default:`default`
 
 - **ティッシュケース** `livingroom_desk_tissue` — type:decoration, 50×90 @(308,120), default:`default`
+  - `default`: touch → showMessage("使ったら捨てましょう")
 
 - **コーナーラック** `livingroom_corner_rack` — type:object, 55×288 @(0,112), default:`default`
   - `default`: children=[cr_shelf_top, cr_shelf_mid, cr_shelf_bottom] / touch → pushNavigation(livingroom_corner_rack)
@@ -96,6 +103,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[livingroom_trash_can_pile] / touch → pushNavigation(livingroom_trash_can)
 
 - **ゴミ** `livingroom_trash_can_pile` — type:decoration, 360×360 @(20,20), default:`default`
+  - `default`: touch → showMessage("こちらが深淵を覗いている時、深淵もまたこちらを覗いているのだ")
 
 - **サイドラック** `livingroom_side_rack` — type:decoration, 55×288 @(333,112), default:`default`
 
@@ -114,7 +122,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **棚(中)** `cr_shelf_mid` — type:object, 320×100 @(40,150), default:`default`
   - `default`: touch → pushNavigation(corner_rack_safe)
 
-- **棚(下)** `cr_shelf_bottom` — type:decoration, 320×100 @(40,270), default:`default`
+- **棚(下)** `cr_shelf_bottom` — type:object, 320×100 @(40,270), default:`default`
+  - `default`: children=[cr_figure_1, cr_figure_2, cr_figure_3] / touch → pushNavigation(cr_shelf_bottom)
 
 - **金庫** `corner_rack_safe` — type:object, 0×0 @(0,0), default:`closed` ⚠visible:false
   - `closed`: children=[safe_dial_0, safe_dial_1, safe_dial_2, safe_dial_3, safe_confirm]
@@ -174,6 +183,15 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **鍵A** `safe_key_a` — type:item, 100×100 @(150,150), default:`default`
   - `default`: touch → addItem(key_a), hideObject(safe_key_a), showMessage("鍵Aを手に入れた")
 
+- **フィギュア1** `cr_figure_1` — type:object, 80×180 @(50,110), default:`default`
+  - `default`: touch → showMessage("フィギュア1のセリフ（仮）")
+
+- **フィギュア2** `cr_figure_2` — type:object, 80×180 @(160,110), default:`default`
+  - `default`: touch → showMessage("フィギュア2のセリフ（仮）")
+
+- **フィギュア3** `cr_figure_3` — type:object, 80×180 @(270,110), default:`default`
+  - `default`: touch → showMessage("フィギュア3のセリフ（仮）")
+
 ### ワークスペース `room_workingspace`
 
 - **カーテン** `workingspace_curtain` — type:object, 200×300 @(0,50), default:`morningclose`
@@ -182,7 +200,9 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `nightclose`: touch → setObjectState(workingspace_curtain=nightopen)
   - `nightopen`: touch → setObjectState(workingspace_curtain=nightclose)
 
-- **エアコン** `workingspace_aircon` — type:decoration, 100×50 @(200,0), default:`default`
+- **エアコン** `workingspace_aircon` — type:object, 100×50 @(200,0), default:`cold`
+  - `cold`: touch → showMessage("👦寒い"), setObjectState(workingspace_aircon=hot)
+  - `hot`: touch → showMessage("👩暑い"), setObjectState(workingspace_aircon=cold)
 
 - **棚** `workingspace_shelf` — type:decoration, 60×250 @(240,150), default:`default`
 
@@ -208,7 +228,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **ラック** `bedroom_rack` — type:decoration, 60×80 @(315,320), default:`default`
 
-- **ゴミ箱** `bedroom_trash_can` — type:decoration, 30×50 @(320,350), default:`default`
+- **ゴミ箱** `bedroom_trash_can` — type:object, 30×50 @(320,350), default:`default`
+  - `default`: touch → showMessage("なんか臭い…")
 
 - **扉** `bedroom_door_panel` — type:door, 300×350 @(50,50), default:`default`
   - `default`: touch → navigateRoom(room_workingspace)
