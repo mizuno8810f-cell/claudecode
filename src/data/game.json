@@ -2439,7 +2439,7 @@
             {
               "id": "workingspace_desk",
               "name": "仕事机",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 0,
                 "y": 250,
@@ -2451,9 +2451,29 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": [],
-                  "image": "images/workingspace_desk.png"
+                  "image": "images/workingspace_desk.png",
+                  "children": [
+                    "workingspace_pc",
+                    "workingspace_pw1",
+                    "workingspace_pw2",
+                    "workingspace_pw3",
+                    "workingspace_pw4",
+                    "workingspace_btn_hira",
+                    "workingspace_btn_symbol",
+                    "workingspace_btn_enter"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "workingspace_desk"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -2566,6 +2586,4369 @@
                     }
                   ],
                   "image": "images/ws_door_panel__open.png"
+                }
+              }
+            },
+            {
+              "id": "workingspace_pc",
+              "name": "PC",
+              "type": "object",
+              "position": {
+                "x": 80,
+                "y": 40,
+                "width": 240,
+                "height": 120
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive",
+              "states": {
+                "inactive": {
+                  "image": "images/workspace_pc__inactive.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_morning": {
+                  "image": "images/workspace_pc__active_morning.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "しおりちゃんのおかげで仕事頑張れてます。ありがとう！"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "active_night": {
+                  "image": "images/workspace_pc__active_night.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "しおりちゃんのおかげで仕事頑張れてます。ありがとう！"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "workingspace_pw1",
+              "name": "パスワード1文字目",
+              "type": "text",
+              "position": {
+                "x": 70,
+                "y": 190,
+                "width": 50,
+                "height": 60
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "active_blank",
+              "states": {
+                "active_blank": {
+                  "image": "images/password_char__active_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_blank": {
+                  "image": "images/password_char__inactive_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_a": {
+                  "image": "images/password_char__active_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_a": {
+                  "image": "images/password_char__inactive_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ya": {
+                  "image": "images/password_char__active_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ya": {
+                  "image": "images/password_char__inactive_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_n": {
+                  "image": "images/password_char__active_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_n": {
+                  "image": "images/password_char__inactive_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_to": {
+                  "image": "images/password_char__active_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_to": {
+                  "image": "images/password_char__inactive_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_o": {
+                  "image": "images/password_char__active_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_o": {
+                  "image": "images/password_char__inactive_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ta": {
+                  "image": "images/password_char__active_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ta": {
+                  "image": "images/password_char__inactive_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ha": {
+                  "image": "images/password_char__active_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ha": {
+                  "image": "images/password_char__inactive_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_smile": {
+                  "image": "images/password_char__active_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_smile": {
+                  "image": "images/password_char__inactive_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_skull": {
+                  "image": "images/password_char__active_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_skull": {
+                  "image": "images/password_char__inactive_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_apple": {
+                  "image": "images/password_char__active_apple.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_apple": {
+                  "image": "images/password_char__inactive_apple.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_pw2",
+              "name": "パスワード2文字目",
+              "type": "text",
+              "position": {
+                "x": 135,
+                "y": 190,
+                "width": 50,
+                "height": 60
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive_blank",
+              "states": {
+                "active_blank": {
+                  "image": "images/password_char__active_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_blank": {
+                  "image": "images/password_char__inactive_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_a": {
+                  "image": "images/password_char__active_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_a": {
+                  "image": "images/password_char__inactive_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ya": {
+                  "image": "images/password_char__active_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ya": {
+                  "image": "images/password_char__inactive_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_n": {
+                  "image": "images/password_char__active_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_n": {
+                  "image": "images/password_char__inactive_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_to": {
+                  "image": "images/password_char__active_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_to": {
+                  "image": "images/password_char__inactive_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_o": {
+                  "image": "images/password_char__active_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_o": {
+                  "image": "images/password_char__inactive_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ta": {
+                  "image": "images/password_char__active_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ta": {
+                  "image": "images/password_char__inactive_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ha": {
+                  "image": "images/password_char__active_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ha": {
+                  "image": "images/password_char__inactive_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_smile": {
+                  "image": "images/password_char__active_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_smile": {
+                  "image": "images/password_char__inactive_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_skull": {
+                  "image": "images/password_char__active_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_skull": {
+                  "image": "images/password_char__inactive_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_apple": {
+                  "image": "images/password_char__active_apple.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_apple": {
+                  "image": "images/password_char__inactive_apple.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_pw3",
+              "name": "パスワード3文字目",
+              "type": "text",
+              "position": {
+                "x": 200,
+                "y": 190,
+                "width": 50,
+                "height": 60
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive_blank",
+              "states": {
+                "active_blank": {
+                  "image": "images/password_char__active_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_blank": {
+                  "image": "images/password_char__inactive_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_a": {
+                  "image": "images/password_char__active_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_a": {
+                  "image": "images/password_char__inactive_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ya": {
+                  "image": "images/password_char__active_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ya": {
+                  "image": "images/password_char__inactive_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_n": {
+                  "image": "images/password_char__active_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_n": {
+                  "image": "images/password_char__inactive_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_to": {
+                  "image": "images/password_char__active_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_to": {
+                  "image": "images/password_char__inactive_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_o": {
+                  "image": "images/password_char__active_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_o": {
+                  "image": "images/password_char__inactive_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ta": {
+                  "image": "images/password_char__active_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ta": {
+                  "image": "images/password_char__inactive_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ha": {
+                  "image": "images/password_char__active_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ha": {
+                  "image": "images/password_char__inactive_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_smile": {
+                  "image": "images/password_char__active_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_smile": {
+                  "image": "images/password_char__inactive_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_skull": {
+                  "image": "images/password_char__active_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_skull": {
+                  "image": "images/password_char__inactive_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_apple": {
+                  "image": "images/password_char__active_apple.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_apple": {
+                  "image": "images/password_char__inactive_apple.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_pw4",
+              "name": "パスワード4文字目",
+              "type": "text",
+              "position": {
+                "x": 265,
+                "y": 190,
+                "width": 50,
+                "height": 60
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive_blank",
+              "states": {
+                "active_blank": {
+                  "image": "images/password_char__active_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_blank": {
+                  "image": "images/password_char__inactive_blank.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_a": {
+                  "image": "images/password_char__active_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_a": {
+                  "image": "images/password_char__inactive_a.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ya": {
+                  "image": "images/password_char__active_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ya": {
+                  "image": "images/password_char__inactive_ya.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_n": {
+                  "image": "images/password_char__active_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_n": {
+                  "image": "images/password_char__inactive_n.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_to": {
+                  "image": "images/password_char__active_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_to": {
+                  "image": "images/password_char__inactive_to.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_o": {
+                  "image": "images/password_char__active_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_o": {
+                  "image": "images/password_char__inactive_o.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ta": {
+                  "image": "images/password_char__active_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ta": {
+                  "image": "images/password_char__inactive_ta.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_ha": {
+                  "image": "images/password_char__active_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_ha": {
+                  "image": "images/password_char__inactive_ha.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_smile": {
+                  "image": "images/password_char__active_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_smile": {
+                  "image": "images/password_char__inactive_smile.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_skull": {
+                  "image": "images/password_char__active_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_skull": {
+                  "image": "images/password_char__inactive_skull.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "active_apple": {
+                  "image": "images/password_char__active_apple.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "inactive_apple": {
+                  "image": "images/password_char__inactive_apple.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "workingspace_btn_hira",
+              "name": "ひらがな入力ボタン",
+              "type": "object",
+              "position": {
+                "x": 40,
+                "y": 300,
+                "width": 95,
+                "height": 55
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/workspace_btn_hira.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_ya"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_n"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_to"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_o"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_ta"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_ha"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_ya"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_n"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_to"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_o"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_ta"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_ha"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_ya"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_n"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_to"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_o"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_ta"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_ha"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_ya"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_n"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_to"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_o"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_ta"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_ha"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_a"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "workingspace_btn_symbol",
+              "name": "記号入力ボタン",
+              "type": "object",
+              "position": {
+                "x": 150,
+                "y": 300,
+                "width": 95,
+                "height": 55
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/workspace_btn_symbol.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_skull"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_apple"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_skull"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_apple"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_skull"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_apple"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_skull"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_apple"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_smile"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "workingspace_btn_enter",
+              "name": "Enterボタン",
+              "type": "object",
+              "position": {
+                "x": 260,
+                "y": 300,
+                "width": 95,
+                "height": 55
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/workspace_btn_enter.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_a"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_n"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_to"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_o"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_ta"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_smile"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_skull"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "inactive_apple"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_a"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_n"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_to"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_o"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_ta"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_smile"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_skull"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_apple"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_a"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_n"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_to"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_o"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_ta"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_smile"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_skull"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_apple"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "active_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_blank"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_a"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_n"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_o"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ta"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_smile"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_apple"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "notEquals",
+                          "value": "inactive_ha"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "notEquals",
+                          "value": "inactive_ya"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "notEquals",
+                          "value": "inactive_to"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw1",
+                          "value": "active_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw2",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw3",
+                          "value": "inactive_blank"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pw4",
+                          "value": "inactive_blank"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "inactive_to"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "includes",
+                          "value": "morning"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_morning"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw1"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw2"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw3"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw4"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "equals",
+                          "value": "inactive"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw4",
+                          "operator": "equals",
+                          "value": "active_skull"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw1",
+                          "operator": "equals",
+                          "value": "inactive_ha"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw2",
+                          "operator": "equals",
+                          "value": "inactive_ya"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pw3",
+                          "operator": "equals",
+                          "value": "inactive_to"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "includes",
+                          "value": "night"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_night"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw1"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw2"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw3"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "workingspace_pw4"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
