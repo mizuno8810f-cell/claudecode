@@ -286,6 +286,19 @@ body {
   border-color: rgba(0, 0, 0, 0.45);
 }
 
+/* When a real image is shown, drop the placeholder box chrome so the art
+   fits cleanly (it still scales to the object box, preserving aspect). */
+.object-sprite--image {
+  border-color: transparent;
+  background: transparent;
+  border-radius: 0;
+}
+
+.object-sprite--image:hover {
+  filter: brightness(1.05);
+  border-color: transparent;
+}
+
 .object-sprite--disabled {
   cursor: not-allowed;
   opacity: 0.5;

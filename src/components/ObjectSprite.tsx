@@ -19,11 +19,12 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: Obje
 
   const { x, y, width, height } = def.position;
   const pct = (value: number) => `${(value / ROOM_CANVAS_SIZE) * 100}%`;
+  const showingImage = Boolean(image) && !imageFailed;
 
   return (
     <button
       type="button"
-      className={`object-sprite object-sprite--${def.type}${runtime.enabled ? "" : " object-sprite--disabled"}`}
+      className={`object-sprite object-sprite--${def.type}${runtime.enabled ? "" : " object-sprite--disabled"}${showingImage ? " object-sprite--image" : ""}`}
       style={{ left: pct(x), top: pct(y), width: pct(width), height: pct(height) }}
       onClick={() => onTouch(def.id)}
       aria-label={def.name}
