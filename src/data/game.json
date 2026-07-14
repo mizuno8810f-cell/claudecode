@@ -2313,9 +2313,9 @@
               "type": "decoration",
               "position": {
                 "x": 220,
-                "y": 170,
+                "y": 150,
                 "width": 80,
-                "height": 230
+                "height": 250
               },
               "visible": true,
               "enabled": true,
