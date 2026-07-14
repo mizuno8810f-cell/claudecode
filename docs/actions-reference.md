@@ -62,6 +62,7 @@
 | `showMessage` | `message` | 画面上部にトースト表示（約2.5秒で自動で消える） |
 | `showImage` | `image` | 画像オーバーレイ表示（未使用） |
 | `playSound` | `soundId` | `sounds/<soundId>.mp3` を再生 |
+| `wait` | `ms` | 指定ミリ秒だけイベント列を一時停止（この間は入力ロック継続）。演出的な時間差に使う |
 | `nextStage` | `stageId?`（省略で次） | 次ステージへ |
 | `clearGame` | （なし） | ゲームクリア |
 

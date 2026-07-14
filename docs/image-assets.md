@@ -25,9 +25,9 @@
 - `images/hint.png`  （ヒントアイテム）
 - `images/key_a.png`  （鍵A）
 - `images/recipe.png`  （レシピ）
-- `images/chicken_rice.png`  （チキンライス）
 - `images/egg.png`  （卵）
 - `images/ketchup.png`  （ケチャップ）
+- `images/rice.png`  （ライス）
 
 ### オブジェクト (state ごと)
 #### キッチン `room_kitchen`
@@ -38,19 +38,25 @@
 - `images/kitchen_snack_box__s0.png`  （お菓子の箱 state:s0）
 - `images/kitchen_snack_box__s1.png`  （お菓子の箱 state:s1）
 - `images/kitchen_snack_box__s2.png`  （お菓子の箱 state:s2）
-- `images/ingredient_chicken_rice.png`  （チキンライス）
-- `images/ingredient_egg.png`  （卵）
-- `images/ingredient_ketchup.png`  （ケチャップ）
-- `images/cooking_station__empty.png`  （調理台 state:empty）
-- `images/cooking_station__step1.png`  （調理台 state:step1）
-- `images/cooking_station__step2.png`  （調理台 state:step2）
-- `images/cooking_station__done.png`  （調理台 state:done）
+- `images/ingredient_egg__inactive.png`  （卵 state:inactive）
+- `images/ingredient_egg__active.png`  （卵 state:active）
+- `images/ingredient_ketchup__inactive.png`  （ケチャップ state:inactive）
+- `images/ingredient_ketchup__active.png`  （ケチャップ state:active）
+- `images/cooking_station.png`  （調理台）
 - `images/omurice_text.png`  （ケチャップの文字（仮））
+- `images/ingredient_rice__inactive.png`  （ライス state:inactive）
+- `images/ingredient_rice__active.png`  （ライス state:active）
+- `images/frying_pan__empty.png`  （フライパン state:empty）
+- `images/frying_pan__rice.png`  （フライパン state:rice）
+- `images/frying_pan__chicken_rice.png`  （フライパン state:chicken_rice）
+- `images/frying_pan__empty2.png`  （フライパン state:empty2）
+- `images/frying_pan__egg.png`  （フライパン state:egg）
 
 #### リビングルーム `room_livingroom`
 - `images/livingroom_sofa.png`  （グレーのソファ）
 - `images/livingroom_sofa_cushion.png`  （クッション）
-- `images/livingroom_desk.png`  （机）
+- `images/livingroom_desk.png`  （机 state:default）
+- `images/livingroom_desk.png`  （机 state:omurice）
 - `images/livingroom_desk_box.png`  （箱）
 - `images/livingroom_desk_tissue.png`  （ティッシュケース）
 - `images/livingroom_corner_rack.png`  （コーナーラック）
@@ -77,6 +83,8 @@
 - `images/cr_figure_1.png`  （フィギュア1）
 - `images/cr_figure_2.png`  （フィギュア2）
 - `images/cr_figure_3.png`  （フィギュア3）
+- `images/omurice_dish__incomplete.png`  （オムライス state:incomplete）
+- `images/omurice_dish__complete.png`  （オムライス state:complete）
 
 #### ワークスペース `room_workingspace`
 - `images/workingspace_curtain__morningclose.png`  （カーテン state:morningclose）

@@ -19,7 +19,9 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: Obje
 
   const { x, y, width, height } = def.position;
   const pct = (value: number) => `${(value / ROOM_CANVAS_SIZE) * 100}%`;
-  const showingImage = Boolean(image) && !imageFailed;
+  // In dev modes (#1/#2) always show the placeholder box + info, even if the
+  // object has an image, so boxes/coordinates stay visible.
+  const showingImage = Boolean(image) && !imageFailed && devMode === 0;
 
   return (
     <button
@@ -31,7 +33,7 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: Obje
       data-object-id={def.id}
       data-object-state={runtime.state}
     >
-      {image && !imageFailed ? (
+      {showingImage ? (
         <img src={assetUrl(image)} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
       ) : (
         <span className="object-sprite__fallback">

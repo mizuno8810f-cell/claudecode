@@ -31,7 +31,7 @@
               "states": {
                 "default": {
                   "children": [
-                    "ingredient_chicken_rice",
+                    "ingredient_rice",
                     "ingredient_egg",
                     "ingredient_ketchup"
                   ],
@@ -101,7 +101,8 @@
               "states": {
                 "default": {
                   "children": [
-                    "cooking_station"
+                    "cooking_station",
+                    "frying_pan"
                   ],
                   "triggers": [
                     {
@@ -215,70 +216,6 @@
               }
             },
             {
-              "id": "ingredient_chicken_rice",
-              "name": "チキンライス",
-              "type": "item",
-              "position": {
-                "x": 40,
-                "y": 130,
-                "width": 80,
-                "height": 140
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": false
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "まだお腹空いてないな"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": true
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "addItem",
-                          "itemId": "chicken_rice"
-                        },
-                        {
-                          "type": "hideObject",
-                          "targetId": "ingredient_chicken_rice"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "チキンライスを手に入れた"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/ingredient_chicken_rice.png"
-                }
-              }
-            },
-            {
               "id": "ingredient_egg",
               "name": "卵",
               "type": "item",
@@ -290,38 +227,31 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "inactive",
               "states": {
-                "default": {
+                "inactive": {
+                  "image": "images/ingredient_egg__inactive.png",
                   "children": [],
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": false
-                        }
-                      ],
+                      "conditions": [],
                       "events": [
                         {
                           "type": "showMessage",
                           "message": "まだお腹空いてないな"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                "active": {
+                  "image": "images/ingredient_egg__active.png",
+                  "children": [],
+                  "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": true
-                        }
-                      ],
+                      "conditions": [],
                       "events": [
                         {
                           "type": "addItem",
@@ -337,8 +267,7 @@
                         }
                       ]
                     }
-                  ],
-                  "image": "images/ingredient_egg.png"
+                  ]
                 }
               }
             },
@@ -354,38 +283,31 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "inactive",
               "states": {
-                "default": {
+                "inactive": {
+                  "image": "images/ingredient_ketchup__inactive.png",
                   "children": [],
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": false
-                        }
-                      ],
+                      "conditions": [],
                       "events": [
                         {
                           "type": "showMessage",
                           "message": "まだお腹空いてないな"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                "active": {
+                  "image": "images/ingredient_ketchup__active.png",
+                  "children": [],
+                  "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "recipe",
-                          "operator": "equals",
-                          "value": true
-                        }
-                      ],
+                      "conditions": [],
                       "events": [
                         {
                           "type": "addItem",
@@ -401,190 +323,28 @@
                         }
                       ]
                     }
-                  ],
-                  "image": "images/ingredient_ketchup.png"
+                  ]
                 }
               }
             },
             {
               "id": "cooking_station",
               "name": "調理台",
-              "type": "object",
+              "type": "decoration",
               "position": {
-                "x": 110,
-                "y": 140,
-                "width": 180,
-                "height": 160
+                "x": 40,
+                "y": 230,
+                "width": 320,
+                "height": 150
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "empty",
+              "defaultState": "default",
               "states": {
-                "empty": {
+                "default": {
+                  "image": "images/cooking_station.png",
                   "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "equals",
-                          "value": "chicken_rice"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "cooking_station",
-                          "value": "step1"
-                        },
-                        {
-                          "type": "removeItem",
-                          "itemId": "chicken_rice"
-                        },
-                        {
-                          "type": "clearSelectedItem"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "チキンライスを炒めた"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "notEquals",
-                          "value": "chicken_rice"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "うまくいかない気がする"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cooking_station__empty.png"
-                },
-                "step1": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "equals",
-                          "value": "egg"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "cooking_station",
-                          "value": "step2"
-                        },
-                        {
-                          "type": "removeItem",
-                          "itemId": "egg"
-                        },
-                        {
-                          "type": "clearSelectedItem"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "卵で包んだ"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "notEquals",
-                          "value": "egg"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "うまくいかない気がする"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cooking_station__step1.png"
-                },
-                "step2": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "equals",
-                          "value": "ketchup"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "cooking_station",
-                          "value": "done"
-                        },
-                        {
-                          "type": "removeItem",
-                          "itemId": "ketchup"
-                        },
-                        {
-                          "type": "clearSelectedItem"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "オムライスができた！"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "selectedItem",
-                          "operator": "notEquals",
-                          "value": "ketchup"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "うまくいかない気がする"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cooking_station__step2.png"
-                },
-                "done": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "pushNavigation",
-                          "targetId": "omurice_inspect"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cooking_station__done.png"
+                  "triggers": []
                 }
               }
             },
@@ -628,6 +388,255 @@
                   "children": [],
                   "triggers": [],
                   "image": "images/omurice_text.png"
+                }
+              }
+            },
+            {
+              "id": "ingredient_rice",
+              "name": "ライス",
+              "type": "item",
+              "position": {
+                "x": 40,
+                "y": 130,
+                "width": 80,
+                "height": 140
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive",
+              "states": {
+                "inactive": {
+                  "image": "images/ingredient_rice__inactive.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "まだお腹空いてないな"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "active": {
+                  "image": "images/ingredient_rice__active.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "rice"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "ingredient_rice"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ライスを手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "frying_pan",
+              "name": "フライパン",
+              "type": "object",
+              "position": {
+                "x": 130,
+                "y": 150,
+                "width": 140,
+                "height": 110
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "empty",
+              "states": {
+                "empty": {
+                  "image": "images/frying_pan__empty.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "rice"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "frying_pan",
+                          "value": "rice"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "rice"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ライスを炒めた"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "rice"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "rice": {
+                  "image": "images/frying_pan__rice.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "frying_pan",
+                          "value": "chicken_rice"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ケチャップをかけた"
+                        },
+                        {
+                          "type": "wait",
+                          "ms": 2000
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "frying_pan",
+                          "value": "empty2"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "チキンライスが出来上がった"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "chicken_rice": {
+                  "image": "images/frying_pan__chicken_rice.png",
+                  "children": [],
+                  "triggers": []
+                },
+                "empty2": {
+                  "image": "images/frying_pan__empty2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "egg"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "frying_pan",
+                          "value": "egg"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "egg"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "破れないように慎重に…"
+                        },
+                        {
+                          "type": "wait",
+                          "ms": 2000
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "frying_pan"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ちょっと破けちゃったけど完成！"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "livingroom_desk",
+                          "value": "omurice"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "egg"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "うまくいかない気がする"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "egg": {
+                  "image": "images/frying_pan__egg.png",
+                  "children": [],
+                  "triggers": []
                 }
               }
             }
@@ -779,6 +788,7 @@
               "defaultState": "default",
               "states": {
                 "default": {
+                  "image": "images/livingroom_desk.png",
                   "children": [
                     "livingroom_desk_box",
                     "livingroom_desk_tissue"
@@ -794,8 +804,27 @@
                         }
                       ]
                     }
+                  ]
+                },
+                "omurice": {
+                  "image": "images/livingroom_desk.png",
+                  "children": [
+                    "livingroom_desk_box",
+                    "livingroom_desk_tissue",
+                    "omurice_dish"
                   ],
-                  "image": "images/livingroom_desk.png"
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "livingroom_desk"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -2155,6 +2184,85 @@
                   "image": "images/cr_figure_3.png"
                 }
               }
+            },
+            {
+              "id": "omurice_dish",
+              "name": "オムライス",
+              "type": "object",
+              "position": {
+                "x": 60,
+                "y": 130,
+                "width": 130,
+                "height": 110
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "incomplete",
+              "states": {
+                "incomplete": {
+                  "image": "images/omurice_dish__incomplete.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "ketchup"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "omurice_dish",
+                          "value": "complete"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "ケチャップで文字を書いた"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "ketchup"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "ケチャップをかけたほうがよさそうだ"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "complete": {
+                  "image": "images/omurice_dish__complete.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "omurice_inspect"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           ]
         },
@@ -2650,7 +2758,7 @@
             {
               "id": "bedroom_rack",
               "name": "ラック",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 315,
                 "y": 320,
@@ -2662,9 +2770,35 @@
               "defaultState": "default",
               "states": {
                 "default": {
+                  "image": "images/bedroom_rack.png",
                   "children": [],
-                  "triggers": [],
-                  "image": "images/bedroom_rack.png"
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "レシピを見つけた：ライスを炒め→ケチャップ→卵で包む"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "ingredient_rice",
+                          "value": "active"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "ingredient_egg",
+                          "value": "active"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "ingredient_ketchup",
+                          "value": "active"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -2757,12 +2891,6 @@
       "description": "オムライスの作り方が書かれたメモ"
     },
     {
-      "id": "chicken_rice",
-      "name": "チキンライス",
-      "image": "images/chicken_rice.png",
-      "description": "冷蔵庫のチキンライス"
-    },
-    {
       "id": "egg",
       "name": "卵",
       "image": "images/egg.png",
@@ -2773,6 +2901,12 @@
       "name": "ケチャップ",
       "image": "images/ketchup.png",
       "description": "冷蔵庫のケチャップ"
+    },
+    {
+      "id": "rice",
+      "name": "ライス",
+      "image": "images/rice.png",
+      "description": "冷蔵庫のライス"
     }
   ]
 }

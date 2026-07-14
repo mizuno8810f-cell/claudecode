@@ -353,6 +353,9 @@ export class GameEngine {
       case "playSound":
         this.playSound(event.soundId);
         return;
+      case "wait":
+        // Pause the event sequence (input stays locked) for a timed transition.
+        return new Promise<void>((resolve) => setTimeout(resolve, event.ms));
       case "nextStage": {
         const currentIndex = this.stageOrder.indexOf(this.snapshot.stageId);
         const targetStageId = event.stageId ?? this.stageOrder[currentIndex + 1];

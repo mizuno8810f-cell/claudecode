@@ -41,6 +41,7 @@ export type GameEvent =
   | { type: "showMessage"; message: string }
   | { type: "showImage"; image: string }
   | { type: "playSound"; soundId: string }
+  | { type: "wait"; ms: number }
   | { type: "nextStage"; stageId?: string }
   | { type: "clearGame" };
 
