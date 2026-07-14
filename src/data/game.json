@@ -2418,7 +2418,7 @@
             {
               "id": "workingspace_shelf",
               "name": "棚",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 220,
                 "y": 150,
@@ -2431,7 +2431,18 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "workingspace_shelf"
+                        }
+                      ]
+                    }
+                  ],
                   "image": "images/workingspace_shelf.png"
                 }
               }
@@ -6998,7 +7009,7 @@
             {
               "id": "bedroom_window",
               "name": "窓",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 40,
                 "y": 20,
@@ -7011,7 +7022,18 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_window"
+                        }
+                      ]
+                    }
+                  ],
                   "image": "images/bedroom_window.png"
                 }
               }
@@ -7161,8 +7183,8 @@
                       "conditions": [],
                       "events": [
                         {
-                          "type": "showMessage",
-                          "message": "レシピを見つけた：ライスを炒め→ケチャップ→卵で包む"
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_rack"
                         },
                         {
                           "type": "setObjectState",

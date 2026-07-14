@@ -24,6 +24,25 @@ const ROOM_BG_VLINES: Record<string, number[]> = {
  * used until real art exists. Which object gets a custom scene (vs. the
  * generic zoom fallback) is decided per instructions, not automatically.
  */
+/**
+ * Dedicated full-screen background art for a zoomed-in object, keyed by the
+ * zoom target's object id. When present this wins over the object's in-room
+ * sprite image (which stays the small room icon) and over the placeholder
+ * scenes below. Purely a rendering concern — no game logic here.
+ */
+const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
+  workingspace_desk: "images/zoom_workingspace_desk.png",
+  kitchen_fridge: "images/zoom_kitchen_fridge.png",
+  kitchen_counter: "images/zoom_kitchen_counter.png",
+  livingroom_desk: "images/zoom_livingroom_desk.png",
+  livingroom_corner_rack: "images/zoom_livingroom_corner_rack.png",
+  livingroom_sofa: "images/zoom_livingroom_sofa.png",
+  kitchen_trash_can: "images/zoom_kitchen_trash_can.png",
+  bedroom_rack: "images/zoom_bedroom_rack.png",
+  bedroom_window: "images/zoom_bedroom_window.png",
+  workingspace_shelf: "images/zoom_workingspace_shelf.png",
+};
+
 const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "itemInspect"> = {
   livingroom_sofa: "sofa",
   livingroom_trash_can: "plain",
@@ -40,14 +59,19 @@ const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "
 };
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
-  const [bgFailed, setBgFailed] = useState(false);
+  // Track which background src failed to load so each distinct image (room or
+  // zoom) gets its own fallback decision instead of one shared boolean.
+  const [failedBg, setFailedBg] = useState<string | null>(null);
   // Dev overlay mode: 0 = off, 1 = layout (id/pos/size), 2 = state.
   const [devMode, setDevMode] = useState(0);
   const room = engine.getCurrentRoom();
-  const background = engine.getBackgroundImage();
   const objects = engine.getDisplayedObjects();
   const isZoomed = snapshot.navigationStack.length > 0;
   const zoomTargetId = snapshot.navigationStack[snapshot.navigationStack.length - 1];
+  // A dedicated zoom background image (if any) wins over the object's sprite image.
+  const zoomBgImage = zoomTargetId ? ZOOM_BACKGROUND_IMAGES[zoomTargetId] : undefined;
+  const background = zoomBgImage ?? engine.getBackgroundImage();
+  const bgFailed = background != null && failedBg === background;
   const zoomScene = zoomTargetId ? ZOOM_BACKGROUND_SCENES[zoomTargetId] : undefined;
   const isItemInspect = zoomScene === "itemInspect";
 
@@ -97,7 +121,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
                 src={assetUrl(background)}
                 alt={room.name}
                 draggable={false}
-                onError={() => setBgFailed(true)}
+                onError={() => setFailedBg(background)}
               />
             ) : zoomScene === "sofa" ? (
               <div className="room-stage__background sofa-scene">

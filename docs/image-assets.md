@@ -203,4 +203,18 @@
 - `images/bedroom_door_panel.png`  （扉）
 
 > 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
-> ソファ等のズーム内の見た目(CSSシーン)は画像ではなくCSSで描画。上記 `image` は主に「部屋内での見た目」に使われる。
+> 上記 `image` は主に「部屋内での見た目（スプライト）」。ズーム時の全画面背景は下記の専用画像を使う。
+
+### ズーム背景 (RoomStage の ZOOM_BACKGROUND_IMAGES)
+
+ズームすると、そのオブジェクトの専用背景画像が全画面で表示される（部屋内スプライトとは別画像）。
+- `images/zoom_workingspace_desk.png`  （仕事机 のズーム）
+- `images/zoom_kitchen_fridge.png`  （冷蔵庫 のズーム）
+- `images/zoom_kitchen_counter.png`  （キッチン のズーム）
+- `images/zoom_livingroom_desk.png`  （机 のズーム）
+- `images/zoom_livingroom_corner_rack.png`  （コーナーラック のズーム）
+- `images/zoom_livingroom_sofa.png`  （グレーのソファ のズーム）
+- `images/zoom_kitchen_trash_can.png`  （ゴミ箱 のズーム）
+- `images/zoom_bedroom_rack.png`  （ラック のズーム）
+- `images/zoom_bedroom_window.png`  （窓 のズーム）
+- `images/zoom_workingspace_shelf.png`  （棚 のズーム）

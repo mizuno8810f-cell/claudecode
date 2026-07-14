@@ -235,7 +235,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `cold`: touch → showMessage("👦寒い"), setObjectState(workingspace_aircon=hot)
   - `hot`: touch → showMessage("👩暑い"), setObjectState(workingspace_aircon=cold)
 
-- **棚** `workingspace_shelf` — type:decoration, 80×250 @(220,150), default:`default`
+- **棚** `workingspace_shelf` — type:object, 80×250 @(220,150), default:`default`
+  - `default`: touch → pushNavigation(workingspace_shelf)
 
 - **仕事机** `workingspace_desk` — type:object, 100×150 @(0,250), default:`default`
   - `default`: children=[workingspace_pc, workingspace_pw1, workingspace_pw2, workingspace_pw3, workingspace_pw4, workingspace_btn_hira, workingspace_btn_symbol, workingspace_btn_enter] / touch → pushNavigation(workingspace_desk)
@@ -273,14 +274,15 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **扉** `bedroom_door` — type:door, 40×350 @(0,50), default:`default`
   - `default`: children=[bedroom_door_panel] / touch → pushNavigation(bedroom_door)
 
-- **窓** `bedroom_window` — type:decoration, 300×230 @(40,20), default:`default`
+- **窓** `bedroom_window` — type:object, 300×230 @(40,20), default:`default`
+  - `default`: touch → pushNavigation(bedroom_window)
 
 - **ベッド** `bedroom_bed` — type:object, 270×100 @(40,300), default:`default`
   - `default`: touch → setObjectState(bedroom_bed=sleep) / touch [objectState(workingspace_curtain) == "morningclose"] → setObjectState(workingspace_curtain=nightclose) / touch [objectState(workingspace_curtain) == "morningopen"] → setObjectState(workingspace_curtain=nightopen)
   - `sleep`: touch → setObjectState(bedroom_bed=default) / touch [objectState(workingspace_curtain) == "nightclose"] → setObjectState(workingspace_curtain=morningclose) / touch [objectState(workingspace_curtain) == "nightopen"] → setObjectState(workingspace_curtain=morningopen)
 
 - **ラック** `bedroom_rack` — type:object, 60×80 @(315,320), default:`default`
-  - `default`: touch → showMessage("レシピを見つけた：ライスを炒め→ケチャップ→卵で包む"), setObjectState(ingredient_rice=active), setObjectState(ingredient_egg=active), setObjectState(ingredient_ketchup=active)
+  - `default`: touch → pushNavigation(bedroom_rack), setObjectState(ingredient_rice=active), setObjectState(ingredient_egg=active), setObjectState(ingredient_ketchup=active)
 
 - **ゴミ箱** `bedroom_trash_can` — type:object, 30×50 @(320,350), default:`default`
   - `default`: touch → showMessage("なんか臭い…")
