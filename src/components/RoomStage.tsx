@@ -58,7 +58,6 @@ const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   cr_shelf_top: "images/zoom_cr_shelf_top.png",
   cleaning_robot: "images/zoom_cleaning_robot.png",
   bedroom_present: "images/zoom_bedroom_present.png",
-  omurice_inspect: "images/zoom_omurice_inspect.png",
   livingroom_trash_can: "images/zoom_livingroom_trash_can.png",
   bedroom_door: "images/zoom_bedroom_door.png",
   workingspace_door: "images/zoom_workingspace_door.png",

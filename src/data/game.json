@@ -196,10 +196,10 @@
               "name": "卵",
               "type": "item",
               "position": {
-                "x": 160,
-                "y": 130,
-                "width": 80,
-                "height": 140
+                "x": 190,
+                "y": 200,
+                "width": 50,
+                "height": 80
               },
               "visible": true,
               "enabled": true,
@@ -325,57 +325,14 @@
               }
             },
             {
-              "id": "omurice_inspect",
-              "name": "オムライス(拡大)",
-              "type": "object",
-              "position": {
-                "x": 0,
-                "y": 0,
-                "width": 0,
-                "height": 0
-              },
-              "visible": false,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [
-                    "omurice_text"
-                  ],
-                  "triggers": []
-                }
-              }
-            },
-            {
-              "id": "omurice_text",
-              "name": "ケチャップの文字（仮）",
-              "type": "text",
-              "position": {
-                "x": 80,
-                "y": 150,
-                "width": 240,
-                "height": 100
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [],
-                  "image": "images/omurice_text.png"
-                }
-              }
-            },
-            {
               "id": "ingredient_rice",
               "name": "ライス",
               "type": "item",
               "position": {
                 "x": 40,
-                "y": 130,
-                "width": 80,
-                "height": 140
+                "y": 180,
+                "width": 130,
+                "height": 100
               },
               "visible": true,
               "enabled": true,
@@ -814,10 +771,10 @@
               "name": "ダイヤル1",
               "type": "object",
               "position": {
-                "x": 20,
-                "y": 120,
-                "width": 70,
-                "height": 70
+                "x": 150,
+                "y": 100,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1000,10 +957,10 @@
               "name": "ダイヤル2",
               "type": "object",
               "position": {
-                "x": 110,
-                "y": 120,
-                "width": 70,
-                "height": 70
+                "x": 210,
+                "y": 100,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1186,10 +1143,10 @@
               "name": "ダイヤル3",
               "type": "object",
               "position": {
-                "x": 200,
-                "y": 120,
-                "width": 70,
-                "height": 70
+                "x": 150,
+                "y": 175,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1372,10 +1329,10 @@
               "name": "ダイヤル4",
               "type": "object",
               "position": {
-                "x": 290,
-                "y": 120,
-                "width": 70,
-                "height": 70
+                "x": 210,
+                "y": 175,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1558,10 +1515,10 @@
               "name": "ダイヤル5",
               "type": "object",
               "position": {
-                "x": 20,
-                "y": 205,
-                "width": 70,
-                "height": 70
+                "x": 150,
+                "y": 250,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1744,10 +1701,10 @@
               "name": "ダイヤル6",
               "type": "object",
               "position": {
-                "x": 110,
-                "y": 205,
-                "width": 70,
-                "height": 70
+                "x": 210,
+                "y": 250,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -1930,10 +1887,10 @@
               "name": "ダイヤル7",
               "type": "object",
               "position": {
-                "x": 200,
-                "y": 205,
-                "width": 70,
-                "height": 70
+                "x": 150,
+                "y": 325,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -2116,10 +2073,10 @@
               "name": "ダイヤル8",
               "type": "object",
               "position": {
-                "x": 290,
-                "y": 205,
-                "width": 70,
-                "height": 70
+                "x": 210,
+                "y": 325,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -2302,10 +2259,10 @@
               "name": "確定",
               "type": "object",
               "position": {
-                "x": 150,
-                "y": 305,
-                "width": 100,
-                "height": 60
+                "x": 270,
+                "y": 325,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -2486,7 +2443,7 @@
               "name": "ヒントアイテム",
               "type": "item",
               "position": {
-                "x": 93,
+                "x": 243,
                 "y": 203,
                 "width": 60,
                 "height": 40
@@ -2525,7 +2482,7 @@
               "name": "クッション",
               "type": "decoration",
               "position": {
-                "x": 68,
+                "x": 218,
                 "y": 168,
                 "width": 110,
                 "height": 110
@@ -2949,24 +2906,6 @@
                       ]
                     }
                   ]
-                },
-                "back": {
-                  "children": [
-                    "hint_0713_text"
-                  ],
-                  "triggers": [
-                    {
-                      "type": "onBack",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "hint_inspect",
-                          "value": "front"
-                        }
-                      ]
-                    }
-                  ]
                 }
               }
             },
@@ -2986,53 +2925,8 @@
               "states": {
                 "default": {
                   "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "hint_inspect",
-                          "value": "back"
-                        }
-                      ]
-                    }
-                  ],
+                  "triggers": [],
                   "image": "images/hint_front_card.png"
-                }
-              }
-            },
-            {
-              "id": "hint_0713_text",
-              "name": "0713",
-              "type": "text",
-              "position": {
-                "x": 100,
-                "y": 150,
-                "width": 200,
-                "height": 100
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "setObjectState",
-                          "targetId": "hint_inspect",
-                          "value": "front"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/hint_0713_text.png"
                 }
               }
             },
@@ -3041,10 +2935,10 @@
               "name": "棚(上)",
               "type": "object",
               "position": {
-                "x": 40,
-                "y": 30,
-                "width": 320,
-                "height": 100
+                "x": 125,
+                "y": 50,
+                "width": 150,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -3075,10 +2969,10 @@
               "name": "棚(中)",
               "type": "object",
               "position": {
-                "x": 40,
-                "y": 150,
-                "width": 320,
-                "height": 100
+                "x": 125,
+                "y": 200,
+                "width": 150,
+                "height": 150
               },
               "visible": true,
               "enabled": true,
@@ -3163,7 +3057,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_0.png"
+                  "image": "images/dial_liv_0.png"
                 },
                 "1": {
                   "children": [],
@@ -3180,7 +3074,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_1.png"
+                  "image": "images/dial_liv_1.png"
                 },
                 "2": {
                   "children": [],
@@ -3197,7 +3091,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_2.png"
+                  "image": "images/dial_liv_2.png"
                 },
                 "3": {
                   "children": [],
@@ -3214,7 +3108,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_3.png"
+                  "image": "images/dial_liv_3.png"
                 },
                 "4": {
                   "children": [],
@@ -3231,7 +3125,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_4.png"
+                  "image": "images/dial_liv_4.png"
                 },
                 "5": {
                   "children": [],
@@ -3248,7 +3142,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_5.png"
+                  "image": "images/dial_liv_5.png"
                 },
                 "6": {
                   "children": [],
@@ -3265,7 +3159,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_6.png"
+                  "image": "images/dial_liv_6.png"
                 },
                 "7": {
                   "children": [],
@@ -3282,7 +3176,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_7.png"
+                  "image": "images/dial_liv_7.png"
                 },
                 "8": {
                   "children": [],
@@ -3299,7 +3193,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_8.png"
+                  "image": "images/dial_liv_8.png"
                 },
                 "9": {
                   "children": [],
@@ -3316,7 +3210,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_9.png"
+                  "image": "images/dial_liv_9.png"
                 }
               }
             },
@@ -3349,7 +3243,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_0.png"
+                  "image": "images/dial_liv_0.png"
                 },
                 "1": {
                   "children": [],
@@ -3366,7 +3260,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_1.png"
+                  "image": "images/dial_liv_1.png"
                 },
                 "2": {
                   "children": [],
@@ -3383,7 +3277,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_2.png"
+                  "image": "images/dial_liv_2.png"
                 },
                 "3": {
                   "children": [],
@@ -3400,7 +3294,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_3.png"
+                  "image": "images/dial_liv_3.png"
                 },
                 "4": {
                   "children": [],
@@ -3417,7 +3311,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_4.png"
+                  "image": "images/dial_liv_4.png"
                 },
                 "5": {
                   "children": [],
@@ -3434,7 +3328,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_5.png"
+                  "image": "images/dial_liv_5.png"
                 },
                 "6": {
                   "children": [],
@@ -3451,7 +3345,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_6.png"
+                  "image": "images/dial_liv_6.png"
                 },
                 "7": {
                   "children": [],
@@ -3468,7 +3362,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_7.png"
+                  "image": "images/dial_liv_7.png"
                 },
                 "8": {
                   "children": [],
@@ -3485,7 +3379,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_8.png"
+                  "image": "images/dial_liv_8.png"
                 },
                 "9": {
                   "children": [],
@@ -3502,7 +3396,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_9.png"
+                  "image": "images/dial_liv_9.png"
                 }
               }
             },
@@ -3535,7 +3429,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_0.png"
+                  "image": "images/dial_liv_0.png"
                 },
                 "1": {
                   "children": [],
@@ -3552,7 +3446,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_1.png"
+                  "image": "images/dial_liv_1.png"
                 },
                 "2": {
                   "children": [],
@@ -3569,7 +3463,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_2.png"
+                  "image": "images/dial_liv_2.png"
                 },
                 "3": {
                   "children": [],
@@ -3586,7 +3480,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_3.png"
+                  "image": "images/dial_liv_3.png"
                 },
                 "4": {
                   "children": [],
@@ -3603,7 +3497,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_4.png"
+                  "image": "images/dial_liv_4.png"
                 },
                 "5": {
                   "children": [],
@@ -3620,7 +3514,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_5.png"
+                  "image": "images/dial_liv_5.png"
                 },
                 "6": {
                   "children": [],
@@ -3637,7 +3531,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_6.png"
+                  "image": "images/dial_liv_6.png"
                 },
                 "7": {
                   "children": [],
@@ -3654,7 +3548,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_7.png"
+                  "image": "images/dial_liv_7.png"
                 },
                 "8": {
                   "children": [],
@@ -3671,7 +3565,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_8.png"
+                  "image": "images/dial_liv_8.png"
                 },
                 "9": {
                   "children": [],
@@ -3688,7 +3582,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_9.png"
+                  "image": "images/dial_liv_9.png"
                 }
               }
             },
@@ -3721,7 +3615,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_0.png"
+                  "image": "images/dial_liv_0.png"
                 },
                 "1": {
                   "children": [],
@@ -3738,7 +3632,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_1.png"
+                  "image": "images/dial_liv_1.png"
                 },
                 "2": {
                   "children": [],
@@ -3755,7 +3649,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_2.png"
+                  "image": "images/dial_liv_2.png"
                 },
                 "3": {
                   "children": [],
@@ -3772,7 +3666,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_3.png"
+                  "image": "images/dial_liv_3.png"
                 },
                 "4": {
                   "children": [],
@@ -3789,7 +3683,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_4.png"
+                  "image": "images/dial_liv_4.png"
                 },
                 "5": {
                   "children": [],
@@ -3806,7 +3700,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_5.png"
+                  "image": "images/dial_liv_5.png"
                 },
                 "6": {
                   "children": [],
@@ -3823,7 +3717,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_6.png"
+                  "image": "images/dial_liv_6.png"
                 },
                 "7": {
                   "children": [],
@@ -3840,7 +3734,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_7.png"
+                  "image": "images/dial_liv_7.png"
                 },
                 "8": {
                   "children": [],
@@ -3857,7 +3751,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_8.png"
+                  "image": "images/dial_liv_8.png"
                 },
                 "9": {
                   "children": [],
@@ -3874,7 +3768,7 @@
                       ]
                     }
                   ],
-                  "image": "images/dial_9.png"
+                  "image": "images/dial_liv_9.png"
                 }
               }
             },
@@ -3936,7 +3830,7 @@
                       ]
                     }
                   ],
-                  "image": "images/safe_confirm.png"
+                  "image": "images/dial_liv_confirm.png"
                 }
               }
             },
@@ -4044,18 +3938,7 @@
                 "complete": {
                   "image": "images/omurice_dish__complete.png",
                   "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "pushNavigation",
-                          "targetId": "omurice_inspect"
-                        }
-                      ]
-                    }
-                  ]
+                  "triggers": []
                 }
               }
             },
@@ -5256,10 +5139,10 @@
               "name": "PC",
               "type": "object",
               "position": {
-                "x": 80,
-                "y": 40,
-                "width": 240,
-                "height": 120
+                "x": 100,
+                "y": 0,
+                "width": 160,
+                "height": 280
               },
               "visible": true,
               "enabled": true,
@@ -5448,10 +5331,10 @@
               "name": "パスワード1文字目",
               "type": "text",
               "position": {
-                "x": 70,
-                "y": 190,
-                "width": 50,
-                "height": 60
+                "x": 110,
+                "y": 75,
+                "width": 34,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -5574,10 +5457,10 @@
               "name": "パスワード2文字目",
               "type": "text",
               "position": {
-                "x": 135,
-                "y": 190,
-                "width": 50,
-                "height": 60
+                "x": 145,
+                "y": 75,
+                "width": 34,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -5700,10 +5583,10 @@
               "name": "パスワード3文字目",
               "type": "text",
               "position": {
-                "x": 200,
-                "y": 190,
-                "width": 50,
-                "height": 60
+                "x": 180,
+                "y": 75,
+                "width": 34,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -5826,10 +5709,10 @@
               "name": "パスワード4文字目",
               "type": "text",
               "position": {
-                "x": 265,
-                "y": 190,
-                "width": 50,
-                "height": 60
+                "x": 215,
+                "y": 75,
+                "width": 35,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -5952,10 +5835,10 @@
               "name": "ひらがな入力ボタン",
               "type": "object",
               "position": {
-                "x": 40,
-                "y": 300,
-                "width": 95,
-                "height": 55
+                "x": 75,
+                "y": 170,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -7030,10 +6913,10 @@
               "name": "記号入力ボタン",
               "type": "object",
               "position": {
-                "x": 150,
-                "y": 300,
-                "width": 95,
-                "height": 55
+                "x": 135,
+                "y": 170,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -8108,10 +7991,10 @@
               "name": "Enterボタン",
               "type": "object",
               "position": {
-                "x": 260,
-                "y": 300,
-                "width": 95,
-                "height": 55
+                "x": 210,
+                "y": 170,
+                "width": 50,
+                "height": 50
               },
               "visible": true,
               "enabled": true,
@@ -61360,10 +61243,10 @@
               "name": "加湿器",
               "type": "object",
               "position": {
-                "x": 260,
-                "y": 270,
-                "width": 110,
-                "height": 110
+                "x": 150,
+                "y": 200,
+                "width": 200,
+                "height": 100
               },
               "visible": true,
               "enabled": true,

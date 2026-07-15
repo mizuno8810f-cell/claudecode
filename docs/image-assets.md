@@ -45,7 +45,6 @@
 - `images/ingredient_ketchup__inactive.png`  （ケチャップ state:inactive）
 - `images/ingredient_ketchup__active.png`  （ケチャップ state:active）
 - `images/cooking_station.png`  （調理台）
-- `images/omurice_text.png`  （ケチャップの文字（仮））
 - `images/ingredient_rice__inactive.png`  （ライス state:inactive）
 - `images/ingredient_rice__active.png`  （ライス state:active）
 - `images/frying_pan__empty.png`  （フライパン state:empty）
@@ -159,20 +158,19 @@
 - `images/cleaning_robot__cleaning.png`  （お掃除ロボ state:cleaning）
 - `images/cleaning_robot__cleaning_done.png`  （お掃除ロボ state:cleaning_done）
 - `images/hint_front_card.png`  （ヒント）
-- `images/hint_0713_text.png`  （0713）
 - `images/cr_shelf_top.png`  （棚(上)）
 - `images/cr_shelf_mid.png`  （棚(中)）
-- `images/dial_0.png`  （ダイヤル 数字0・4つで共有）
-- `images/dial_1.png`  （ダイヤル 数字1・4つで共有）
-- `images/dial_2.png`  （ダイヤル 数字2・4つで共有）
-- `images/dial_3.png`  （ダイヤル 数字3・4つで共有）
-- `images/dial_4.png`  （ダイヤル 数字4・4つで共有）
-- `images/dial_5.png`  （ダイヤル 数字5・4つで共有）
-- `images/dial_6.png`  （ダイヤル 数字6・4つで共有）
-- `images/dial_7.png`  （ダイヤル 数字7・4つで共有）
-- `images/dial_8.png`  （ダイヤル 数字8・4つで共有）
-- `images/dial_9.png`  （ダイヤル 数字9・4つで共有）
-- `images/safe_confirm.png`  （確定）
+- `images/dial_liv_0.png`  （ダイヤル 数字0・4つで共有）
+- `images/dial_liv_1.png`  （ダイヤル 数字1・4つで共有）
+- `images/dial_liv_2.png`  （ダイヤル 数字2・4つで共有）
+- `images/dial_liv_3.png`  （ダイヤル 数字3・4つで共有）
+- `images/dial_liv_4.png`  （ダイヤル 数字4・4つで共有）
+- `images/dial_liv_5.png`  （ダイヤル 数字5・4つで共有）
+- `images/dial_liv_6.png`  （ダイヤル 数字6・4つで共有）
+- `images/dial_liv_7.png`  （ダイヤル 数字7・4つで共有）
+- `images/dial_liv_8.png`  （ダイヤル 数字8・4つで共有）
+- `images/dial_liv_9.png`  （ダイヤル 数字9・4つで共有）
+- `images/dial_liv_confirm.png`  （確定）
 - `images/safe_key_a.png`  （鍵A）
 - `images/omurice_dish__incomplete.png`  （オムライス state:incomplete）
 - `images/omurice_dish__complete.png`  （オムライス state:complete）
@@ -456,7 +454,6 @@
 - `images/zoom_cr_shelf_top.png`  （棚(上) のズーム）
 - `images/zoom_cleaning_robot.png`  （お掃除ロボ のズーム）
 - `images/zoom_bedroom_present.png`  （プレゼント のズーム）
-- `images/zoom_omurice_inspect.png`  （オムライス(拡大) のズーム）
 - `images/zoom_livingroom_trash_can.png`  （ゴミ箱 のズーム）
 - `images/zoom_bedroom_door.png`  （扉 のズーム）
 - `images/zoom_workingspace_door.png`  （扉 のズーム）
