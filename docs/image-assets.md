@@ -31,6 +31,7 @@
 - `images/battery1.png`  （電池①）
 - `images/sdcard.png`  （SDカード）
 - `images/battery2.png`  （電池②）
+- `images/remote.png`  （リモコン）
 
 ### オブジェクト (state ごと)
 #### キッチン `room_kitchen`
@@ -149,7 +150,8 @@
 - `images/livingroom_sofa_cushion.png`  （クッション）
 - `images/livingroom_desk.png`  （机 state:default）
 - `images/livingroom_desk.png`  （机 state:omurice）
-- `images/livingroom_desk_box.png`  （箱）
+- `images/livingroom_desk_box.png`  （箱 state:no_remote）
+- `images/livingroom_desk_box__has_remote.png`  （箱 state:has_remote）
 - `images/livingroom_desk_tissue.png`  （ティッシュケース）
 - `images/livingroom_corner_rack.png`  （コーナーラック）
 - `images/livingroom_trash_can.png`  （ゴミ箱）
@@ -181,6 +183,10 @@
 - `images/omurice_dish__incomplete.png`  （オムライス state:incomplete）
 - `images/omurice_dish__complete.png`  （オムライス state:complete）
 - `images/battery_2.png`  （電池②）
+- `images/remote_card_front.png`  （リモコン(拡大)）
+- `images/remote_card_back0.png`  （リモコン(拡大)）
+- `images/remote_card_back1.png`  （リモコン(拡大)）
+- `images/remote_card_back2.png`  （リモコン(拡大)）
 
 #### ワークスペース `room_workingspace`
 - `images/workingspace_curtain__morningclose.png`  （カーテン state:morningclose）

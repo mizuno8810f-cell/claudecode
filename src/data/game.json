@@ -2659,7 +2659,7 @@
             {
               "id": "livingroom_desk_box",
               "name": "箱",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 223,
                 "y": 120,
@@ -2668,12 +2668,37 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "no_remote",
               "states": {
-                "default": {
+                "no_remote": {
+                  "image": "images/livingroom_desk_box.png",
                   "children": [],
-                  "triggers": [],
-                  "image": "images/livingroom_desk_box.png"
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "livingroom_desk_box",
+                          "value": "has_remote"
+                        },
+                        {
+                          "type": "addItem",
+                          "itemId": "remote"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "リモコンを手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "has_remote": {
+                  "image": "images/livingroom_desk_box__has_remote.png",
+                  "children": [],
+                  "triggers": []
                 }
               }
             },
@@ -4225,6 +4250,439 @@
                         {
                           "type": "showMessage",
                           "message": "電池②を手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "remote_body",
+              "name": "リモコン本体",
+              "type": "item",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "no_battery",
+              "states": {
+                "no_battery": {
+                  "children": [],
+                  "triggers": []
+                },
+                "battery1": {
+                  "children": [],
+                  "triggers": []
+                },
+                "has_battery": {
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "remote_inspect",
+              "name": "リモコン(拡大)",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "front",
+              "states": {
+                "front": {
+                  "children": [
+                    "remote_card_front"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "back0": {
+                  "children": [
+                    "remote_card_back0"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "back1": {
+                  "children": [
+                    "remote_card_back1"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "back2": {
+                  "children": [
+                    "remote_card_back2"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "remote_card_front",
+              "name": "リモコン(拡大)",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 70,
+                "width": 180,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/remote_card_front.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "remote_body",
+                          "operator": "equals",
+                          "value": "no_battery"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "remote_body",
+                          "operator": "equals",
+                          "value": "battery1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "remote_body",
+                          "operator": "equals",
+                          "value": "has_battery"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "remote_card_back0",
+              "name": "リモコン(拡大)",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 70,
+                "width": 180,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/remote_card_back0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "battery1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "battery1"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_body",
+                          "value": "battery1"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back1"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池を入れた（1個）"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "battery2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "battery2"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_body",
+                          "value": "battery1"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back1"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池を入れた（1個）"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "battery1"
+                        },
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "battery2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "remote_card_back1",
+              "name": "リモコン(拡大)",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 70,
+                "width": 180,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/remote_card_back1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "battery1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "battery1"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_body",
+                          "value": "has_battery"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back2"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池が2個入った！リモコンが使えるようになった"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "battery2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "battery2"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_body",
+                          "value": "has_battery"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "back2"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池が2個入った！リモコンが使えるようになった"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "battery1"
+                        },
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "battery2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "remote_card_back2",
+              "name": "リモコン(拡大)",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 70,
+                "width": 180,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/remote_card_back2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "remote_inspect",
+                          "value": "front"
                         }
                       ]
                     }
@@ -60806,6 +61264,12 @@
       "name": "電池②",
       "image": "images/battery2.png",
       "description": "お掃除ロボが見つけた電池"
+    },
+    {
+      "id": "remote",
+      "name": "リモコン",
+      "image": "images/remote.png",
+      "description": "電池を入れると使えるリモコン"
     }
   ]
 }

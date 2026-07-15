@@ -236,7 +236,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[livingroom_desk_box, livingroom_desk_tissue] / touch → pushNavigation(livingroom_desk)
   - `omurice`: children=[livingroom_desk_box, livingroom_desk_tissue, omurice_dish] / touch → pushNavigation(livingroom_desk)
 
-- **箱** `livingroom_desk_box` — type:decoration, 70×110 @(223,120), default:`default`
+- **箱** `livingroom_desk_box` — type:object, 70×110 @(223,120), default:`no_remote`
+  - `no_remote`: touch → setObjectState(livingroom_desk_box=has_remote), addItem(remote), showMessage("リモコンを手に入れた")
 
 - **ティッシュケース** `livingroom_desk_tissue` — type:decoration, 50×90 @(308,120), default:`default`
   - `default`: touch → showMessage("使ったら捨てましょう")
@@ -347,6 +348,26 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **電池②** `battery_2` — type:item, 100×100 @(150,150), default:`default`
   - `default`: touch → addItem(battery2), hideObject(battery_2), showMessage("電池②を手に入れた")
+
+- **リモコン本体** `remote_body` — type:item, 0×0 @(0,0), default:`no_battery` ⚠visible:false
+
+- **リモコン(拡大)** `remote_inspect` — type:object, 0×0 @(0,0), default:`front`
+  - `front`: children=[remote_card_front] / onBack → setObjectState(remote_inspect=front)
+  - `back0`: children=[remote_card_back0] / onBack → setObjectState(remote_inspect=front)
+  - `back1`: children=[remote_card_back1] / onBack → setObjectState(remote_inspect=front)
+  - `back2`: children=[remote_card_back2] / onBack → setObjectState(remote_inspect=front)
+
+- **リモコン(拡大)** `remote_card_front` — type:object, 180×260 @(110,70), default:`default`
+  - `default`: touch [objectState(remote_body) == "no_battery"] → setObjectState(remote_inspect=back0) / touch [objectState(remote_body) == "battery1"] → setObjectState(remote_inspect=back1) / touch [objectState(remote_body) == "has_battery"] → setObjectState(remote_inspect=back2)
+
+- **リモコン(拡大)** `remote_card_back0` — type:object, 180×260 @(110,70), default:`default`
+  - `default`: touch [selectedItem == "battery1"] → removeItem(battery1), setObjectState(remote_body=battery1), setObjectState(remote_inspect=back1), showMessage("電池を入れた（1個）") / touch [selectedItem == "battery2"] → removeItem(battery2), setObjectState(remote_body=battery1), setObjectState(remote_inspect=back1), showMessage("電池を入れた（1個）") / touch [selectedItem != "battery1" & selectedItem != "battery2"] → setObjectState(remote_inspect=front)
+
+- **リモコン(拡大)** `remote_card_back1` — type:object, 180×260 @(110,70), default:`default`
+  - `default`: touch [selectedItem == "battery1"] → removeItem(battery1), setObjectState(remote_body=has_battery), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem == "battery2"] → removeItem(battery2), setObjectState(remote_body=has_battery), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem != "battery1" & selectedItem != "battery2"] → setObjectState(remote_inspect=front)
+
+- **リモコン(拡大)** `remote_card_back2` — type:object, 180×260 @(110,70), default:`default`
+  - `default`: touch → setObjectState(remote_inspect=front)
 
 ### ワークスペース `room_workingspace`
 
@@ -546,6 +567,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **電池①** `battery1` — キッチンの金庫にあった電池
 - **SDカード** `sdcard` — 棚の本の奥から落ちてきたSDカード
 - **電池②** `battery2` — お掃除ロボが見つけた電池
+- **リモコン** `remote` — 電池を入れると使えるリモコン
 
 ---
 

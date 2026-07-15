@@ -54,6 +54,7 @@ const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "
   livingroom_corner_rack: "cornerRack",
   corner_rack_safe: "plain",
   hint_inspect: "itemInspect",
+  remote_inspect: "itemInspect",
   workingspace_door: "plain",
   bedroom_door: "plain",
   kitchen_trash_can: "plain",
