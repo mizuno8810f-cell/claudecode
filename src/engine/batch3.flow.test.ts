@@ -51,20 +51,46 @@ describe("kitchen cupboard + 8-digit safe", () => {
   });
 });
 
-describe("workspace shelf book ordering", () => {
-  it("starts scrambled and yields the SD card only when 1..7 are in order", async () => {
+// order the 7 movable books via 2-tap swaps (select a slot, tap another to swap)
+async function sortBooks(e: GameEngine) {
+  const bookAt = (k: number) => stateOf(e, `book_slot_${k}`);
+  for (let p = 1; p <= 7; p++) {
+    if (bookAt(p) === `book${p}`) continue;
+    let s = -1;
+    for (let k = 1; k <= 7; k++) if (bookAt(k) === `book${p}`) { s = k; break; }
+    await e.touch(`book_slot_${p}`); // select slot p
+    await e.touch(`book_slot_${s}`); // swap -> book p lands in slot p
+  }
+}
+
+describe("workspace shelf book ordering (2-tap swap)", () => {
+  it("first tap selects, tapping another swaps the two books", async () => {
     const e = new GameEngine(clone());
     await e.touch("workingspace_shelf");
-    // slots do NOT start in order
-    const ordered = () => [1, 2, 3, 4, 5, 6, 7].every((n) => stateOf(e, `book_slot_${n}`) === String(n));
+    const a = stateOf(e, "book_slot_1");
+    const b = stateOf(e, "book_slot_2");
+    await e.touch("book_slot_1");
+    expect(stateOf(e, "book_slot_1")).toBe(`${a}_sel`); // selected
+    await e.touch("book_slot_2");
+    expect(stateOf(e, "book_slot_1")).toBe(b); // swapped, deselected
+    expect(stateOf(e, "book_slot_2")).toBe(a);
+  });
+
+  it("tapping the selected book again deselects it", async () => {
+    const e = new GameEngine(clone());
+    const a = stateOf(e, "book_slot_3");
+    await e.touch("book_slot_3");
+    expect(stateOf(e, "book_slot_3")).toBe(`${a}_sel`);
+    await e.touch("book_slot_3");
+    expect(stateOf(e, "book_slot_3")).toBe(a);
+  });
+
+  it("starts scrambled and yields the SD card only when 1..7 are ordered", async () => {
+    const e = new GameEngine(clone());
+    const ordered = () => [1, 2, 3, 4, 5, 6, 7].every((n) => stateOf(e, `book_slot_${n}`) === `book${n}`);
     expect(ordered()).toBe(false);
     expect(inv(e)).not.toContain("sdcard");
-    // cycle each slot to its correct number (tap advances 1->2->..->7->1)
-    for (let n = 1; n <= 7; n++) {
-      const cur = Number(stateOf(e, `book_slot_${n}`));
-      const taps = (n - cur + 7) % 7;
-      await tap(e, `book_slot_${n}`, taps);
-    }
+    await sortBooks(e);
     expect(ordered()).toBe(true);
     expect(e.getSnapshot().toast).toBe("SDカードが落ちてきた");
     expect(inv(e)).toContain("sdcard");
@@ -94,13 +120,10 @@ describe("PC SD-card gate", () => {
     await tap(e, "workingspace_btn_symbol", 2); // pw4 = skull
     await e.touch("workingspace_btn_enter");
   }
-  // legitimately obtain the SD card from the shelf book puzzle
+  // legitimately obtain the SD card by ordering the shelf books
   async function getSdCard(e: GameEngine) {
     await e.touch("workingspace_shelf");
-    for (let n = 1; n <= 7; n++) {
-      const cur = Number(stateOf(e, `book_slot_${n}`));
-      await tap(e, `book_slot_${n}`, (n - cur + 7) % 7);
-    }
+    await sortBooks(e);
     await e.back();
   }
 
