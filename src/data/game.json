@@ -5176,7 +5176,7 @@
                   "image": "images/workingspace_door.png"
                 },
                 "light_up": {
-                  "image": "images/workingspace_door.png",
+                  "image": "images/workingspace_door__light_up.png",
                   "children": [
                     "ws_door_panel"
                   ],
@@ -5272,7 +5272,7 @@
                   "image": "images/ws_door_panel__open.png"
                 },
                 "light_up": {
-                  "image": "images/ws_door_panel__open.png",
+                  "image": "images/ws_door_panel__light_up.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61073,7 +61073,7 @@
                   "image": "images/bedroom_door.png"
                 },
                 "light_up": {
-                  "image": "images/bedroom_door.png",
+                  "image": "images/bedroom_door__light_up.png",
                   "children": [
                     "bedroom_door_panel"
                   ],
@@ -61376,7 +61376,7 @@
                   "image": "images/bedroom_door_panel.png"
                 },
                 "light_up": {
-                  "image": "images/bedroom_door_panel.png",
+                  "image": "images/bedroom_door_panel__light_up.png",
                   "children": [],
                   "triggers": [
                     {

@@ -196,10 +196,10 @@
 - `images/workingspace_shelf.png`  （棚）
 - `images/workingspace_desk.png`  （仕事机）
 - `images/workingspace_door.png`  （扉 state:default）
-- `images/workingspace_door.png`  （扉 state:light_up）
+- `images/workingspace_door__light_up.png`  （扉 state:light_up）
 - `images/ws_door_panel__closed.png`  （扉 state:closed）
 - `images/ws_door_panel__open.png`  （扉 state:open）
-- `images/ws_door_panel__open.png`  （扉 state:light_up）
+- `images/ws_door_panel__light_up.png`  （扉 state:light_up）
 - `images/workspace_pc__inactive.png`  （PC state:inactive）
 - `images/workspace_pc__active_morning.png`  （PC state:active_morning）
 - `images/workspace_pc__active_night.png`  （PC state:active_night）
@@ -397,7 +397,7 @@
 
 #### ベッドルーム `room_bedroom`
 - `images/bedroom_door.png`  （扉 state:default）
-- `images/bedroom_door.png`  （扉 state:light_up）
+- `images/bedroom_door__light_up.png`  （扉 state:light_up）
 - `images/bedroom_window.png`  （窓 state:default）
 - `images/bedroom_window__cloudy.png`  （窓 state:cloudy）
 - `images/bedroom_bed__default.png`  （ベッド state:default）
@@ -405,7 +405,7 @@
 - `images/bedroom_rack.png`  （ラック）
 - `images/bedroom_trash_can.png`  （ゴミ箱）
 - `images/bedroom_door_panel.png`  （扉 state:default）
-- `images/bedroom_door_panel.png`  （扉 state:light_up）
+- `images/bedroom_door_panel__light_up.png`  （扉 state:light_up）
 - `images/bedroom_humidifier__inactive.png`  （加湿器 state:inactive）
 - `images/bedroom_humidifier__active.png`  （加湿器 state:active）
 - `images/bedroom_present.png`  （プレゼント）
