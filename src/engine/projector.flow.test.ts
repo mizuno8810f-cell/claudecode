@@ -89,9 +89,12 @@ describe("confirm outcomes", () => {
     expect(global(e, "projectorEventActivated")).toBe(true);
     expect(global(e, "roomDarkMode")).toBe(true);
     expect(visibleOf(e, "bedroom_present")).toBe(true);
-    // doors light up
-    for (const d of ["bedroom_door", "bedroom_door_panel", "workingspace_door", "ws_door_panel"])
-      expect(stateOf(e, d)).toBe("light_up");
+    // only the workspace doors light up; the bedroom door does not
+    for (const d of ["workingspace_door", "ws_door_panel"]) expect(stateOf(e, d)).toBe("light_up");
+    expect(stateOf(e, "bedroom_door")).not.toBe("light_up");
+    expect(stateOf(e, "bedroom_door_panel")).not.toBe("light_up");
+    // the present is the lit goal (via config, while dark)
+    expect(e.getConfig().lightUpObjectIds).toContain("bedroom_present");
     // non-excluded objects disabled, excluded ones (doors/present/projector) stay enabled
     expect(enabledOf(e, "livingroom_sofa")).toBe(false);
     expect(enabledOf(e, "bedroom_present")).toBe(true);

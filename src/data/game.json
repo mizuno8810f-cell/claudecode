@@ -4582,16 +4582,6 @@
                         },
                         {
                           "type": "setObjectState",
-                          "targetId": "bedroom_door",
-                          "value": "light_up"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "bedroom_door_panel",
-                          "value": "light_up"
-                        },
-                        {
-                          "type": "setObjectState",
                           "targetId": "workingspace_door",
                           "value": "light_up"
                         },
@@ -61286,10 +61276,10 @@
               "name": "プレゼント",
               "type": "object",
               "position": {
-                "x": 120,
-                "y": 268,
-                "width": 90,
-                "height": 70
+                "x": 143,
+                "y": 286,
+                "width": 45,
+                "height": 35
               },
               "visible": false,
               "enabled": true,
@@ -61318,14 +61308,17 @@
                 },
                 "open": {
                   "image": "images/bedroom_present__open.png",
-                  "children": [],
+                  "children": [
+                    "bedroom_present_zoom"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
                       "conditions": [],
                       "events": [
                         {
-                          "type": "clearGame"
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_present"
                         }
                       ]
                     }
@@ -61338,19 +61331,34 @@
               "name": "プレゼント(拡大)",
               "type": "object",
               "position": {
-                "x": 70,
-                "y": 50,
-                "width": 260,
-                "height": 300
+                "x": 20,
+                "y": 150,
+                "width": 360,
+                "height": 200
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "closed",
               "states": {
-                "default": {
+                "closed": {
                   "image": "images/bedroom_present_zoom.png",
                   "children": [],
                   "triggers": []
+                },
+                "open": {
+                  "image": "images/bedroom_present_zoom__open.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "clearGame"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -61369,7 +61377,7 @@
               "defaultState": "0",
               "states": {
                 "0": {
-                  "image": "images/present_num_0.png",
+                  "image": "images/present_l_0.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61386,7 +61394,7 @@
                   ]
                 },
                 "1": {
-                  "image": "images/present_num_1.png",
+                  "image": "images/present_l_1.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61403,7 +61411,7 @@
                   ]
                 },
                 "2": {
-                  "image": "images/present_num_2.png",
+                  "image": "images/present_l_2.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61420,7 +61428,7 @@
                   ]
                 },
                 "3": {
-                  "image": "images/present_num_3.png",
+                  "image": "images/present_l_3.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61437,7 +61445,7 @@
                   ]
                 },
                 "4": {
-                  "image": "images/present_num_4.png",
+                  "image": "images/present_l_4.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61454,7 +61462,7 @@
                   ]
                 },
                 "5": {
-                  "image": "images/present_num_5.png",
+                  "image": "images/present_l_5.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61471,7 +61479,7 @@
                   ]
                 },
                 "6": {
-                  "image": "images/present_num_6.png",
+                  "image": "images/present_l_6.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61488,7 +61496,7 @@
                   ]
                 },
                 "7": {
-                  "image": "images/present_num_7.png",
+                  "image": "images/present_l_7.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61505,7 +61513,7 @@
                   ]
                 },
                 "8": {
-                  "image": "images/present_num_8.png",
+                  "image": "images/present_l_8.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61522,7 +61530,7 @@
                   ]
                 },
                 "9": {
-                  "image": "images/present_num_9.png",
+                  "image": "images/present_l_9.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61555,7 +61563,7 @@
               "defaultState": "0",
               "states": {
                 "0": {
-                  "image": "images/present_num_0.png",
+                  "image": "images/present_r_0.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61572,7 +61580,7 @@
                   ]
                 },
                 "1": {
-                  "image": "images/present_num_1.png",
+                  "image": "images/present_r_1.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61589,7 +61597,7 @@
                   ]
                 },
                 "2": {
-                  "image": "images/present_num_2.png",
+                  "image": "images/present_r_2.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61606,7 +61614,7 @@
                   ]
                 },
                 "3": {
-                  "image": "images/present_num_3.png",
+                  "image": "images/present_r_3.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61623,7 +61631,7 @@
                   ]
                 },
                 "4": {
-                  "image": "images/present_num_4.png",
+                  "image": "images/present_r_4.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61640,7 +61648,7 @@
                   ]
                 },
                 "5": {
-                  "image": "images/present_num_5.png",
+                  "image": "images/present_r_5.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61657,7 +61665,7 @@
                   ]
                 },
                 "6": {
-                  "image": "images/present_num_6.png",
+                  "image": "images/present_r_6.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61674,7 +61682,7 @@
                   ]
                 },
                 "7": {
-                  "image": "images/present_num_7.png",
+                  "image": "images/present_r_7.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61691,7 +61699,7 @@
                   ]
                 },
                 "8": {
-                  "image": "images/present_num_8.png",
+                  "image": "images/present_r_8.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61708,7 +61716,7 @@
                   ]
                 },
                 "9": {
-                  "image": "images/present_num_9.png",
+                  "image": "images/present_r_9.png",
                   "children": [],
                   "triggers": [
                     {
@@ -61751,23 +61759,25 @@
                           "type": "objectState",
                           "targetId": "present_dial_1",
                           "operator": "equals",
-                          "value": "7"
+                          "value": "8"
                         },
                         {
                           "type": "objectState",
                           "targetId": "present_dial_2",
                           "operator": "equals",
-                          "value": "3"
+                          "value": "1"
                         }
                       ],
                       "events": [
                         {
                           "type": "setObjectState",
-                          "targetId": "bedroom_present",
+                          "targetId": "bedroom_present_zoom",
                           "value": "open"
                         },
                         {
-                          "type": "popNavigation"
+                          "type": "setObjectState",
+                          "targetId": "bedroom_present",
+                          "value": "open"
                         },
                         {
                           "type": "showMessage",
@@ -61782,7 +61792,7 @@
                           "type": "objectState",
                           "targetId": "present_dial_1",
                           "operator": "notEquals",
-                          "value": "7"
+                          "value": "8"
                         }
                       ],
                       "events": [
@@ -61799,13 +61809,13 @@
                           "type": "objectState",
                           "targetId": "present_dial_1",
                           "operator": "equals",
-                          "value": "7"
+                          "value": "8"
                         },
                         {
                           "type": "objectState",
                           "targetId": "present_dial_2",
                           "operator": "notEquals",
-                          "value": "3"
+                          "value": "1"
                         }
                       ],
                       "events": [
@@ -61918,6 +61928,9 @@
       "present_dial_2",
       "present_ok"
     ],
-    "clearImage": "images/clear.png"
+    "clearImage": "images/clear.png",
+    "lightUpObjectIds": [
+      "bedroom_present"
+    ]
   }
 }

@@ -100,9 +100,12 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const config = engine.getConfig();
   const roomDarkMode = snapshot.globalState.roomDarkMode === true;
   const darkExcluded = new Set(config.darkModeExclusionObjectIds ?? []);
-  // Priority: light-up wins, then dark-mode exclusions stay normal, then darken.
+  const lightUpIds = new Set(config.lightUpObjectIds ?? []);
+  // Priority: a light_up state or a configured light-up object (while dark)
+  // glows; then dark-mode exclusions stay normal; then everything else darkens.
   const filterClassFor = (id: string, state: string): string => {
     if (state === "light_up") return "object-light-up";
+    if (roomDarkMode && lightUpIds.has(id)) return "object-light-up";
     if (darkExcluded.has(id)) return "";
     return roomDarkMode ? "object-darkened" : "";
   };

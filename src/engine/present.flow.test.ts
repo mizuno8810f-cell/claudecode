@@ -30,24 +30,26 @@ describe("present box combination puzzle", () => {
   it("a wrong combination keeps the box closed", async () => {
     const e = new GameEngine(clone());
     await e.touch("bedroom_present");
-    await tap(e, "present_dial_1", 7);
-    await tap(e, "present_dial_2", 5); // wrong (needs 3)
+    await tap(e, "present_dial_1", 8); // left = 8 (correct)
+    await tap(e, "present_dial_2", 5); // right wrong (needs 1)
     await e.touch("present_ok");
     expect(stateOf(e, "bedroom_present")).toBe("closed");
+    expect(stateOf(e, "bedroom_present_zoom")).toBe("closed");
     expect(e.getSnapshot().toast).toBe("違うみたいだ");
   });
 
-  it("the correct combination opens the box; tapping it clears the game", async () => {
+  it("left 8 / right 1 opens both the box and the zoom; tapping the zoom clears", async () => {
     const e = new GameEngine(clone());
     await e.touch("bedroom_present");
-    await tap(e, "present_dial_1", 7);
-    await tap(e, "present_dial_2", 3);
+    await tap(e, "present_dial_1", 8); // left = 8
+    await tap(e, "present_dial_2", 1); // right = 1
     await e.touch("present_ok");
     expect(stateOf(e, "bedroom_present")).toBe("open");
-    expect(navTop(e)).toBeUndefined(); // popped back to the room
+    expect(stateOf(e, "bedroom_present_zoom")).toBe("open");
+    expect(navTop(e)).toBe("bedroom_present"); // stays in the zoom
     expect(e.getSnapshot().cleared).toBe(false);
-    // tapping the opened box clears the game
-    await e.touch("bedroom_present");
+    // tapping the opened present zoom clears the game
+    await e.touch("bedroom_present_zoom");
     expect(e.getSnapshot().cleared).toBe(true);
   });
 

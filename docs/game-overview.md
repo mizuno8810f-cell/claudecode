@@ -353,7 +353,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[projector_confirm_yes, projector_confirm_no]
 
 - **はい** `projector_confirm_yes` — type:button, 0×0 @(0,0), default:`default`
-  - `default`: touch [globalState(projectorEventActivated) != true] → popNavigation, showObject(bedroom_present), setObjectState(bedroom_door=light_up), setObjectState(bedroom_door_panel=light_up), setObjectState(workingspace_door=light_up), setObjectState(ws_door_panel=light_up), setGlobalState(roomDarkMode=true), disableAllExcept, setGlobalState(projectorEventActivated=true), pushNavigation(projector_video) / touch [globalState(projectorEventActivated) == true] → popNavigation, pushNavigation(projector_video)
+  - `default`: touch [globalState(projectorEventActivated) != true] → popNavigation, showObject(bedroom_present), setObjectState(workingspace_door=light_up), setObjectState(ws_door_panel=light_up), setGlobalState(roomDarkMode=true), disableAllExcept, setGlobalState(projectorEventActivated=true), pushNavigation(projector_video) / touch [globalState(projectorEventActivated) == true] → popNavigation, pushNavigation(projector_video)
 
 - **いいえ** `projector_confirm_no` — type:button, 0×0 @(0,0), default:`default`
   - `default`: touch → popNavigation, setObjectState(projector=off)
@@ -550,11 +550,12 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **加湿器** `bedroom_humidifier` — type:object, 200×100 @(150,200), default:`inactive`
   - `inactive`: touch → setObjectState(bedroom_humidifier=active), setObjectState(bedroom_window=cloudy)
 
-- **プレゼント** `bedroom_present` — type:object, 90×70 @(120,268), default:`closed` ⚠visible:false
+- **プレゼント** `bedroom_present` — type:object, 45×35 @(143,286), default:`closed` ⚠visible:false
   - `closed`: children=[bedroom_present_zoom, present_dial_1, present_dial_2, present_ok] / touch → pushNavigation(bedroom_present)
-  - `open`: touch → clearGame
+  - `open`: children=[bedroom_present_zoom] / touch → pushNavigation(bedroom_present)
 
-- **プレゼント(拡大)** `bedroom_present_zoom` — type:object, 260×300 @(70,50), default:`default`
+- **プレゼント(拡大)** `bedroom_present_zoom` — type:object, 360×200 @(20,150), default:`closed`
+  - `open`: touch → clearGame
 
 - **ボタン1** `present_dial_1` — type:object, 70×85 @(105,165), default:`0`
   - `0`: touch → setObjectState(present_dial_1=1)
@@ -581,7 +582,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `9`: touch → setObjectState(present_dial_2=0)
 
 - **OK** `present_ok` — type:button, 90×55 @(155,285), default:`default`
-  - `default`: touch [objectState(present_dial_1) == "7" & objectState(present_dial_2) == "3"] → setObjectState(bedroom_present=open), popNavigation, showMessage("プレゼントが開いた！") / touch [objectState(present_dial_1) != "7"] → showMessage("違うみたいだ") / touch [objectState(present_dial_1) == "7" & objectState(present_dial_2) != "3"] → showMessage("違うみたいだ")
+  - `default`: touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) == "1"] → setObjectState(bedroom_present_zoom=open), setObjectState(bedroom_present=open), showMessage("プレゼントが開いた！") / touch [objectState(present_dial_1) != "8"] → showMessage("違うみたいだ") / touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) != "1"] → showMessage("違うみたいだ")
 
 ---
 

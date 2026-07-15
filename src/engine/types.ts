@@ -125,6 +125,9 @@ export interface GameConfig {
   disableExclusionObjectIds?: string[];
   /** Full-screen image the clear screen fades into. */
   clearImage?: string;
+  /** Objects that glow (light-up) while roomDarkMode is on, whatever state
+   * they are in (e.g. the present box, which stays in its puzzle state). */
+  lightUpObjectIds?: string[];
 }
 
 export interface GameData {
