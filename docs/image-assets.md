@@ -164,7 +164,6 @@
 - `images/hint_0713_text.png`  （0713）
 - `images/cr_shelf_top.png`  （棚(上)）
 - `images/cr_shelf_mid.png`  （棚(中)）
-- `images/cr_shelf_bottom.png`  （棚(下)）
 - `images/dial_0.png`  （ダイヤル 数字0・4つで共有）
 - `images/dial_1.png`  （ダイヤル 数字1・4つで共有）
 - `images/dial_2.png`  （ダイヤル 数字2・4つで共有）
@@ -177,9 +176,6 @@
 - `images/dial_9.png`  （ダイヤル 数字9・4つで共有）
 - `images/safe_confirm.png`  （確定）
 - `images/safe_key_a.png`  （鍵A）
-- `images/cr_figure_1.png`  （フィギュア1）
-- `images/cr_figure_2.png`  （フィギュア2）
-- `images/cr_figure_3.png`  （フィギュア3）
 - `images/omurice_dish__incomplete.png`  （オムライス state:incomplete）
 - `images/omurice_dish__complete.png`  （オムライス state:complete）
 - `images/battery_2.png`  （電池②）
@@ -187,6 +183,8 @@
 - `images/remote_card_back0.png`  （リモコン(拡大)）
 - `images/remote_card_back1.png`  （リモコン(拡大)）
 - `images/remote_card_back2.png`  （リモコン(拡大)）
+- `images/projector__off.png`  （プロジェクター state:off）
+- `images/projector__on.png`  （プロジェクター state:on）
 
 #### ワークスペース `room_workingspace`
 - `images/workingspace_curtain__morningclose.png`  （カーテン state:morningclose）
@@ -197,9 +195,11 @@
 - `images/workingspace_aircon__hot.png`  （エアコン state:hot）
 - `images/workingspace_shelf.png`  （棚）
 - `images/workingspace_desk.png`  （仕事机）
-- `images/workingspace_door.png`  （扉）
+- `images/workingspace_door.png`  （扉 state:default）
+- `images/workingspace_door.png`  （扉 state:light_up）
 - `images/ws_door_panel__closed.png`  （扉 state:closed）
 - `images/ws_door_panel__open.png`  （扉 state:open）
+- `images/ws_door_panel__open.png`  （扉 state:light_up）
 - `images/workspace_pc__inactive.png`  （PC state:inactive）
 - `images/workspace_pc__active_morning.png`  （PC state:active_morning）
 - `images/workspace_pc__active_night.png`  （PC state:active_night）
@@ -396,16 +396,20 @@
 - `images/book_8.png`  （本8(固定)）
 
 #### ベッドルーム `room_bedroom`
-- `images/bedroom_door.png`  （扉）
+- `images/bedroom_door.png`  （扉 state:default）
+- `images/bedroom_door.png`  （扉 state:light_up）
 - `images/bedroom_window.png`  （窓 state:default）
 - `images/bedroom_window__cloudy.png`  （窓 state:cloudy）
 - `images/bedroom_bed__default.png`  （ベッド state:default）
 - `images/bedroom_bed__sleep.png`  （ベッド state:sleep）
 - `images/bedroom_rack.png`  （ラック）
 - `images/bedroom_trash_can.png`  （ゴミ箱）
-- `images/bedroom_door_panel.png`  （扉）
+- `images/bedroom_door_panel.png`  （扉 state:default）
+- `images/bedroom_door_panel.png`  （扉 state:light_up）
 - `images/bedroom_humidifier__inactive.png`  （加湿器 state:inactive）
 - `images/bedroom_humidifier__active.png`  （加湿器 state:active）
+- `images/bedroom_present.png`  （プレゼント）
+- `images/bedroom_present_zoom.png`  （プレゼント(拡大)）
 
 > 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
 > 上記 `image` は主に「部屋内での見た目（スプライト）」。ズーム時の全画面背景は下記の専用画像を使う。

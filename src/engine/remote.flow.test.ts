@@ -25,13 +25,13 @@ async function openInspect(e: GameEngine) {
 }
 
 describe("remote / battery gimmick", () => {
-  it("box gives the remote once, initial body state is no_battery", async () => {
+  it("box gives the remote once, initial body state is battery_empty", async () => {
     const e = new GameEngine(clone());
     expect(stateOf(e, "livingroom_desk_box")).toBe("no_remote");
     await e.touch("livingroom_desk_box");
     expect(inv(e)).toContain("remote");
     expect(stateOf(e, "livingroom_desk_box")).toBe("has_remote");
-    expect(stateOf(e, "remote_body")).toBe("no_battery");
+    expect(stateOf(e, "remote_body")).toBe("battery_empty");
     // tapping the emptied box does nothing new
     const before = inv(e).filter((i) => i === "remote").length;
     await e.touch("livingroom_desk_box");
@@ -71,7 +71,7 @@ describe("remote / battery gimmick", () => {
     e.pressInventoryItem("battery2"); // select battery②
     await e.touch("remote_card_back1"); // insert #2
     expect(stateOf(e, "remote_inspect")).toBe("back2");
-    expect(stateOf(e, "remote_body")).toBe("has_battery");
+    expect(stateOf(e, "remote_body")).toBe("battery_installed");
     expect(inv(e)).not.toContain("battery2");
 
     // full: tapping the back just flips to front, no further increase

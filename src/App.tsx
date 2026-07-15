@@ -13,6 +13,11 @@ export default function App() {
   const engine = useMemo(() => new GameEngine(gameData), []);
   const snapshot = useGameSnapshot(engine);
 
+  // Dev-only handle so end-to-end tests can drive the engine directly.
+  if (import.meta.env.DEV && typeof window !== "undefined") {
+    (window as unknown as { __engine?: GameEngine }).__engine = engine;
+  }
+
   return (
     <div className="app">
       {snapshot.cleared ? (

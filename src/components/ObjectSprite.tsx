@@ -9,10 +9,12 @@ interface ObjectSpriteProps {
   image: string | undefined;
   /** 0 = off, 1 = layout info (pos/size), 2 = state info. */
   devMode?: number;
+  /** Extra CSS class applied to the image itself (light-up / darken filter). */
+  filterClass?: string;
   onTouch: (objectId: string) => void;
 }
 
-export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: ObjectSpriteProps) {
+export function ObjectSprite({ def, runtime, image, devMode = 0, filterClass = "", onTouch }: ObjectSpriteProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   if (!runtime.visible) return null;
@@ -34,7 +36,7 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, onTouch }: Obje
       data-object-state={runtime.state}
     >
       {showingImage ? (
-        <img src={assetUrl(image)} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
+        <img className={filterClass} src={assetUrl(image)} alt={def.name} draggable={false} onError={() => setImageFailed(true)} />
       ) : (
         <span className="object-sprite__fallback">
           {def.name}

@@ -2751,8 +2751,7 @@
                 "default": {
                   "children": [
                     "cr_shelf_top",
-                    "cr_shelf_mid",
-                    "cr_shelf_bottom"
+                    "cr_shelf_mid"
                   ],
                   "triggers": [
                     {
@@ -3078,7 +3077,7 @@
             {
               "id": "cr_shelf_top",
               "name": "棚(上)",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 40,
                 "y": 30,
@@ -3090,9 +3089,22 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": [],
-                  "image": "images/cr_shelf_top.png"
+                  "image": "images/cr_shelf_top.png",
+                  "children": [
+                    "projector"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "cr_shelf_top"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -3125,42 +3137,6 @@
                     }
                   ],
                   "image": "images/cr_shelf_mid.png"
-                }
-              }
-            },
-            {
-              "id": "cr_shelf_bottom",
-              "name": "棚(下)",
-              "type": "object",
-              "position": {
-                "x": 40,
-                "y": 270,
-                "width": 320,
-                "height": 100
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [
-                    "cr_figure_1",
-                    "cr_figure_2",
-                    "cr_figure_3"
-                  ],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "pushNavigation",
-                          "targetId": "cr_shelf_bottom"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cr_shelf_bottom.png"
                 }
               }
             },
@@ -4043,102 +4019,6 @@
               }
             },
             {
-              "id": "cr_figure_1",
-              "name": "フィギュア1",
-              "type": "object",
-              "position": {
-                "x": 50,
-                "y": 110,
-                "width": 80,
-                "height": 180
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "フィギュア1のセリフ（仮）"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cr_figure_1.png"
-                }
-              }
-            },
-            {
-              "id": "cr_figure_2",
-              "name": "フィギュア2",
-              "type": "object",
-              "position": {
-                "x": 160,
-                "y": 110,
-                "width": 80,
-                "height": 180
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "フィギュア2のセリフ（仮）"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cr_figure_2.png"
-                }
-              }
-            },
-            {
-              "id": "cr_figure_3",
-              "name": "フィギュア3",
-              "type": "object",
-              "position": {
-                "x": 270,
-                "y": 110,
-                "width": 80,
-                "height": 180
-              },
-              "visible": true,
-              "enabled": true,
-              "defaultState": "default",
-              "states": {
-                "default": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "フィギュア3のセリフ（仮）"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/cr_figure_3.png"
-                }
-              }
-            },
-            {
               "id": "omurice_dish",
               "name": "オムライス",
               "type": "object",
@@ -4269,17 +4149,17 @@
               },
               "visible": false,
               "enabled": true,
-              "defaultState": "no_battery",
+              "defaultState": "battery_empty",
               "states": {
-                "no_battery": {
-                  "children": [],
-                  "triggers": []
-                },
                 "battery1": {
                   "children": [],
                   "triggers": []
                 },
-                "has_battery": {
+                "battery_empty": {
+                  "children": [],
+                  "triggers": []
+                },
+                "battery_installed": {
                   "children": [],
                   "triggers": []
                 }
@@ -4398,7 +4278,7 @@
                           "type": "objectState",
                           "targetId": "remote_body",
                           "operator": "equals",
-                          "value": "no_battery"
+                          "value": "battery_empty"
                         }
                       ],
                       "events": [
@@ -4434,7 +4314,7 @@
                           "type": "objectState",
                           "targetId": "remote_body",
                           "operator": "equals",
-                          "value": "has_battery"
+                          "value": "battery_installed"
                         }
                       ],
                       "events": [
@@ -4588,7 +4468,7 @@
                         {
                           "type": "setObjectState",
                           "targetId": "remote_body",
-                          "value": "has_battery"
+                          "value": "battery_installed"
                         },
                         {
                           "type": "setObjectState",
@@ -4618,7 +4498,7 @@
                         {
                           "type": "setObjectState",
                           "targetId": "remote_body",
-                          "value": "has_battery"
+                          "value": "battery_installed"
                         },
                         {
                           "type": "setObjectState",
@@ -4687,6 +4567,289 @@
                       ]
                     }
                   ]
+                }
+              }
+            },
+            {
+              "id": "projector",
+              "name": "プロジェクター",
+              "type": "object",
+              "position": {
+                "x": 130,
+                "y": 120,
+                "width": 140,
+                "height": 120
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "off",
+              "states": {
+                "off": {
+                  "image": "images/projector__off.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "remote"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "remote_body",
+                          "operator": "equals",
+                          "value": "battery_installed"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "projector",
+                          "value": "on"
+                        },
+                        {
+                          "type": "wait",
+                          "ms": 1000
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "projector_confirm"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "remote"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "remote_body",
+                          "operator": "notEquals",
+                          "value": "battery_installed"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "リモコンの電池が足りないみたいだ"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
+                          "operator": "notEquals",
+                          "value": "remote"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "リモコンで操作できそうだ"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "on": {
+                  "image": "images/projector__on.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "projector_confirm"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "projector_confirm",
+              "name": "確認",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [
+                    "projector_confirm_yes",
+                    "projector_confirm_no"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "projector_confirm_yes",
+              "name": "はい",
+              "type": "button",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "notEquals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "popNavigation"
+                        },
+                        {
+                          "type": "showObject",
+                          "targetId": "bedroom_present"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_door",
+                          "value": "light_up"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_door_panel",
+                          "value": "light_up"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_door",
+                          "value": "light_up"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "ws_door_panel",
+                          "value": "light_up"
+                        },
+                        {
+                          "type": "setGlobalState",
+                          "key": "roomDarkMode",
+                          "value": true
+                        },
+                        {
+                          "type": "disableAllExcept"
+                        },
+                        {
+                          "type": "setGlobalState",
+                          "key": "projectorEventActivated",
+                          "value": true
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "projector_video"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "popNavigation"
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "projector_video"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "projector_confirm_no",
+              "name": "いいえ",
+              "type": "button",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "popNavigation"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "projector",
+                          "value": "off"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "projector_video",
+              "name": "動画",
+              "type": "object",
+              "position": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "children": [],
+                  "triggers": []
                 }
               }
             }
@@ -5011,6 +5174,24 @@
                     }
                   ],
                   "image": "images/workingspace_door.png"
+                },
+                "light_up": {
+                  "image": "images/workingspace_door.png",
+                  "children": [
+                    "ws_door_panel"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "workingspace_door"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -5089,6 +5270,22 @@
                     }
                   ],
                   "image": "images/ws_door_panel__open.png"
+                },
+                "light_up": {
+                  "image": "images/ws_door_panel__open.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "navigateRoom",
+                          "roomId": "room_bedroom"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -60874,6 +61071,24 @@
                     }
                   ],
                   "image": "images/bedroom_door.png"
+                },
+                "light_up": {
+                  "image": "images/bedroom_door.png",
+                  "children": [
+                    "bedroom_door_panel"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_door"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -61159,6 +61374,22 @@
                     }
                   ],
                   "image": "images/bedroom_door_panel.png"
+                },
+                "light_up": {
+                  "image": "images/bedroom_door_panel.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "navigateRoom",
+                          "roomId": "room_workingspace"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -61200,6 +61431,61 @@
                 },
                 "active": {
                   "image": "images/bedroom_humidifier__active.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "bedroom_present",
+              "name": "プレゼント",
+              "type": "object",
+              "position": {
+                "x": 120,
+                "y": 268,
+                "width": 90,
+                "height": 70
+              },
+              "visible": false,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/bedroom_present.png",
+                  "children": [
+                    "bedroom_present_zoom"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_present"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "bedroom_present_zoom",
+              "name": "プレゼント(拡大)",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 90,
+                "width": 180,
+                "height": 220
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/bedroom_present_zoom.png",
                   "children": [],
                   "triggers": []
                 }
@@ -61271,5 +61557,32 @@
       "image": "images/remote.png",
       "description": "電池を入れると使えるリモコン"
     }
-  ]
+  ],
+  "config": {
+    "projectorVideo": "videos/projector_demo.mp4",
+    "projectorConfirmMessage": "現実世界でプロジェクターにスマートフォンを接続し、部屋の電気を消してください。\n準備できましたか？",
+    "darkModeExclusionObjectIds": [
+      "bedroom_door",
+      "bedroom_door_panel",
+      "workingspace_door",
+      "ws_door_panel",
+      "bedroom_present",
+      "bedroom_present_zoom"
+    ],
+    "disableExclusionObjectIds": [
+      "bedroom_door",
+      "bedroom_door_panel",
+      "workingspace_door",
+      "ws_door_panel",
+      "bedroom_present",
+      "bedroom_present_zoom",
+      "projector",
+      "livingroom_corner_rack",
+      "cr_shelf_top",
+      "projector_confirm",
+      "projector_confirm_yes",
+      "projector_confirm_no",
+      "projector_video"
+    ]
+  }
 }

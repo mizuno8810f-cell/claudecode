@@ -2,6 +2,8 @@ import { useState } from "react";
 import type { GameEngine, EngineSnapshot } from "../engine";
 import { ObjectSprite } from "./ObjectSprite";
 import { DevGrid } from "./DevGrid";
+import { ConfirmOverlay } from "./ConfirmOverlay";
+import { VideoOverlay } from "./VideoOverlay";
 import { ROOM_CANVAS_SIZE } from "../constants";
 import { assetUrl } from "../assets";
 
@@ -87,6 +89,19 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const bgFailed = background != null && failedBg === background;
   const zoomScene = zoomTargetId ? ZOOM_BACKGROUND_SCENES[zoomTargetId] : undefined;
   const isItemInspect = zoomScene === "itemInspect";
+  const isConfirm = zoomTargetId === "projector_confirm";
+  const isVideo = zoomTargetId === "projector_video";
+
+  // Room-wide black-out state (projector event). Data-driven exclusion list.
+  const config = engine.getConfig();
+  const roomDarkMode = snapshot.globalState.roomDarkMode === true;
+  const darkExcluded = new Set(config.darkModeExclusionObjectIds ?? []);
+  // Priority: light-up wins, then dark-mode exclusions stay normal, then darken.
+  const filterClassFor = (id: string, state: string): string => {
+    if (state === "light_up") return "object-light-up";
+    if (darkExcluded.has(id)) return "";
+    return roomDarkMode ? "object-darkened" : "";
+  };
 
   if (!room) return null;
 
@@ -100,6 +115,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         runtime={runtime}
         image={engine.getCurrentImage(obj.id)}
         devMode={devMode}
+        filterClass={filterClassFor(obj.id, runtime.state)}
         onTouch={(id) => void engine.touch(id)}
       />
     );
@@ -120,7 +136,16 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         </button>
       </div>
       <div className="room-stage__viewport">
-        {isItemInspect ? (
+        {isConfirm ? (
+          <ConfirmOverlay
+            engine={engine}
+            message={config.projectorConfirmMessage ?? "準備できましたか？"}
+            yesId="projector_confirm_yes"
+            noId="projector_confirm_no"
+          />
+        ) : isVideo ? (
+          <VideoOverlay engine={engine} src={config.projectorVideo} />
+        ) : isItemInspect ? (
           // Item close-up: a smaller floating window over a dimmed backdrop, so
           // it reads as a popup rather than a full-room zoom.
           <div className="item-inspect-backdrop">
@@ -130,15 +155,18 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           <>
             {background && !bgFailed ? (
               <img
-                className="room-stage__background"
+                className={`room-stage__background${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
                 src={assetUrl(background)}
                 alt={room.name}
                 draggable={false}
                 onError={() => setFailedBg(background)}
               />
             ) : (
-              // No background photo set (or it failed to load): plain white.
-              <div className="room-stage__background room-stage__background--fallback" />
+              // No background photo set (or it failed to load): plain white,
+              // darkened along with the room when the black-out is active.
+              <div
+                className={`room-stage__background room-stage__background--fallback${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
+              />
             )}
 
             {/* Room-level background decoration: vertical lines behind the objects. */}
@@ -157,7 +185,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
 
         {devMode > 0 && <DevGrid />}
 
-        {isZoomed && (
+        {isZoomed && !isConfirm && !isVideo && (
           <button
             type="button"
             className="room-stage__back"

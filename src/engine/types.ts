@@ -42,6 +42,9 @@ export type GameEvent =
   | { type: "showImage"; image: string }
   | { type: "playSound"; soundId: string }
   | { type: "wait"; ms: number }
+  // Disable every object except those in config.disableExclusionObjectIds
+  // (used by the projector black-out event). Sets runtime enabled = false.
+  | { type: "disableAllExcept" }
   | { type: "nextStage"; stageId?: string }
   | { type: "clearGame" };
 
@@ -104,6 +107,22 @@ export interface Item {
   description: string;
 }
 
+/**
+ * Optional data-driven configuration consumed by the UI and a few events, so
+ * gimmick-specific ids/paths live in game data rather than being hard-coded in
+ * components. All fields optional for backwards compatibility.
+ */
+export interface GameConfig {
+  /** Video played by the projector overlay; swap the file, not the code. */
+  projectorVideo?: string;
+  /** Message shown on the projector confirm dialog. */
+  projectorConfirmMessage?: string;
+  /** Objects that keep normal/lit brightness while roomDarkMode is on. */
+  darkModeExclusionObjectIds?: string[];
+  /** Objects that stay enabled when a "disableAllExcept" event fires. */
+  disableExclusionObjectIds?: string[];
+}
+
 export interface GameData {
   gameId: string;
   title: string;
@@ -111,4 +130,5 @@ export interface GameData {
   initialRoomId: string;
   stages: Stage[];
   items: Item[];
+  config?: GameConfig;
 }

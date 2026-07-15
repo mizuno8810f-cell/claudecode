@@ -243,7 +243,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: touch → showMessage("使ったら捨てましょう")
 
 - **コーナーラック** `livingroom_corner_rack` — type:object, 55×288 @(0,112), default:`default`
-  - `default`: children=[cr_shelf_top, cr_shelf_mid, cr_shelf_bottom] / touch → pushNavigation(livingroom_corner_rack)
+  - `default`: children=[cr_shelf_top, cr_shelf_mid] / touch → pushNavigation(livingroom_corner_rack)
 
 - **ゴミ箱** `livingroom_trash_can` — type:object, 50×72 @(20,328), default:`default`
   - `default`: children=[livingroom_trash_can_pile] / touch → pushNavigation(livingroom_trash_can)
@@ -267,13 +267,11 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **0713** `hint_0713_text` — type:text, 200×100 @(100,150), default:`default`
   - `default`: touch → setObjectState(hint_inspect=front)
 
-- **棚(上)** `cr_shelf_top` — type:decoration, 320×100 @(40,30), default:`default`
+- **棚(上)** `cr_shelf_top` — type:object, 320×100 @(40,30), default:`default`
+  - `default`: children=[projector] / touch → pushNavigation(cr_shelf_top)
 
 - **棚(中)** `cr_shelf_mid` — type:object, 320×100 @(40,150), default:`default`
   - `default`: touch → pushNavigation(corner_rack_safe)
-
-- **棚(下)** `cr_shelf_bottom` — type:object, 320×100 @(40,270), default:`default`
-  - `default`: children=[cr_figure_1, cr_figure_2, cr_figure_3] / touch → pushNavigation(cr_shelf_bottom)
 
 - **金庫** `corner_rack_safe` — type:object, 0×0 @(0,0), default:`closed` ⚠visible:false
   - `closed`: children=[safe_dial_0, safe_dial_1, safe_dial_2, safe_dial_3, safe_confirm]
@@ -333,15 +331,6 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **鍵A** `safe_key_a` — type:item, 100×100 @(150,150), default:`default`
   - `default`: touch → addItem(key_a), hideObject(safe_key_a), showMessage("鍵Aを手に入れた")
 
-- **フィギュア1** `cr_figure_1` — type:object, 80×180 @(50,110), default:`default`
-  - `default`: touch → showMessage("フィギュア1のセリフ（仮）")
-
-- **フィギュア2** `cr_figure_2` — type:object, 80×180 @(160,110), default:`default`
-  - `default`: touch → showMessage("フィギュア2のセリフ（仮）")
-
-- **フィギュア3** `cr_figure_3` — type:object, 80×180 @(270,110), default:`default`
-  - `default`: touch → showMessage("フィギュア3のセリフ（仮）")
-
 - **オムライス** `omurice_dish` — type:object, 130×110 @(60,130), default:`incomplete`
   - `incomplete`: touch [selectedItem == "ketchup"] → removeItem(ketchup), setObjectState(omurice_dish=complete), showMessage("ケチャップで文字を書いた") / touch [selectedItem != "ketchup"] → showMessage("ケチャップをかけたほうがよさそうだ")
   - `complete`: touch → pushNavigation(omurice_inspect)
@@ -349,7 +338,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **電池②** `battery_2` — type:item, 100×100 @(150,150), default:`default`
   - `default`: touch → addItem(battery2), hideObject(battery_2), showMessage("電池②を手に入れた")
 
-- **リモコン本体** `remote_body` — type:item, 0×0 @(0,0), default:`no_battery` ⚠visible:false
+- **リモコン本体** `remote_body` — type:item, 0×0 @(0,0), default:`battery_empty` ⚠visible:false
 
 - **リモコン(拡大)** `remote_inspect` — type:object, 0×0 @(0,0), default:`front`
   - `front`: children=[remote_card_front] / onBack → setObjectState(remote_inspect=front)
@@ -358,16 +347,31 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `back2`: children=[remote_card_back2] / onBack → setObjectState(remote_inspect=front)
 
 - **リモコン(拡大)** `remote_card_front` — type:object, 180×260 @(110,70), default:`default`
-  - `default`: touch [objectState(remote_body) == "no_battery"] → setObjectState(remote_inspect=back0) / touch [objectState(remote_body) == "battery1"] → setObjectState(remote_inspect=back1) / touch [objectState(remote_body) == "has_battery"] → setObjectState(remote_inspect=back2)
+  - `default`: touch [objectState(remote_body) == "battery_empty"] → setObjectState(remote_inspect=back0) / touch [objectState(remote_body) == "battery1"] → setObjectState(remote_inspect=back1) / touch [objectState(remote_body) == "battery_installed"] → setObjectState(remote_inspect=back2)
 
 - **リモコン(拡大)** `remote_card_back0` — type:object, 180×260 @(110,70), default:`default`
   - `default`: touch [selectedItem == "battery1"] → removeItem(battery1), setObjectState(remote_body=battery1), setObjectState(remote_inspect=back1), showMessage("電池を入れた（1個）") / touch [selectedItem == "battery2"] → removeItem(battery2), setObjectState(remote_body=battery1), setObjectState(remote_inspect=back1), showMessage("電池を入れた（1個）") / touch [selectedItem != "battery1" & selectedItem != "battery2"] → setObjectState(remote_inspect=front)
 
 - **リモコン(拡大)** `remote_card_back1` — type:object, 180×260 @(110,70), default:`default`
-  - `default`: touch [selectedItem == "battery1"] → removeItem(battery1), setObjectState(remote_body=has_battery), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem == "battery2"] → removeItem(battery2), setObjectState(remote_body=has_battery), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem != "battery1" & selectedItem != "battery2"] → setObjectState(remote_inspect=front)
+  - `default`: touch [selectedItem == "battery1"] → removeItem(battery1), setObjectState(remote_body=battery_installed), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem == "battery2"] → removeItem(battery2), setObjectState(remote_body=battery_installed), setObjectState(remote_inspect=back2), showMessage("電池が2個入った！リモコンが使えるようになった") / touch [selectedItem != "battery1" & selectedItem != "battery2"] → setObjectState(remote_inspect=front)
 
 - **リモコン(拡大)** `remote_card_back2` — type:object, 180×260 @(110,70), default:`default`
   - `default`: touch → setObjectState(remote_inspect=front)
+
+- **プロジェクター** `projector` — type:object, 140×120 @(130,120), default:`off`
+  - `off`: touch [selectedItem == "remote" & objectState(remote_body) == "battery_installed"] → setObjectState(projector=on), wait, pushNavigation(projector_confirm) / touch [selectedItem == "remote" & objectState(remote_body) != "battery_installed"] → showMessage("リモコンの電池が足りないみたいだ") / touch [selectedItem != "remote"] → showMessage("リモコンで操作できそうだ")
+  - `on`: touch → pushNavigation(projector_confirm)
+
+- **確認** `projector_confirm` — type:object, 0×0 @(0,0), default:`default`
+  - `default`: children=[projector_confirm_yes, projector_confirm_no]
+
+- **はい** `projector_confirm_yes` — type:button, 0×0 @(0,0), default:`default`
+  - `default`: touch [globalState(projectorEventActivated) != true] → popNavigation, showObject(bedroom_present), setObjectState(bedroom_door=light_up), setObjectState(bedroom_door_panel=light_up), setObjectState(workingspace_door=light_up), setObjectState(ws_door_panel=light_up), setGlobalState(roomDarkMode=true), disableAllExcept, setGlobalState(projectorEventActivated=true), pushNavigation(projector_video) / touch [globalState(projectorEventActivated) == true] → popNavigation, pushNavigation(projector_video)
+
+- **いいえ** `projector_confirm_no` — type:button, 0×0 @(0,0), default:`default`
+  - `default`: touch → popNavigation, setObjectState(projector=off)
+
+- **動画** `projector_video` — type:object, 0×0 @(0,0), default:`default`
 
 ### ワークスペース `room_workingspace`
 
@@ -389,10 +393,12 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **扉** `workingspace_door` — type:door, 80×350 @(320,50), default:`default`
   - `default`: children=[ws_door_panel] / touch → pushNavigation(workingspace_door)
+  - `light_up`: children=[ws_door_panel] / touch → pushNavigation(workingspace_door)
 
 - **扉** `ws_door_panel` — type:door, 300×350 @(50,50), default:`closed`
   - `closed`: touch [selectedItem == "key_a"] → setObjectState(ws_door_panel=open), clearSelectedItem, showMessage("鍵Aで扉が開いた") / touch [selectedItem != "key_a"] → showMessage("鍵がかかっている")
   - `open`: touch → navigateRoom(room_bedroom)
+  - `light_up`: touch → navigateRoom(room_bedroom)
 
 - **PC** `workingspace_pc` — type:object, 240×120 @(80,40), default:`inactive`
   - `active_morning`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
@@ -534,6 +540,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **扉** `bedroom_door` — type:door, 40×350 @(0,50), default:`default`
   - `default`: children=[bedroom_door_panel] / touch → pushNavigation(bedroom_door)
+  - `light_up`: children=[bedroom_door_panel] / touch → pushNavigation(bedroom_door)
 
 - **窓** `bedroom_window` — type:object, 300×230 @(40,20), default:`default`
   - `default`: children=[bedroom_humidifier] / touch → pushNavigation(bedroom_window)
@@ -551,9 +558,15 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **扉** `bedroom_door_panel` — type:door, 300×350 @(50,50), default:`default`
   - `default`: touch → navigateRoom(room_workingspace)
+  - `light_up`: touch → navigateRoom(room_workingspace)
 
 - **加湿器** `bedroom_humidifier` — type:object, 110×110 @(260,270), default:`inactive`
   - `inactive`: touch → setObjectState(bedroom_humidifier=active), setObjectState(bedroom_window=cloudy)
+
+- **プレゼント** `bedroom_present` — type:object, 90×70 @(120,268), default:`default` ⚠visible:false
+  - `default`: children=[bedroom_present_zoom] / touch → pushNavigation(bedroom_present)
+
+- **プレゼント(拡大)** `bedroom_present_zoom` — type:object, 180×220 @(110,90), default:`default`
 
 ---
 

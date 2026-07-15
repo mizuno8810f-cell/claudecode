@@ -107,6 +107,11 @@ export class GameEngine {
 
   getSnapshot = (): EngineSnapshot => this.snapshot;
 
+  /** Data-driven configuration (exclusion lists, projector video, ...). */
+  getConfig(): NonNullable<GameData["config"]> {
+    return this.game.config ?? {};
+  }
+
   private emit(patch: Partial<EngineSnapshot>) {
     this.snapshot = { ...this.snapshot, ...patch };
     for (const listener of this.listeners) listener();
@@ -363,6 +368,17 @@ export class GameEngine {
         const firstRoom = stage?.rooms[0];
         if (!stage || !firstRoom) return;
         this.emit({ stageId: stage.id, roomId: firstRoom.id, navigationStack: [] });
+        return;
+      }
+      case "disableAllExcept": {
+        const keep = new Set(this.getConfig().disableExclusionObjectIds ?? []);
+        const objectStates = { ...this.snapshot.objectStates };
+        for (const id of this.objectIndex.keys()) {
+          if (keep.has(id)) continue;
+          const current = objectStates[id];
+          if (current) objectStates[id] = { ...current, enabled: false };
+        }
+        this.emit({ objectStates });
         return;
       }
       case "clearGame":
