@@ -123,7 +123,7 @@
             {
               "id": "kitchen_cupboard",
               "name": "食器棚",
-              "type": "decoration",
+              "type": "object",
               "position": {
                 "x": 0,
                 "y": 50,
@@ -135,9 +135,23 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
-                  "triggers": [],
-                  "image": "images/kitchen_cupboard.png"
+                  "image": "images/kitchen_cupboard.png",
+                  "children": [
+                    "cupboard_left",
+                    "cupboard_right"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "kitchen_cupboard"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -637,6 +651,1813 @@
                   "image": "images/frying_pan__egg.png",
                   "children": [],
                   "triggers": []
+                }
+              }
+            },
+            {
+              "id": "cupboard_right",
+              "name": "食器棚右",
+              "type": "object",
+              "position": {
+                "x": 220,
+                "y": 70,
+                "width": 150,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "closed",
+              "states": {
+                "closed": {
+                  "image": "images/cupboard_right__closed.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cupboard_right",
+                          "value": "open"
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "cupboard_right"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "open": {
+                  "image": "images/cupboard_right__open.png",
+                  "children": [
+                    "cupboard_mug"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cupboard_right",
+                          "value": "closed"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cupboard_left",
+              "name": "食器棚左",
+              "type": "object",
+              "position": {
+                "x": 30,
+                "y": 70,
+                "width": 150,
+                "height": 260
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "closed",
+              "states": {
+                "closed": {
+                  "image": "images/cupboard_left__closed.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cupboard_left",
+                          "value": "open"
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "cupboard_left"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "open": {
+                  "image": "images/cupboard_left__open.png",
+                  "children": [
+                    "kitchen_safe"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "onBack",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cupboard_left",
+                          "value": "closed"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "cupboard_mug",
+              "name": "マグカップ",
+              "type": "object",
+              "position": {
+                "x": 150,
+                "y": 150,
+                "width": 100,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/cupboard_mug.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "お気に入りのマグカップをありがとう"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "kitchen_safe",
+              "name": "金庫",
+              "type": "object",
+              "position": {
+                "x": 120,
+                "y": 110,
+                "width": 170,
+                "height": 180
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "closed",
+              "states": {
+                "closed": {
+                  "image": "images/kitchen_safe__closed.png",
+                  "children": [
+                    "safe8_dial_0",
+                    "safe8_dial_1",
+                    "safe8_dial_2",
+                    "safe8_dial_3",
+                    "safe8_dial_4",
+                    "safe8_dial_5",
+                    "safe8_dial_6",
+                    "safe8_dial_7",
+                    "safe8_confirm"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "kitchen_safe"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "open": {
+                  "image": "images/kitchen_safe__open.png",
+                  "children": [
+                    "battery_1"
+                  ],
+                  "triggers": []
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_0",
+              "name": "ダイヤル1",
+              "type": "object",
+              "position": {
+                "x": 20,
+                "y": 120,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_0",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_1",
+              "name": "ダイヤル2",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 120,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_1",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_2",
+              "name": "ダイヤル3",
+              "type": "object",
+              "position": {
+                "x": 200,
+                "y": 120,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_2",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_3",
+              "name": "ダイヤル4",
+              "type": "object",
+              "position": {
+                "x": 290,
+                "y": 120,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_3",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_4",
+              "name": "ダイヤル5",
+              "type": "object",
+              "position": {
+                "x": 20,
+                "y": 205,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_4",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_5",
+              "name": "ダイヤル6",
+              "type": "object",
+              "position": {
+                "x": 110,
+                "y": 205,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_5",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_6",
+              "name": "ダイヤル7",
+              "type": "object",
+              "position": {
+                "x": 200,
+                "y": 205,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_6",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_dial_7",
+              "name": "ダイヤル8",
+              "type": "object",
+              "position": {
+                "x": 290,
+                "y": 205,
+                "width": 70,
+                "height": 70
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/dial_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/dial_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/dial_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/dial_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/dial_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/dial_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/dial_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/dial_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/dial_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/dial_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "safe8_dial_7",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "safe8_confirm",
+              "name": "確定",
+              "type": "object",
+              "position": {
+                "x": 150,
+                "y": 305,
+                "width": 100,
+                "height": 60
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/safe8_confirm.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_6",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_7",
+                          "operator": "equals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "kitchen_safe",
+                          "value": "open"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "金庫が開いた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "battery_1",
+              "name": "電池①",
+              "type": "item",
+              "position": {
+                "x": 150,
+                "y": 150,
+                "width": 100,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/battery_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "battery1"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "battery_1"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池①を手に入れた"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -2430,7 +4251,17 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
+                  "image": "images/workingspace_shelf.png",
+                  "children": [
+                    "book_slot_1",
+                    "book_slot_2",
+                    "book_slot_3",
+                    "book_slot_4",
+                    "book_slot_5",
+                    "book_slot_6",
+                    "book_slot_7",
+                    "book_8"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
@@ -2441,9 +4272,65 @@
                           "targetId": "workingspace_shelf"
                         }
                       ]
+                    },
+                    {
+                      "type": "watchState",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "equals",
+                          "value": "5"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "equals",
+                          "value": "6"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "equals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "SDカードが落ちてきた"
+                        },
+                        {
+                          "type": "addItem",
+                          "itemId": "sdcard"
+                        }
+                      ]
                     }
-                  ],
-                  "image": "images/workingspace_shelf.png"
+                  ]
                 }
               }
             },
@@ -2646,6 +4533,93 @@
                         {
                           "type": "showMessage",
                           "message": "しおりちゃんのおかげで仕事頑張れてます。ありがとう！"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "sdnone": {
+                  "image": "images/workspace_pc__sdnone.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "sdcard",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "includes",
+                          "value": "morning"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "sdcard"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_morning"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "SDカードを挿入した"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "sdcard",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_curtain",
+                          "operator": "includes",
+                          "value": "night"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "removeItem",
+                          "itemId": "sdcard"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_night"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "SDカードを挿入した"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "sdcard",
+                          "operator": "equals",
+                          "value": false
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "sdカードがありません"
                         }
                       ]
                     }
@@ -6875,7 +8849,7 @@
                         {
                           "type": "setObjectState",
                           "targetId": "workingspace_pc",
-                          "value": "active_morning"
+                          "value": "sdnone"
                         },
                         {
                           "type": "hideObject",
@@ -6939,7 +8913,7 @@
                         {
                           "type": "setObjectState",
                           "targetId": "workingspace_pc",
-                          "value": "active_night"
+                          "value": "sdnone"
                         },
                         {
                           "type": "hideObject",
@@ -6960,6 +8934,972 @@
                       ]
                     }
                   ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_1",
+              "name": "本1(位置1)",
+              "type": "object",
+              "position": {
+                "x": 12,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "3",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_1",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_2",
+              "name": "本2(位置2)",
+              "type": "object",
+              "position": {
+                "x": 60,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "1",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_2",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_3",
+              "name": "本3(位置3)",
+              "type": "object",
+              "position": {
+                "x": 108,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "5",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_3",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_4",
+              "name": "本4(位置4)",
+              "type": "object",
+              "position": {
+                "x": 156,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "2",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_4",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_5",
+              "name": "本5(位置5)",
+              "type": "object",
+              "position": {
+                "x": 204,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "7",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_5",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_6",
+              "name": "本6(位置6)",
+              "type": "object",
+              "position": {
+                "x": 252,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "4",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_6",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_slot_7",
+              "name": "本7(位置7)",
+              "type": "object",
+              "position": {
+                "x": 300,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "6",
+              "states": {
+                "1": {
+                  "image": "images/book_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/book_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/book_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/book_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/book_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/book_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/book_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "book_slot_7",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "book_8",
+              "name": "本8(固定)",
+              "type": "decoration",
+              "position": {
+                "x": 348,
+                "y": 90,
+                "width": 44,
+                "height": 210
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/book_8.png",
+                  "children": [],
+                  "triggers": []
                 }
               }
             }
@@ -7021,7 +9961,10 @@
               "defaultState": "default",
               "states": {
                 "default": {
-                  "children": [],
+                  "image": "images/bedroom_window.png",
+                  "children": [
+                    "bedroom_humidifier"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
@@ -7033,8 +9976,25 @@
                         }
                       ]
                     }
+                  ]
+                },
+                "cloudy": {
+                  "image": "images/bedroom_window__cloudy.png",
+                  "children": [
+                    "bedroom_humidifier"
                   ],
-                  "image": "images/bedroom_window.png"
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_window"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -7270,6 +10230,49 @@
                   "image": "images/bedroom_door_panel.png"
                 }
               }
+            },
+            {
+              "id": "bedroom_humidifier",
+              "name": "加湿器",
+              "type": "object",
+              "position": {
+                "x": 260,
+                "y": 270,
+                "width": 110,
+                "height": 110
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "inactive",
+              "states": {
+                "inactive": {
+                  "image": "images/bedroom_humidifier__inactive.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_humidifier",
+                          "value": "active"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_window",
+                          "value": "cloudy"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "active": {
+                  "image": "images/bedroom_humidifier__active.png",
+                  "children": [],
+                  "triggers": []
+                }
+              }
             }
           ]
         }
@@ -7312,6 +10315,18 @@
       "name": "ライス",
       "image": "images/rice.png",
       "description": "冷蔵庫のライス"
+    },
+    {
+      "id": "battery1",
+      "name": "電池①",
+      "image": "images/battery1.png",
+      "description": "キッチンの金庫にあった電池"
+    },
+    {
+      "id": "sdcard",
+      "name": "SDカード",
+      "image": "images/sdcard.png",
+      "description": "棚の本の奥から落ちてきたSDカード"
     }
   ]
 }

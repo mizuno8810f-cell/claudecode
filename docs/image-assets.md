@@ -28,6 +28,8 @@
 - `images/egg.png`  （卵）
 - `images/ketchup.png`  （ケチャップ）
 - `images/rice.png`  （ライス）
+- `images/battery1.png`  （電池①）
+- `images/sdcard.png`  （SDカード）
 
 ### オブジェクト (state ごと)
 #### キッチン `room_kitchen`
@@ -51,6 +53,95 @@
 - `images/frying_pan__chicken_rice.png`  （フライパン state:chicken_rice）
 - `images/frying_pan__empty2.png`  （フライパン state:empty2）
 - `images/frying_pan__egg.png`  （フライパン state:egg）
+- `images/cupboard_right__closed.png`  （食器棚右 state:closed）
+- `images/cupboard_right__open.png`  （食器棚右 state:open）
+- `images/cupboard_left__closed.png`  （食器棚左 state:closed）
+- `images/cupboard_left__open.png`  （食器棚左 state:open）
+- `images/cupboard_mug.png`  （マグカップ）
+- `images/kitchen_safe__closed.png`  （金庫 state:closed）
+- `images/kitchen_safe__open.png`  （金庫 state:open）
+- `images/dial_0.png`  （ダイヤル1 state:0）
+- `images/dial_1.png`  （ダイヤル1 state:1）
+- `images/dial_2.png`  （ダイヤル1 state:2）
+- `images/dial_3.png`  （ダイヤル1 state:3）
+- `images/dial_4.png`  （ダイヤル1 state:4）
+- `images/dial_5.png`  （ダイヤル1 state:5）
+- `images/dial_6.png`  （ダイヤル1 state:6）
+- `images/dial_7.png`  （ダイヤル1 state:7）
+- `images/dial_8.png`  （ダイヤル1 state:8）
+- `images/dial_9.png`  （ダイヤル1 state:9）
+- `images/dial_0.png`  （ダイヤル2 state:0）
+- `images/dial_1.png`  （ダイヤル2 state:1）
+- `images/dial_2.png`  （ダイヤル2 state:2）
+- `images/dial_3.png`  （ダイヤル2 state:3）
+- `images/dial_4.png`  （ダイヤル2 state:4）
+- `images/dial_5.png`  （ダイヤル2 state:5）
+- `images/dial_6.png`  （ダイヤル2 state:6）
+- `images/dial_7.png`  （ダイヤル2 state:7）
+- `images/dial_8.png`  （ダイヤル2 state:8）
+- `images/dial_9.png`  （ダイヤル2 state:9）
+- `images/dial_0.png`  （ダイヤル3 state:0）
+- `images/dial_1.png`  （ダイヤル3 state:1）
+- `images/dial_2.png`  （ダイヤル3 state:2）
+- `images/dial_3.png`  （ダイヤル3 state:3）
+- `images/dial_4.png`  （ダイヤル3 state:4）
+- `images/dial_5.png`  （ダイヤル3 state:5）
+- `images/dial_6.png`  （ダイヤル3 state:6）
+- `images/dial_7.png`  （ダイヤル3 state:7）
+- `images/dial_8.png`  （ダイヤル3 state:8）
+- `images/dial_9.png`  （ダイヤル3 state:9）
+- `images/dial_0.png`  （ダイヤル4 state:0）
+- `images/dial_1.png`  （ダイヤル4 state:1）
+- `images/dial_2.png`  （ダイヤル4 state:2）
+- `images/dial_3.png`  （ダイヤル4 state:3）
+- `images/dial_4.png`  （ダイヤル4 state:4）
+- `images/dial_5.png`  （ダイヤル4 state:5）
+- `images/dial_6.png`  （ダイヤル4 state:6）
+- `images/dial_7.png`  （ダイヤル4 state:7）
+- `images/dial_8.png`  （ダイヤル4 state:8）
+- `images/dial_9.png`  （ダイヤル4 state:9）
+- `images/dial_0.png`  （ダイヤル5 state:0）
+- `images/dial_1.png`  （ダイヤル5 state:1）
+- `images/dial_2.png`  （ダイヤル5 state:2）
+- `images/dial_3.png`  （ダイヤル5 state:3）
+- `images/dial_4.png`  （ダイヤル5 state:4）
+- `images/dial_5.png`  （ダイヤル5 state:5）
+- `images/dial_6.png`  （ダイヤル5 state:6）
+- `images/dial_7.png`  （ダイヤル5 state:7）
+- `images/dial_8.png`  （ダイヤル5 state:8）
+- `images/dial_9.png`  （ダイヤル5 state:9）
+- `images/dial_0.png`  （ダイヤル6 state:0）
+- `images/dial_1.png`  （ダイヤル6 state:1）
+- `images/dial_2.png`  （ダイヤル6 state:2）
+- `images/dial_3.png`  （ダイヤル6 state:3）
+- `images/dial_4.png`  （ダイヤル6 state:4）
+- `images/dial_5.png`  （ダイヤル6 state:5）
+- `images/dial_6.png`  （ダイヤル6 state:6）
+- `images/dial_7.png`  （ダイヤル6 state:7）
+- `images/dial_8.png`  （ダイヤル6 state:8）
+- `images/dial_9.png`  （ダイヤル6 state:9）
+- `images/dial_0.png`  （ダイヤル7 state:0）
+- `images/dial_1.png`  （ダイヤル7 state:1）
+- `images/dial_2.png`  （ダイヤル7 state:2）
+- `images/dial_3.png`  （ダイヤル7 state:3）
+- `images/dial_4.png`  （ダイヤル7 state:4）
+- `images/dial_5.png`  （ダイヤル7 state:5）
+- `images/dial_6.png`  （ダイヤル7 state:6）
+- `images/dial_7.png`  （ダイヤル7 state:7）
+- `images/dial_8.png`  （ダイヤル7 state:8）
+- `images/dial_9.png`  （ダイヤル7 state:9）
+- `images/dial_0.png`  （ダイヤル8 state:0）
+- `images/dial_1.png`  （ダイヤル8 state:1）
+- `images/dial_2.png`  （ダイヤル8 state:2）
+- `images/dial_3.png`  （ダイヤル8 state:3）
+- `images/dial_4.png`  （ダイヤル8 state:4）
+- `images/dial_5.png`  （ダイヤル8 state:5）
+- `images/dial_6.png`  （ダイヤル8 state:6）
+- `images/dial_7.png`  （ダイヤル8 state:7）
+- `images/dial_8.png`  （ダイヤル8 state:8）
+- `images/dial_9.png`  （ダイヤル8 state:9）
+- `images/safe8_confirm.png`  （確定）
+- `images/battery_1.png`  （電池①）
 
 #### リビングルーム `room_livingroom`
 - `images/livingroom_sofa.png`  （グレーのソファ）
@@ -101,6 +192,7 @@
 - `images/workspace_pc__inactive.png`  （PC state:inactive）
 - `images/workspace_pc__active_morning.png`  （PC state:active_morning）
 - `images/workspace_pc__active_night.png`  （PC state:active_night）
+- `images/workspace_pc__sdnone.png`  （PC state:sdnone）
 - `images/password_char__active_blank.png`  （パスワード1文字目 state:active_blank）
 - `images/password_char__inactive_blank.png`  （パスワード1文字目 state:inactive_blank）
 - `images/password_char__active_a.png`  （パスワード1文字目 state:active_a）
@@ -192,15 +284,68 @@
 - `images/workspace_btn_hira.png`  （ひらがな入力ボタン）
 - `images/workspace_btn_symbol.png`  （記号入力ボタン）
 - `images/workspace_btn_enter.png`  （Enterボタン）
+- `images/book_1.png`  （本1(位置1) state:1）
+- `images/book_2.png`  （本1(位置1) state:2）
+- `images/book_3.png`  （本1(位置1) state:3）
+- `images/book_4.png`  （本1(位置1) state:4）
+- `images/book_5.png`  （本1(位置1) state:5）
+- `images/book_6.png`  （本1(位置1) state:6）
+- `images/book_7.png`  （本1(位置1) state:7）
+- `images/book_1.png`  （本2(位置2) state:1）
+- `images/book_2.png`  （本2(位置2) state:2）
+- `images/book_3.png`  （本2(位置2) state:3）
+- `images/book_4.png`  （本2(位置2) state:4）
+- `images/book_5.png`  （本2(位置2) state:5）
+- `images/book_6.png`  （本2(位置2) state:6）
+- `images/book_7.png`  （本2(位置2) state:7）
+- `images/book_1.png`  （本3(位置3) state:1）
+- `images/book_2.png`  （本3(位置3) state:2）
+- `images/book_3.png`  （本3(位置3) state:3）
+- `images/book_4.png`  （本3(位置3) state:4）
+- `images/book_5.png`  （本3(位置3) state:5）
+- `images/book_6.png`  （本3(位置3) state:6）
+- `images/book_7.png`  （本3(位置3) state:7）
+- `images/book_1.png`  （本4(位置4) state:1）
+- `images/book_2.png`  （本4(位置4) state:2）
+- `images/book_3.png`  （本4(位置4) state:3）
+- `images/book_4.png`  （本4(位置4) state:4）
+- `images/book_5.png`  （本4(位置4) state:5）
+- `images/book_6.png`  （本4(位置4) state:6）
+- `images/book_7.png`  （本4(位置4) state:7）
+- `images/book_1.png`  （本5(位置5) state:1）
+- `images/book_2.png`  （本5(位置5) state:2）
+- `images/book_3.png`  （本5(位置5) state:3）
+- `images/book_4.png`  （本5(位置5) state:4）
+- `images/book_5.png`  （本5(位置5) state:5）
+- `images/book_6.png`  （本5(位置5) state:6）
+- `images/book_7.png`  （本5(位置5) state:7）
+- `images/book_1.png`  （本6(位置6) state:1）
+- `images/book_2.png`  （本6(位置6) state:2）
+- `images/book_3.png`  （本6(位置6) state:3）
+- `images/book_4.png`  （本6(位置6) state:4）
+- `images/book_5.png`  （本6(位置6) state:5）
+- `images/book_6.png`  （本6(位置6) state:6）
+- `images/book_7.png`  （本6(位置6) state:7）
+- `images/book_1.png`  （本7(位置7) state:1）
+- `images/book_2.png`  （本7(位置7) state:2）
+- `images/book_3.png`  （本7(位置7) state:3）
+- `images/book_4.png`  （本7(位置7) state:4）
+- `images/book_5.png`  （本7(位置7) state:5）
+- `images/book_6.png`  （本7(位置7) state:6）
+- `images/book_7.png`  （本7(位置7) state:7）
+- `images/book_8.png`  （本8(固定)）
 
 #### ベッドルーム `room_bedroom`
 - `images/bedroom_door.png`  （扉）
-- `images/bedroom_window.png`  （窓）
+- `images/bedroom_window.png`  （窓 state:default）
+- `images/bedroom_window__cloudy.png`  （窓 state:cloudy）
 - `images/bedroom_bed__default.png`  （ベッド state:default）
 - `images/bedroom_bed__sleep.png`  （ベッド state:sleep）
 - `images/bedroom_rack.png`  （ラック）
 - `images/bedroom_trash_can.png`  （ゴミ箱）
 - `images/bedroom_door_panel.png`  （扉）
+- `images/bedroom_humidifier__inactive.png`  （加湿器 state:inactive）
+- `images/bedroom_humidifier__active.png`  （加湿器 state:active）
 
 > 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
 > 上記 `image` は主に「部屋内での見た目（スプライト）」。ズーム時の全画面背景は下記の専用画像を使う。
@@ -217,4 +362,5 @@
 - `images/zoom_kitchen_trash_can.png`  （ゴミ箱 のズーム）
 - `images/zoom_bedroom_rack.png`  （ラック のズーム）
 - `images/zoom_bedroom_window.png`  （窓 のズーム）
+- `images/zoom_bedroom_window__cloudy.png`  （窓 のズーム・state:cloudy）
 - `images/zoom_workingspace_shelf.png`  （棚 のズーム）

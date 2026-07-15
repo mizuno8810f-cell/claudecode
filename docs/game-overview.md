@@ -72,7 +72,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **キッチン** `kitchen_counter` — type:object, 100×200 @(300,200), default:`default`
   - `default`: children=[cooking_station, frying_pan] / touch → pushNavigation(kitchen_counter)
 
-- **食器棚** `kitchen_cupboard` — type:decoration, 100×100 @(0,50), default:`default`
+- **食器棚** `kitchen_cupboard` — type:object, 100×100 @(0,50), default:`default`
+  - `default`: children=[cupboard_left, cupboard_right] / touch → pushNavigation(kitchen_cupboard)
 
 - **お菓子の箱** `kitchen_snack_box` — type:object, 120×120 @(140,140), default:`s0`
   - `s0`: touch → showMessage("👦お菓子食べ過ぎ"), setObjectState(kitchen_snack_box=s1)
@@ -102,6 +103,123 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `empty`: touch [selectedItem == "rice"] → setObjectState(frying_pan=rice), removeItem(rice), showMessage("ライスを炒めた") / touch [selectedItem != "rice"] → showMessage("うまくいかない気がする")
   - `rice`: touch [selectedItem == "ketchup"] → setObjectState(frying_pan=chicken_rice), showMessage("ケチャップをかけた"), wait, setObjectState(frying_pan=empty2), showMessage("チキンライスが出来上がった") / touch [selectedItem != "ketchup"] → showMessage("うまくいかない気がする")
   - `empty2`: touch [selectedItem == "egg"] → setObjectState(frying_pan=egg), removeItem(egg), showMessage("破れないように慎重に…"), wait, hideObject(frying_pan), showMessage("ちょっと破けちゃったけど完成！"), setObjectState(livingroom_desk=omurice) / touch [selectedItem != "egg"] → showMessage("うまくいかない気がする")
+
+- **食器棚右** `cupboard_right` — type:object, 150×260 @(220,70), default:`closed`
+  - `closed`: touch → setObjectState(cupboard_right=open), pushNavigation(cupboard_right)
+  - `open`: children=[cupboard_mug] / onBack → setObjectState(cupboard_right=closed)
+
+- **食器棚左** `cupboard_left` — type:object, 150×260 @(30,70), default:`closed`
+  - `closed`: touch → setObjectState(cupboard_left=open), pushNavigation(cupboard_left)
+  - `open`: children=[kitchen_safe] / onBack → setObjectState(cupboard_left=closed)
+
+- **マグカップ** `cupboard_mug` — type:object, 100×100 @(150,150), default:`default`
+  - `default`: touch → showMessage("お気に入りのマグカップをありがとう")
+
+- **金庫** `kitchen_safe` — type:object, 170×180 @(120,110), default:`closed`
+  - `closed`: children=[safe8_dial_0, safe8_dial_1, safe8_dial_2, safe8_dial_3, safe8_dial_4, safe8_dial_5, safe8_dial_6, safe8_dial_7, safe8_confirm] / touch → pushNavigation(kitchen_safe)
+  - `open`: children=[battery_1]
+
+- **ダイヤル1** `safe8_dial_0` — type:object, 70×70 @(20,120), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_0=1)
+  - `1`: touch → setObjectState(safe8_dial_0=2)
+  - `2`: touch → setObjectState(safe8_dial_0=3)
+  - `3`: touch → setObjectState(safe8_dial_0=4)
+  - `4`: touch → setObjectState(safe8_dial_0=5)
+  - `5`: touch → setObjectState(safe8_dial_0=6)
+  - `6`: touch → setObjectState(safe8_dial_0=7)
+  - `7`: touch → setObjectState(safe8_dial_0=8)
+  - `8`: touch → setObjectState(safe8_dial_0=9)
+  - `9`: touch → setObjectState(safe8_dial_0=0)
+
+- **ダイヤル2** `safe8_dial_1` — type:object, 70×70 @(110,120), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_1=1)
+  - `1`: touch → setObjectState(safe8_dial_1=2)
+  - `2`: touch → setObjectState(safe8_dial_1=3)
+  - `3`: touch → setObjectState(safe8_dial_1=4)
+  - `4`: touch → setObjectState(safe8_dial_1=5)
+  - `5`: touch → setObjectState(safe8_dial_1=6)
+  - `6`: touch → setObjectState(safe8_dial_1=7)
+  - `7`: touch → setObjectState(safe8_dial_1=8)
+  - `8`: touch → setObjectState(safe8_dial_1=9)
+  - `9`: touch → setObjectState(safe8_dial_1=0)
+
+- **ダイヤル3** `safe8_dial_2` — type:object, 70×70 @(200,120), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_2=1)
+  - `1`: touch → setObjectState(safe8_dial_2=2)
+  - `2`: touch → setObjectState(safe8_dial_2=3)
+  - `3`: touch → setObjectState(safe8_dial_2=4)
+  - `4`: touch → setObjectState(safe8_dial_2=5)
+  - `5`: touch → setObjectState(safe8_dial_2=6)
+  - `6`: touch → setObjectState(safe8_dial_2=7)
+  - `7`: touch → setObjectState(safe8_dial_2=8)
+  - `8`: touch → setObjectState(safe8_dial_2=9)
+  - `9`: touch → setObjectState(safe8_dial_2=0)
+
+- **ダイヤル4** `safe8_dial_3` — type:object, 70×70 @(290,120), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_3=1)
+  - `1`: touch → setObjectState(safe8_dial_3=2)
+  - `2`: touch → setObjectState(safe8_dial_3=3)
+  - `3`: touch → setObjectState(safe8_dial_3=4)
+  - `4`: touch → setObjectState(safe8_dial_3=5)
+  - `5`: touch → setObjectState(safe8_dial_3=6)
+  - `6`: touch → setObjectState(safe8_dial_3=7)
+  - `7`: touch → setObjectState(safe8_dial_3=8)
+  - `8`: touch → setObjectState(safe8_dial_3=9)
+  - `9`: touch → setObjectState(safe8_dial_3=0)
+
+- **ダイヤル5** `safe8_dial_4` — type:object, 70×70 @(20,205), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_4=1)
+  - `1`: touch → setObjectState(safe8_dial_4=2)
+  - `2`: touch → setObjectState(safe8_dial_4=3)
+  - `3`: touch → setObjectState(safe8_dial_4=4)
+  - `4`: touch → setObjectState(safe8_dial_4=5)
+  - `5`: touch → setObjectState(safe8_dial_4=6)
+  - `6`: touch → setObjectState(safe8_dial_4=7)
+  - `7`: touch → setObjectState(safe8_dial_4=8)
+  - `8`: touch → setObjectState(safe8_dial_4=9)
+  - `9`: touch → setObjectState(safe8_dial_4=0)
+
+- **ダイヤル6** `safe8_dial_5` — type:object, 70×70 @(110,205), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_5=1)
+  - `1`: touch → setObjectState(safe8_dial_5=2)
+  - `2`: touch → setObjectState(safe8_dial_5=3)
+  - `3`: touch → setObjectState(safe8_dial_5=4)
+  - `4`: touch → setObjectState(safe8_dial_5=5)
+  - `5`: touch → setObjectState(safe8_dial_5=6)
+  - `6`: touch → setObjectState(safe8_dial_5=7)
+  - `7`: touch → setObjectState(safe8_dial_5=8)
+  - `8`: touch → setObjectState(safe8_dial_5=9)
+  - `9`: touch → setObjectState(safe8_dial_5=0)
+
+- **ダイヤル7** `safe8_dial_6` — type:object, 70×70 @(200,205), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_6=1)
+  - `1`: touch → setObjectState(safe8_dial_6=2)
+  - `2`: touch → setObjectState(safe8_dial_6=3)
+  - `3`: touch → setObjectState(safe8_dial_6=4)
+  - `4`: touch → setObjectState(safe8_dial_6=5)
+  - `5`: touch → setObjectState(safe8_dial_6=6)
+  - `6`: touch → setObjectState(safe8_dial_6=7)
+  - `7`: touch → setObjectState(safe8_dial_6=8)
+  - `8`: touch → setObjectState(safe8_dial_6=9)
+  - `9`: touch → setObjectState(safe8_dial_6=0)
+
+- **ダイヤル8** `safe8_dial_7` — type:object, 70×70 @(290,205), default:`0`
+  - `0`: touch → setObjectState(safe8_dial_7=1)
+  - `1`: touch → setObjectState(safe8_dial_7=2)
+  - `2`: touch → setObjectState(safe8_dial_7=3)
+  - `3`: touch → setObjectState(safe8_dial_7=4)
+  - `4`: touch → setObjectState(safe8_dial_7=5)
+  - `5`: touch → setObjectState(safe8_dial_7=6)
+  - `6`: touch → setObjectState(safe8_dial_7=7)
+  - `7`: touch → setObjectState(safe8_dial_7=8)
+  - `8`: touch → setObjectState(safe8_dial_7=9)
+  - `9`: touch → setObjectState(safe8_dial_7=0)
+
+- **確定** `safe8_confirm` — type:object, 100×60 @(150,305), default:`default`
+  - `default`: touch [objectState(safe8_dial_0) == "0" & objectState(safe8_dial_1) == "2" & objectState(safe8_dial_2) == "1" & objectState(safe8_dial_3) == "4" & objectState(safe8_dial_4) == "1" & objectState(safe8_dial_5) == "3" & objectState(safe8_dial_6) == "1" & objectState(safe8_dial_7) == "2"] → setObjectState(kitchen_safe=open), showMessage("金庫が開いた")
+
+- **電池①** `battery_1` — type:item, 100×100 @(150,150), default:`default`
+  - `default`: touch → addItem(battery1), hideObject(battery_1), showMessage("電池①を手に入れた")
 
 ### リビングルーム `room_livingroom`
 
@@ -236,7 +354,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `hot`: touch → showMessage("👩暑い"), setObjectState(workingspace_aircon=cold)
 
 - **棚** `workingspace_shelf` — type:object, 80×250 @(220,150), default:`default`
-  - `default`: touch → pushNavigation(workingspace_shelf)
+  - `default`: children=[book_slot_1, book_slot_2, book_slot_3, book_slot_4, book_slot_5, book_slot_6, book_slot_7, book_8] / touch → pushNavigation(workingspace_shelf) / watchState [objectState(book_slot_1) == "1" & objectState(book_slot_2) == "2" & objectState(book_slot_3) == "3" & objectState(book_slot_4) == "4" & objectState(book_slot_5) == "5" & objectState(book_slot_6) == "6" & objectState(book_slot_7) == "7"] → showMessage("SDカードが落ちてきた"), addItem(sdcard)
 
 - **仕事机** `workingspace_desk` — type:object, 100×150 @(0,250), default:`default`
   - `default`: children=[workingspace_pc, workingspace_pw1, workingspace_pw2, workingspace_pw3, workingspace_pw4, workingspace_btn_hira, workingspace_btn_symbol, workingspace_btn_enter] / touch → pushNavigation(workingspace_desk)
@@ -251,6 +369,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **PC** `workingspace_pc` — type:object, 240×120 @(80,40), default:`inactive`
   - `active_morning`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
   - `active_night`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
+  - `sdnone`: touch [hasItem(sdcard) == true & objectState(workingspace_curtain) ⊇ "morning"] → removeItem(sdcard), setObjectState(workingspace_pc=active_morning), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == true & objectState(workingspace_curtain) ⊇ "night"] → removeItem(sdcard), setObjectState(workingspace_pc=active_night), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == false] → showMessage("sdカードがありません")
 
 - **パスワード1文字目** `workingspace_pw1` — type:text, 50×60 @(70,190), default:`active_blank`
 
@@ -267,7 +386,72 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_blank"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_a"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ya"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_n"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_to"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_o"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ta"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ha"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_smile"] → setObjectState(workingspace_pw1=active_skull) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_skull"] → setObjectState(workingspace_pw1=active_apple) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_apple"] → setObjectState(workingspace_pw1=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_blank"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_a"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ya"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_n"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_to"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_o"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ta"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ha"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_smile"] → setObjectState(workingspace_pw2=active_skull) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_skull"] → setObjectState(workingspace_pw2=active_apple) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_apple"] → setObjectState(workingspace_pw2=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_blank"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_a"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ya"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_n"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_to"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_o"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ta"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ha"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_smile"] → setObjectState(workingspace_pw3=active_skull) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_skull"] → setObjectState(workingspace_pw3=active_apple) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_apple"] → setObjectState(workingspace_pw3=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_blank"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_a"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ya"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_n"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_to"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_o"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ta"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ha"] → setObjectState(workingspace_pw4=active_smile) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_smile"] → setObjectState(workingspace_pw4=active_skull) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull"] → setObjectState(workingspace_pw4=active_apple) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_apple"] → setObjectState(workingspace_pw4=active_smile)
 
 - **Enterボタン** `workingspace_btn_enter` — type:object, 95×55 @(260,300), default:`default`
-  - `default`: touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_blank"] → setObjectState(workingspace_pw1=inactive_blank), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_a"] → setObjectState(workingspace_pw1=inactive_a), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ya"] → setObjectState(workingspace_pw1=inactive_ya), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_n"] → setObjectState(workingspace_pw1=inactive_n), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_to"] → setObjectState(workingspace_pw1=inactive_to), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_o"] → setObjectState(workingspace_pw1=inactive_o), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ta"] → setObjectState(workingspace_pw1=inactive_ta), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ha"] → setObjectState(workingspace_pw1=inactive_ha), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_smile"] → setObjectState(workingspace_pw1=inactive_smile), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_skull"] → setObjectState(workingspace_pw1=inactive_skull), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_apple"] → setObjectState(workingspace_pw1=inactive_apple), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_blank"] → setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_a"] → setObjectState(workingspace_pw2=inactive_a), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ya"] → setObjectState(workingspace_pw2=inactive_ya), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_n"] → setObjectState(workingspace_pw2=inactive_n), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_to"] → setObjectState(workingspace_pw2=inactive_to), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_o"] → setObjectState(workingspace_pw2=inactive_o), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ta"] → setObjectState(workingspace_pw2=inactive_ta), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ha"] → setObjectState(workingspace_pw2=inactive_ha), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_smile"] → setObjectState(workingspace_pw2=inactive_smile), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_skull"] → setObjectState(workingspace_pw2=inactive_skull), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_apple"] → setObjectState(workingspace_pw2=inactive_apple), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_blank"] → setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_a"] → setObjectState(workingspace_pw3=inactive_a), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ya"] → setObjectState(workingspace_pw3=inactive_ya), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_n"] → setObjectState(workingspace_pw3=inactive_n), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_to"] → setObjectState(workingspace_pw3=inactive_to), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_o"] → setObjectState(workingspace_pw3=inactive_o), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ta"] → setObjectState(workingspace_pw3=inactive_ta), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ha"] → setObjectState(workingspace_pw3=inactive_ha), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_smile"] → setObjectState(workingspace_pw3=inactive_smile), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_skull"] → setObjectState(workingspace_pw3=inactive_skull), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_apple"] → setObjectState(workingspace_pw3=inactive_apple), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_blank"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_a"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ya"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_n"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_to"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_o"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ta"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ha"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_smile"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_apple"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) != "inactive_ha"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) != "inactive_ya"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) != "inactive_to"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) == "inactive_to" & objectState(workingspace_curtain) ⊇ "morning"] → setObjectState(workingspace_pc=active_morning), hideObject(workingspace_pw1), hideObject(workingspace_pw2), hideObject(workingspace_pw3), hideObject(workingspace_pw4) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) == "inactive_to" & objectState(workingspace_curtain) ⊇ "night"] → setObjectState(workingspace_pc=active_night), hideObject(workingspace_pw1), hideObject(workingspace_pw2), hideObject(workingspace_pw3), hideObject(workingspace_pw4)
+  - `default`: touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_blank"] → setObjectState(workingspace_pw1=inactive_blank), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_a"] → setObjectState(workingspace_pw1=inactive_a), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ya"] → setObjectState(workingspace_pw1=inactive_ya), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_n"] → setObjectState(workingspace_pw1=inactive_n), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_to"] → setObjectState(workingspace_pw1=inactive_to), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_o"] → setObjectState(workingspace_pw1=inactive_o), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ta"] → setObjectState(workingspace_pw1=inactive_ta), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ha"] → setObjectState(workingspace_pw1=inactive_ha), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_smile"] → setObjectState(workingspace_pw1=inactive_smile), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_skull"] → setObjectState(workingspace_pw1=inactive_skull), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_apple"] → setObjectState(workingspace_pw1=inactive_apple), setObjectState(workingspace_pw2=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_blank"] → setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_a"] → setObjectState(workingspace_pw2=inactive_a), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ya"] → setObjectState(workingspace_pw2=inactive_ya), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_n"] → setObjectState(workingspace_pw2=inactive_n), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_to"] → setObjectState(workingspace_pw2=inactive_to), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_o"] → setObjectState(workingspace_pw2=inactive_o), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ta"] → setObjectState(workingspace_pw2=inactive_ta), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ha"] → setObjectState(workingspace_pw2=inactive_ha), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_smile"] → setObjectState(workingspace_pw2=inactive_smile), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_skull"] → setObjectState(workingspace_pw2=inactive_skull), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_apple"] → setObjectState(workingspace_pw2=inactive_apple), setObjectState(workingspace_pw3=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_blank"] → setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_a"] → setObjectState(workingspace_pw3=inactive_a), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ya"] → setObjectState(workingspace_pw3=inactive_ya), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_n"] → setObjectState(workingspace_pw3=inactive_n), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_to"] → setObjectState(workingspace_pw3=inactive_to), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_o"] → setObjectState(workingspace_pw3=inactive_o), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ta"] → setObjectState(workingspace_pw3=inactive_ta), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ha"] → setObjectState(workingspace_pw3=inactive_ha), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_smile"] → setObjectState(workingspace_pw3=inactive_smile), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_skull"] → setObjectState(workingspace_pw3=inactive_skull), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_apple"] → setObjectState(workingspace_pw3=inactive_apple), setObjectState(workingspace_pw4=active_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_blank"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_a"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ya"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_n"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_to"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_o"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ta"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ha"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_smile"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_apple"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) != "inactive_ha"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) != "inactive_ya"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) != "inactive_to"] → setObjectState(workingspace_pw1=active_blank), setObjectState(workingspace_pw2=inactive_blank), setObjectState(workingspace_pw3=inactive_blank), setObjectState(workingspace_pw4=inactive_blank) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) == "inactive_to" & objectState(workingspace_curtain) ⊇ "morning"] → setObjectState(workingspace_pc=sdnone), hideObject(workingspace_pw1), hideObject(workingspace_pw2), hideObject(workingspace_pw3), hideObject(workingspace_pw4) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull" & objectState(workingspace_pw1) == "inactive_ha" & objectState(workingspace_pw2) == "inactive_ya" & objectState(workingspace_pw3) == "inactive_to" & objectState(workingspace_curtain) ⊇ "night"] → setObjectState(workingspace_pc=sdnone), hideObject(workingspace_pw1), hideObject(workingspace_pw2), hideObject(workingspace_pw3), hideObject(workingspace_pw4)
+
+- **本1(位置1)** `book_slot_1` — type:object, 44×210 @(12,90), default:`3`
+  - `1`: touch → setObjectState(book_slot_1=2)
+  - `2`: touch → setObjectState(book_slot_1=3)
+  - `3`: touch → setObjectState(book_slot_1=4)
+  - `4`: touch → setObjectState(book_slot_1=5)
+  - `5`: touch → setObjectState(book_slot_1=6)
+  - `6`: touch → setObjectState(book_slot_1=7)
+  - `7`: touch → setObjectState(book_slot_1=1)
+
+- **本2(位置2)** `book_slot_2` — type:object, 44×210 @(60,90), default:`1`
+  - `1`: touch → setObjectState(book_slot_2=2)
+  - `2`: touch → setObjectState(book_slot_2=3)
+  - `3`: touch → setObjectState(book_slot_2=4)
+  - `4`: touch → setObjectState(book_slot_2=5)
+  - `5`: touch → setObjectState(book_slot_2=6)
+  - `6`: touch → setObjectState(book_slot_2=7)
+  - `7`: touch → setObjectState(book_slot_2=1)
+
+- **本3(位置3)** `book_slot_3` — type:object, 44×210 @(108,90), default:`5`
+  - `1`: touch → setObjectState(book_slot_3=2)
+  - `2`: touch → setObjectState(book_slot_3=3)
+  - `3`: touch → setObjectState(book_slot_3=4)
+  - `4`: touch → setObjectState(book_slot_3=5)
+  - `5`: touch → setObjectState(book_slot_3=6)
+  - `6`: touch → setObjectState(book_slot_3=7)
+  - `7`: touch → setObjectState(book_slot_3=1)
+
+- **本4(位置4)** `book_slot_4` — type:object, 44×210 @(156,90), default:`2`
+  - `1`: touch → setObjectState(book_slot_4=2)
+  - `2`: touch → setObjectState(book_slot_4=3)
+  - `3`: touch → setObjectState(book_slot_4=4)
+  - `4`: touch → setObjectState(book_slot_4=5)
+  - `5`: touch → setObjectState(book_slot_4=6)
+  - `6`: touch → setObjectState(book_slot_4=7)
+  - `7`: touch → setObjectState(book_slot_4=1)
+
+- **本5(位置5)** `book_slot_5` — type:object, 44×210 @(204,90), default:`7`
+  - `1`: touch → setObjectState(book_slot_5=2)
+  - `2`: touch → setObjectState(book_slot_5=3)
+  - `3`: touch → setObjectState(book_slot_5=4)
+  - `4`: touch → setObjectState(book_slot_5=5)
+  - `5`: touch → setObjectState(book_slot_5=6)
+  - `6`: touch → setObjectState(book_slot_5=7)
+  - `7`: touch → setObjectState(book_slot_5=1)
+
+- **本6(位置6)** `book_slot_6` — type:object, 44×210 @(252,90), default:`4`
+  - `1`: touch → setObjectState(book_slot_6=2)
+  - `2`: touch → setObjectState(book_slot_6=3)
+  - `3`: touch → setObjectState(book_slot_6=4)
+  - `4`: touch → setObjectState(book_slot_6=5)
+  - `5`: touch → setObjectState(book_slot_6=6)
+  - `6`: touch → setObjectState(book_slot_6=7)
+  - `7`: touch → setObjectState(book_slot_6=1)
+
+- **本7(位置7)** `book_slot_7` — type:object, 44×210 @(300,90), default:`6`
+  - `1`: touch → setObjectState(book_slot_7=2)
+  - `2`: touch → setObjectState(book_slot_7=3)
+  - `3`: touch → setObjectState(book_slot_7=4)
+  - `4`: touch → setObjectState(book_slot_7=5)
+  - `5`: touch → setObjectState(book_slot_7=6)
+  - `6`: touch → setObjectState(book_slot_7=7)
+  - `7`: touch → setObjectState(book_slot_7=1)
+
+- **本8(固定)** `book_8` — type:decoration, 44×210 @(348,90), default:`default`
 
 ### ベッドルーム `room_bedroom`
 
@@ -275,7 +459,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[bedroom_door_panel] / touch → pushNavigation(bedroom_door)
 
 - **窓** `bedroom_window` — type:object, 300×230 @(40,20), default:`default`
-  - `default`: touch → pushNavigation(bedroom_window)
+  - `default`: children=[bedroom_humidifier] / touch → pushNavigation(bedroom_window)
+  - `cloudy`: children=[bedroom_humidifier] / touch → pushNavigation(bedroom_window)
 
 - **ベッド** `bedroom_bed` — type:object, 270×100 @(40,300), default:`default`
   - `default`: touch → setObjectState(bedroom_bed=sleep) / touch [objectState(workingspace_curtain) == "morningclose"] → setObjectState(workingspace_curtain=nightclose) / touch [objectState(workingspace_curtain) == "morningopen"] → setObjectState(workingspace_curtain=nightopen)
@@ -290,6 +475,9 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **扉** `bedroom_door_panel` — type:door, 300×350 @(50,50), default:`default`
   - `default`: touch → navigateRoom(room_workingspace)
 
+- **加湿器** `bedroom_humidifier` — type:object, 110×110 @(260,270), default:`inactive`
+  - `inactive`: touch → setObjectState(bedroom_humidifier=active), setObjectState(bedroom_window=cloudy)
+
 ---
 
 ## アイテム
@@ -299,6 +487,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **卵** `egg` — 冷蔵庫の卵
 - **ケチャップ** `ketchup` — 冷蔵庫のケチャップ
 - **ライス** `rice` — 冷蔵庫のライス
+- **電池①** `battery1` — キッチンの金庫にあった電池
+- **SDカード** `sdcard` — 棚の本の奥から落ちてきたSDカード
 
 ---
 

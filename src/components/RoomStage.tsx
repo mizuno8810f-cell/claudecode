@@ -29,6 +29,10 @@ const ROOM_BG_VLINES: Record<string, number[]> = {
  * zoom target's object id. When present this wins over the object's in-room
  * sprite image (which stays the small room icon) and over the placeholder
  * scenes below. Purely a rendering concern — no game logic here.
+ *
+ * A key may be `"<id>#<state>"` to give a specific state its own zoom art
+ * (looked up before the plain `"<id>"` key); this lets a zoomed scene change
+ * with the object's state (e.g. the bedroom window fogging up).
  */
 const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   workingspace_desk: "images/zoom_workingspace_desk.png",
@@ -40,6 +44,7 @@ const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   kitchen_trash_can: "images/zoom_kitchen_trash_can.png",
   bedroom_rack: "images/zoom_bedroom_rack.png",
   bedroom_window: "images/zoom_bedroom_window.png",
+  "bedroom_window#cloudy": "images/zoom_bedroom_window__cloudy.png",
   workingspace_shelf: "images/zoom_workingspace_shelf.png",
 };
 
@@ -68,8 +73,13 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const objects = engine.getDisplayedObjects();
   const isZoomed = snapshot.navigationStack.length > 0;
   const zoomTargetId = snapshot.navigationStack[snapshot.navigationStack.length - 1];
-  // A dedicated zoom background image (if any) wins over the object's sprite image.
-  const zoomBgImage = zoomTargetId ? ZOOM_BACKGROUND_IMAGES[zoomTargetId] : undefined;
+  // A dedicated zoom background image (if any) wins over the object's sprite
+  // image. A state-specific `"<id>#<state>"` entry takes priority so a zoomed
+  // scene can change with the object's state (e.g. window fogging up).
+  const zoomTopState = zoomTargetId ? snapshot.objectStates[zoomTargetId]?.state : undefined;
+  const zoomBgImage = zoomTargetId
+    ? ZOOM_BACKGROUND_IMAGES[`${zoomTargetId}#${zoomTopState}`] ?? ZOOM_BACKGROUND_IMAGES[zoomTargetId]
+    : undefined;
   const background = zoomBgImage ?? engine.getBackgroundImage();
   const bgFailed = background != null && failedBg === background;
   const zoomScene = zoomTargetId ? ZOOM_BACKGROUND_SCENES[zoomTargetId] : undefined;

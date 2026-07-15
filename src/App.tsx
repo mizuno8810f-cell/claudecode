@@ -7,7 +7,7 @@ import { Toast } from "./components/Toast";
 import { ImageOverlay } from "./components/ImageOverlay";
 import { ClearScreen } from "./components/ClearScreen";
 
-const gameData = gameDataJson as GameData;
+const gameData = gameDataJson as unknown as GameData;
 
 export default function App() {
   const engine = useMemo(() => new GameEngine(gameData), []);
