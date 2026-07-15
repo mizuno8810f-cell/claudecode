@@ -121,6 +121,8 @@ export interface GameConfig {
   darkModeExclusionObjectIds?: string[];
   /** Objects that stay enabled when a "disableAllExcept" event fires. */
   disableExclusionObjectIds?: string[];
+  /** Full-screen image the clear screen fades into. */
+  clearImage?: string;
 }
 
 export interface GameData {

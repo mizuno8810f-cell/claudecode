@@ -512,12 +512,34 @@ body {
 }
 
 .clear-screen {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 12px;
   padding: 80px 20px;
+  background: #000000;
+  /* Fade the whole screen in on clear. Duration tunable here. */
+  animation: clear-fade-in 1.6s ease forwards;
+}
+
+@keyframes clear-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.clear-screen__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .clear-screen h1 {

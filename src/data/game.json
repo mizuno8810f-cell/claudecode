@@ -61448,12 +61448,15 @@
               },
               "visible": false,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "closed",
               "states": {
-                "default": {
+                "closed": {
                   "image": "images/bedroom_present.png",
                   "children": [
-                    "bedroom_present_zoom"
+                    "bedroom_present_zoom",
+                    "present_dial_1",
+                    "present_dial_2",
+                    "present_ok"
                   ],
                   "triggers": [
                     {
@@ -61467,6 +61470,21 @@
                       ]
                     }
                   ]
+                },
+                "open": {
+                  "image": "images/bedroom_present__open.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "clearGame"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -61475,10 +61493,10 @@
               "name": "プレゼント(拡大)",
               "type": "object",
               "position": {
-                "x": 110,
-                "y": 90,
-                "width": 180,
-                "height": 220
+                "x": 70,
+                "y": 50,
+                "width": 260,
+                "height": 300
               },
               "visible": true,
               "enabled": true,
@@ -61488,6 +61506,471 @@
                   "image": "images/bedroom_present_zoom.png",
                   "children": [],
                   "triggers": []
+                }
+              }
+            },
+            {
+              "id": "present_dial_1",
+              "name": "ボタン1",
+              "type": "object",
+              "position": {
+                "x": 105,
+                "y": 165,
+                "width": 70,
+                "height": 85
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/present_num_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/present_num_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/present_num_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/present_num_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/present_num_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/present_num_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/present_num_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/present_num_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/present_num_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/present_num_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_1",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "present_dial_2",
+              "name": "ボタン2",
+              "type": "object",
+              "position": {
+                "x": 220,
+                "y": 165,
+                "width": 70,
+                "height": 85
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "0",
+              "states": {
+                "0": {
+                  "image": "images/present_num_0.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "1": {
+                  "image": "images/present_num_1.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "2"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "2": {
+                  "image": "images/present_num_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "3"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "3": {
+                  "image": "images/present_num_3.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "4"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "4": {
+                  "image": "images/present_num_4.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "5"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "5": {
+                  "image": "images/present_num_5.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "6"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "6": {
+                  "image": "images/present_num_6.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "7"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "7": {
+                  "image": "images/present_num_7.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "8"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "8": {
+                  "image": "images/present_num_8.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "9"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "9": {
+                  "image": "images/present_num_9.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "present_dial_2",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "present_ok",
+              "name": "OK",
+              "type": "button",
+              "position": {
+                "x": 155,
+                "y": 285,
+                "width": 90,
+                "height": 55
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/present_ok.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_2",
+                          "operator": "equals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_present",
+                          "value": "open"
+                        },
+                        {
+                          "type": "popNavigation"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "プレゼントが開いた！"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_1",
+                          "operator": "notEquals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "違うみたいだ"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_2",
+                          "operator": "notEquals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "違うみたいだ"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -61567,7 +62050,10 @@
       "workingspace_door",
       "ws_door_panel",
       "bedroom_present",
-      "bedroom_present_zoom"
+      "bedroom_present_zoom",
+      "present_dial_1",
+      "present_dial_2",
+      "present_ok"
     ],
     "disableExclusionObjectIds": [
       "bedroom_door",
@@ -61582,7 +62068,11 @@
       "projector_confirm",
       "projector_confirm_yes",
       "projector_confirm_no",
-      "projector_video"
-    ]
+      "projector_video",
+      "present_dial_1",
+      "present_dial_2",
+      "present_ok"
+    ],
+    "clearImage": "images/clear.png"
   }
 }

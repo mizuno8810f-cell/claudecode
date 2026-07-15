@@ -563,10 +563,38 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **加湿器** `bedroom_humidifier` — type:object, 110×110 @(260,270), default:`inactive`
   - `inactive`: touch → setObjectState(bedroom_humidifier=active), setObjectState(bedroom_window=cloudy)
 
-- **プレゼント** `bedroom_present` — type:object, 90×70 @(120,268), default:`default` ⚠visible:false
-  - `default`: children=[bedroom_present_zoom] / touch → pushNavigation(bedroom_present)
+- **プレゼント** `bedroom_present` — type:object, 90×70 @(120,268), default:`closed` ⚠visible:false
+  - `closed`: children=[bedroom_present_zoom, present_dial_1, present_dial_2, present_ok] / touch → pushNavigation(bedroom_present)
+  - `open`: touch → clearGame
 
-- **プレゼント(拡大)** `bedroom_present_zoom` — type:object, 180×220 @(110,90), default:`default`
+- **プレゼント(拡大)** `bedroom_present_zoom` — type:object, 260×300 @(70,50), default:`default`
+
+- **ボタン1** `present_dial_1` — type:object, 70×85 @(105,165), default:`0`
+  - `0`: touch → setObjectState(present_dial_1=1)
+  - `1`: touch → setObjectState(present_dial_1=2)
+  - `2`: touch → setObjectState(present_dial_1=3)
+  - `3`: touch → setObjectState(present_dial_1=4)
+  - `4`: touch → setObjectState(present_dial_1=5)
+  - `5`: touch → setObjectState(present_dial_1=6)
+  - `6`: touch → setObjectState(present_dial_1=7)
+  - `7`: touch → setObjectState(present_dial_1=8)
+  - `8`: touch → setObjectState(present_dial_1=9)
+  - `9`: touch → setObjectState(present_dial_1=0)
+
+- **ボタン2** `present_dial_2` — type:object, 70×85 @(220,165), default:`0`
+  - `0`: touch → setObjectState(present_dial_2=1)
+  - `1`: touch → setObjectState(present_dial_2=2)
+  - `2`: touch → setObjectState(present_dial_2=3)
+  - `3`: touch → setObjectState(present_dial_2=4)
+  - `4`: touch → setObjectState(present_dial_2=5)
+  - `5`: touch → setObjectState(present_dial_2=6)
+  - `6`: touch → setObjectState(present_dial_2=7)
+  - `7`: touch → setObjectState(present_dial_2=8)
+  - `8`: touch → setObjectState(present_dial_2=9)
+  - `9`: touch → setObjectState(present_dial_2=0)
+
+- **OK** `present_ok` — type:button, 90×55 @(155,285), default:`default`
+  - `default`: touch [objectState(present_dial_1) == "7" & objectState(present_dial_2) == "3"] → setObjectState(bedroom_present=open), popNavigation, showMessage("プレゼントが開いた！") / touch [objectState(present_dial_1) != "7"] → showMessage("違うみたいだ") / touch [objectState(present_dial_1) == "7" & objectState(present_dial_2) != "3"] → showMessage("違うみたいだ")
 
 ---
 

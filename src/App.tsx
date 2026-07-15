@@ -21,7 +21,7 @@ export default function App() {
   return (
     <div className="app">
       {snapshot.cleared ? (
-        <ClearScreen title={gameData.title} />
+        <ClearScreen title={gameData.title} image={gameData.config?.clearImage} />
       ) : (
         <>
           <RoomStage engine={engine} snapshot={snapshot} />

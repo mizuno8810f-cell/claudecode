@@ -408,8 +408,30 @@
 - `images/bedroom_door_panel__light_up.png`  （扉 state:light_up）
 - `images/bedroom_humidifier__inactive.png`  （加湿器 state:inactive）
 - `images/bedroom_humidifier__active.png`  （加湿器 state:active）
-- `images/bedroom_present.png`  （プレゼント）
+- `images/bedroom_present.png`  （プレゼント state:closed）
+- `images/bedroom_present__open.png`  （プレゼント state:open）
 - `images/bedroom_present_zoom.png`  （プレゼント(拡大)）
+- `images/present_num_0.png`  （ボタン1 state:0）
+- `images/present_num_1.png`  （ボタン1 state:1）
+- `images/present_num_2.png`  （ボタン1 state:2）
+- `images/present_num_3.png`  （ボタン1 state:3）
+- `images/present_num_4.png`  （ボタン1 state:4）
+- `images/present_num_5.png`  （ボタン1 state:5）
+- `images/present_num_6.png`  （ボタン1 state:6）
+- `images/present_num_7.png`  （ボタン1 state:7）
+- `images/present_num_8.png`  （ボタン1 state:8）
+- `images/present_num_9.png`  （ボタン1 state:9）
+- `images/present_num_0.png`  （ボタン2 state:0）
+- `images/present_num_1.png`  （ボタン2 state:1）
+- `images/present_num_2.png`  （ボタン2 state:2）
+- `images/present_num_3.png`  （ボタン2 state:3）
+- `images/present_num_4.png`  （ボタン2 state:4）
+- `images/present_num_5.png`  （ボタン2 state:5）
+- `images/present_num_6.png`  （ボタン2 state:6）
+- `images/present_num_7.png`  （ボタン2 state:7）
+- `images/present_num_8.png`  （ボタン2 state:8）
+- `images/present_num_9.png`  （ボタン2 state:9）
+- `images/present_ok.png`  （OK）
 
 > 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
 > 上記 `image` は主に「部屋内での見た目（スプライト）」。ズーム時の全画面背景は下記の専用画像を使う。
