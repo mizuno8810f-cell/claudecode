@@ -149,7 +149,7 @@
 - `images/livingroom_sofa.png`  （グレーのソファ）
 - `images/livingroom_sofa_cushion.png`  （クッション）
 - `images/livingroom_desk.png`  （机 state:default）
-- `images/livingroom_desk.png`  （机 state:omurice）
+- `images/livingroom_desk__omurice.png`  （机 state:omurice）
 - `images/livingroom_desk_box.png`  （箱 state:no_remote）
 - `images/livingroom_desk_box__has_remote.png`  （箱 state:has_remote）
 - `images/livingroom_desk_tissue.png`  （ティッシュケース）

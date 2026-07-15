@@ -2635,7 +2635,7 @@
                   ]
                 },
                 "omurice": {
-                  "image": "images/livingroom_desk.png",
+                  "image": "images/livingroom_desk__omurice.png",
                   "children": [
                     "livingroom_desk_box",
                     "livingroom_desk_tissue",
