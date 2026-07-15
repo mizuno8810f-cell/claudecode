@@ -70,6 +70,9 @@ body {
   overflow: hidden;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  /* White base so transparent areas of background/object PNGs read as white,
+     not the dark page behind. */
+  background: #ffffff;
 }
 
 .room-stage__background {
