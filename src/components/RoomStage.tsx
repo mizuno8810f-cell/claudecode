@@ -73,14 +73,16 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const objects = engine.getDisplayedObjects();
   const isZoomed = snapshot.navigationStack.length > 0;
   const zoomTargetId = snapshot.navigationStack[snapshot.navigationStack.length - 1];
-  // A dedicated zoom background image (if any) wins over the object's sprite
-  // image. A state-specific `"<id>#<state>"` entry takes priority so a zoomed
-  // scene can change with the object's state (e.g. window fogging up).
+  // A zoomed view only shows a background when a dedicated zoom photo is
+  // registered (a state-specific `"<id>#<state>"` entry takes priority, so a
+  // zoomed scene can change with state, e.g. the window fogging up). Without a
+  // registered photo the zoom stays plain white — the object's small sprite
+  // image is never stretched to fill the zoom. Rooms use their own background.
   const zoomTopState = zoomTargetId ? snapshot.objectStates[zoomTargetId]?.state : undefined;
   const zoomBgImage = zoomTargetId
     ? ZOOM_BACKGROUND_IMAGES[`${zoomTargetId}#${zoomTopState}`] ?? ZOOM_BACKGROUND_IMAGES[zoomTargetId]
     : undefined;
-  const background = zoomBgImage ?? engine.getBackgroundImage();
+  const background = isZoomed ? zoomBgImage : engine.getBackgroundImage();
   const bgFailed = background != null && failedBg === background;
   const zoomScene = zoomTargetId ? ZOOM_BACKGROUND_SCENES[zoomTargetId] : undefined;
   const isItemInspect = zoomScene === "itemInspect";
@@ -133,24 +135,8 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
                 draggable={false}
                 onError={() => setFailedBg(background)}
               />
-            ) : zoomScene === "sofa" ? (
-              <div className="room-stage__background sofa-scene">
-                <div className="sofa-scene__carpet" />
-                <div className="sofa-scene__desk-sliver" />
-                <div className="sofa-scene__body">
-                  <div className="sofa-scene__armrest sofa-scene__armrest--left" />
-                  <div className="sofa-scene__armrest sofa-scene__armrest--right" />
-                  <div className="sofa-scene__backrest" />
-                </div>
-                <div className="sofa-scene__wall" />
-              </div>
-            ) : zoomScene === "plain" || zoomScene === "cornerRack" ? (
-              <div className="room-stage__background room-stage__background--fallback" />
-            ) : isZoomed ? (
-              <div className="room-stage__background room-stage__background--zoom-fallback">
-                <div className="room-stage__zoom-surface" />
-              </div>
             ) : (
+              // No background photo set (or it failed to load): plain white.
               <div className="room-stage__background room-stage__background--fallback" />
             )}
 
@@ -165,8 +151,6 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
               ))}
 
             {objectSprites}
-
-            {zoomScene === "cornerRack" && <div className="corner-rack-scene__fold-line" />}
           </>
         )}
 

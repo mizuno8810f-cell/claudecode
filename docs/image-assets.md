@@ -30,6 +30,7 @@
 - `images/rice.png`  （ライス）
 - `images/battery1.png`  （電池①）
 - `images/sdcard.png`  （SDカード）
+- `images/battery2.png`  （電池②）
 
 ### オブジェクト (state ごと)
 #### キッチン `room_kitchen`
@@ -153,7 +154,10 @@
 - `images/livingroom_corner_rack.png`  （コーナーラック）
 - `images/livingroom_trash_can.png`  （ゴミ箱）
 - `images/livingroom_trash_can_pile.png`  （ゴミ）
-- `images/livingroom_side_rack.png`  （サイドラック）
+- `images/cleaning_robot__charging.png`  （お掃除ロボ state:charging）
+- `images/cleaning_robot__charge_complete.png`  （お掃除ロボ state:charge_complete）
+- `images/cleaning_robot__cleaning.png`  （お掃除ロボ state:cleaning）
+- `images/cleaning_robot__cleaning_done.png`  （お掃除ロボ state:cleaning_done）
 - `images/hint_front_card.png`  （ヒント）
 - `images/hint_0713_text.png`  （0713）
 - `images/cr_shelf_top.png`  （棚(上)）
@@ -176,6 +180,7 @@
 - `images/cr_figure_3.png`  （フィギュア3）
 - `images/omurice_dish__incomplete.png`  （オムライス state:incomplete）
 - `images/omurice_dish__complete.png`  （オムライス state:complete）
+- `images/battery_2.png`  （電池②）
 
 #### ワークスペース `room_workingspace`
 - `images/workingspace_curtain__morningclose.png`  （カーテン state:morningclose）

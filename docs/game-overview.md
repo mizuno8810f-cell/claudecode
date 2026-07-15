@@ -230,7 +230,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: touch → addItem(hint), hideObject(livingroom_sofa_hint), showMessage("ヒントアイテムを手に入れた")
 
 - **クッション** `livingroom_sofa_cushion` — type:decoration, 110×110 @(68,168), default:`default`
-  - `default`: touch → hideObject(livingroom_sofa_cushion), showObject(livingroom_sofa_hint)
+  - `default`: touch [hasItem(hint) == false] → hideObject(livingroom_sofa_cushion), showObject(livingroom_sofa_hint)
 
 - **机** `livingroom_desk` — type:object, 200×72 @(100,328), default:`default`
   - `default`: children=[livingroom_desk_box, livingroom_desk_tissue] / touch → pushNavigation(livingroom_desk)
@@ -250,7 +250,11 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **ゴミ** `livingroom_trash_can_pile` — type:decoration, 360×360 @(20,20), default:`default`
   - `default`: touch → showMessage("こちらが深淵を覗いている時、深淵もまたこちらを覗いているのだ")
 
-- **サイドラック** `livingroom_side_rack` — type:decoration, 55×288 @(333,112), default:`default`
+- **お掃除ロボ** `cleaning_robot` — type:object, 55×30 @(333,370), default:`charging`
+  - `charging`: watchState [objectState(ws_door_panel) == "open"] → setObjectState(cleaning_robot=charge_complete) / touch → showMessage("充電中…")
+  - `charge_complete`: touch → setObjectState(cleaning_robot=cleaning), hideObject(cleaning_robot)
+  - `cleaning`: watchState [objectState(kitchen_safe) == "open"] → setObjectState(cleaning_robot=cleaning_done), showObject(cleaning_robot)
+  - `cleaning_done`: children=[battery_2] / touch → showMessage("掃除が完了したみたい"), pushNavigation(cleaning_robot)
 
 - **ヒント(拡大)** `hint_inspect` — type:object, 0×0 @(0,0), default:`front` ⚠visible:false
   - `front`: children=[hint_front_card] / onBack → setObjectState(hint_inspect=front)
@@ -341,6 +345,9 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `incomplete`: touch [selectedItem == "ketchup"] → removeItem(ketchup), setObjectState(omurice_dish=complete), showMessage("ケチャップで文字を書いた") / touch [selectedItem != "ketchup"] → showMessage("ケチャップをかけたほうがよさそうだ")
   - `complete`: touch → pushNavigation(omurice_inspect)
 
+- **電池②** `battery_2` — type:item, 100×100 @(150,150), default:`default`
+  - `default`: touch → addItem(battery2), hideObject(battery_2), showMessage("電池②を手に入れた")
+
 ### ワークスペース `room_workingspace`
 
 - **カーテン** `workingspace_curtain` — type:object, 200×200 @(0,100), default:`morningclose`
@@ -369,7 +376,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **PC** `workingspace_pc` — type:object, 240×120 @(80,40), default:`inactive`
   - `active_morning`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
   - `active_night`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
-  - `sdnone`: touch [hasItem(sdcard) == true & objectState(workingspace_curtain) ⊇ "morning"] → removeItem(sdcard), setObjectState(workingspace_pc=active_morning), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == true & objectState(workingspace_curtain) ⊇ "night"] → removeItem(sdcard), setObjectState(workingspace_pc=active_night), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == false] → showMessage("sdカードがありません")
+  - `sdnone`: touch [hasItem(sdcard) == true & objectState(cleaning_robot) == "charge_complete"] → showMessage("その前に掃除しないと") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(workingspace_curtain) ⊇ "morning"] → removeItem(sdcard), setObjectState(workingspace_pc=active_morning), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(workingspace_curtain) ⊇ "night"] → removeItem(sdcard), setObjectState(workingspace_pc=active_night), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == false] → showMessage("sdカードがありません") / watchState [objectState(cleaning_robot) == "charge_complete"] → showMessage("そろそろ掃除しないと")
 
 - **パスワード1文字目** `workingspace_pw1` — type:text, 50×60 @(70,190), default:`active_blank`
 
@@ -538,6 +545,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **ライス** `rice` — 冷蔵庫のライス
 - **電池①** `battery1` — キッチンの金庫にあった電池
 - **SDカード** `sdcard` — 棚の本の奥から落ちてきたSDカード
+- **電池②** `battery2` — お掃除ロボが見つけた電池
 
 ---
 

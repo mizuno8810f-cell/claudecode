@@ -2577,7 +2577,14 @@
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [],
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "hint",
+                          "operator": "equals",
+                          "value": false
+                        }
+                      ],
                       "events": [
                         {
                           "type": "hideObject",
@@ -2805,23 +2812,123 @@
               }
             },
             {
-              "id": "livingroom_side_rack",
-              "name": "サイドラック",
-              "type": "decoration",
+              "id": "cleaning_robot",
+              "name": "お掃除ロボ",
+              "type": "object",
               "position": {
                 "x": 333,
-                "y": 112,
+                "y": 370,
                 "width": 55,
-                "height": 288
+                "height": 30
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "default",
+              "defaultState": "charging",
               "states": {
-                "default": {
+                "charging": {
+                  "image": "images/cleaning_robot__charging.png",
                   "children": [],
-                  "triggers": [],
-                  "image": "images/livingroom_side_rack.png"
+                  "triggers": [
+                    {
+                      "type": "watchState",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "ws_door_panel",
+                          "operator": "equals",
+                          "value": "open"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cleaning_robot",
+                          "value": "charge_complete"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "充電中…"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "charge_complete": {
+                  "image": "images/cleaning_robot__charge_complete.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cleaning_robot",
+                          "value": "cleaning"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "cleaning_robot"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "cleaning": {
+                  "image": "images/cleaning_robot__cleaning.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "watchState",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "kitchen_safe",
+                          "operator": "equals",
+                          "value": "open"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "cleaning_robot",
+                          "value": "cleaning_done"
+                        },
+                        {
+                          "type": "showObject",
+                          "targetId": "cleaning_robot"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "cleaning_done": {
+                  "image": "images/cleaning_robot__cleaning_done.png",
+                  "children": [
+                    "battery_2"
+                  ],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "掃除が完了したみたい"
+                        },
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "cleaning_robot"
+                        }
+                      ]
+                    }
+                  ]
                 }
               }
             },
@@ -4084,6 +4191,46 @@
                   ]
                 }
               }
+            },
+            {
+              "id": "battery_2",
+              "name": "電池②",
+              "type": "item",
+              "position": {
+                "x": 150,
+                "y": 150,
+                "width": 100,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/battery_2.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "addItem",
+                          "itemId": "battery2"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "battery_2"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "電池②を手に入れた"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
             }
           ]
         },
@@ -4553,6 +4700,35 @@
                         },
                         {
                           "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "equals",
+                          "value": "charge_complete"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "その前に掃除しないと"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "hasItem",
+                          "itemId": "sdcard",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "notEquals",
+                          "value": "charge_complete"
+                        },
+                        {
+                          "type": "objectState",
                           "targetId": "workingspace_curtain",
                           "operator": "includes",
                           "value": "morning"
@@ -4582,6 +4758,12 @@
                           "itemId": "sdcard",
                           "operator": "equals",
                           "value": true
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "notEquals",
+                          "value": "charge_complete"
                         },
                         {
                           "type": "objectState",
@@ -4620,6 +4802,23 @@
                         {
                           "type": "showMessage",
                           "message": "sdカードがありません"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "watchState",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "equals",
+                          "value": "charge_complete"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "そろそろ掃除しないと"
                         }
                       ]
                     }
@@ -60601,6 +60800,12 @@
       "name": "SDカード",
       "image": "images/sdcard.png",
       "description": "棚の本の奥から落ちてきたSDカード"
+    },
+    {
+      "id": "battery2",
+      "name": "電池②",
+      "image": "images/battery2.png",
+      "description": "お掃除ロボが見つけた電池"
     }
   ]
 }
