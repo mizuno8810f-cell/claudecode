@@ -39,6 +39,8 @@ export type GameEvent =
   | { type: "pushNavigation"; targetId: string }
   | { type: "popNavigation" }
   | { type: "showMessage"; message: string }
+  // Show one message picked at random from the list (as a toast) each time.
+  | { type: "showRandomMessage"; messages: string[] }
   | { type: "showImage"; image: string }
   | { type: "playSound"; soundId: string }
   | { type: "wait"; ms: number }

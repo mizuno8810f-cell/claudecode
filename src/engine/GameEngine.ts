@@ -350,6 +350,11 @@ export class GameEngine {
       case "showMessage":
         this.showToast(event.message);
         return;
+      case "showRandomMessage": {
+        const list = event.messages;
+        if (list.length > 0) this.showToast(list[Math.floor(Math.random() * list.length)]);
+        return;
+      }
       case "showImage":
         this.emit({ image: event.image });
         return new Promise<void>((resolve) => {

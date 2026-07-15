@@ -39,9 +39,7 @@
 - `images/kitchen_trash_can.png`  （ゴミ箱）
 - `images/kitchen_counter.png`  （キッチン）
 - `images/kitchen_cupboard.png`  （食器棚）
-- `images/kitchen_snack_box__s0.png`  （お菓子の箱 state:s0）
-- `images/kitchen_snack_box__s1.png`  （お菓子の箱 state:s1）
-- `images/kitchen_snack_box__s2.png`  （お菓子の箱 state:s2）
+- `images/kitchen_snack_box.png`  （お菓子の箱）
 - `images/ingredient_egg__inactive.png`  （卵 state:inactive）
 - `images/ingredient_egg__active.png`  （卵 state:active）
 - `images/ingredient_ketchup__inactive.png`  （ケチャップ state:inactive）
@@ -450,3 +448,15 @@
 - `images/zoom_bedroom_window.png`  （窓 のズーム）
 - `images/zoom_bedroom_window__cloudy.png`  （窓 のズーム・state:cloudy）
 - `images/zoom_workingspace_shelf.png`  （棚 のズーム）
+- `images/zoom_kitchen_cupboard.png`  （食器棚 のズーム）
+- `images/zoom_cupboard_left.png`  （食器棚左 のズーム）
+- `images/zoom_cupboard_right.png`  （食器棚右 のズーム）
+- `images/zoom_kitchen_safe.png`  （金庫 のズーム）
+- `images/zoom_corner_rack_safe.png`  （金庫 のズーム）
+- `images/zoom_cr_shelf_top.png`  （棚(上) のズーム）
+- `images/zoom_cleaning_robot.png`  （お掃除ロボ のズーム）
+- `images/zoom_bedroom_present.png`  （プレゼント のズーム）
+- `images/zoom_omurice_inspect.png`  （オムライス(拡大) のズーム）
+- `images/zoom_livingroom_trash_can.png`  （ゴミ箱 のズーム）
+- `images/zoom_bedroom_door.png`  （扉 のズーム）
+- `images/zoom_workingspace_door.png`  （扉 のズーム）

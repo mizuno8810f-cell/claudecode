@@ -167,9 +167,10 @@
               },
               "visible": true,
               "enabled": true,
-              "defaultState": "s0",
+              "defaultState": "default",
               "states": {
-                "s0": {
+                "default": {
+                  "image": "images/kitchen_snack_box.png",
                   "children": [],
                   "triggers": [
                     {
@@ -177,55 +178,16 @@
                       "conditions": [],
                       "events": [
                         {
-                          "type": "showMessage",
-                          "message": "👦お菓子食べ過ぎ"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "kitchen_snack_box",
-                          "value": "s1"
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "👦お菓子食べ過ぎ",
+                            "👦太っちゃうよ？",
+                            "👩ダイエットは？"
+                          ]
                         }
                       ]
                     }
-                  ],
-                  "image": "images/kitchen_snack_box__s0.png"
-                },
-                "s1": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "👦太っちゃうよ？"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "kitchen_snack_box",
-                          "value": "s2"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/kitchen_snack_box__s1.png"
-                },
-                "s2": {
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "👩内緒で食べよ"
-                        }
-                      ]
-                    }
-                  ],
-                  "image": "images/kitchen_snack_box__s2.png"
+                  ]
                 }
               }
             },

@@ -75,10 +75,8 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **食器棚** `kitchen_cupboard` — type:object, 100×100 @(0,50), default:`default`
   - `default`: children=[cupboard_left, cupboard_right] / touch → pushNavigation(kitchen_cupboard)
 
-- **お菓子の箱** `kitchen_snack_box` — type:object, 120×120 @(140,140), default:`s0`
-  - `s0`: touch → showMessage("👦お菓子食べ過ぎ"), setObjectState(kitchen_snack_box=s1)
-  - `s1`: touch → showMessage("👦太っちゃうよ？"), setObjectState(kitchen_snack_box=s2)
-  - `s2`: touch → showMessage("👩内緒で食べよ")
+- **お菓子の箱** `kitchen_snack_box` — type:object, 120×120 @(140,140), default:`default`
+  - `default`: touch → showRandomMessage
 
 - **卵** `ingredient_egg` — type:item, 80×140 @(160,130), default:`inactive`
   - `inactive`: touch → showMessage("まだお腹空いてないな")

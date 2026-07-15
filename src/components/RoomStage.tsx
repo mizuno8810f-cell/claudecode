@@ -48,22 +48,27 @@ const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   bedroom_window: "images/zoom_bedroom_window.png",
   "bedroom_window#cloudy": "images/zoom_bedroom_window__cloudy.png",
   workingspace_shelf: "images/zoom_workingspace_shelf.png",
+  // Slots for the remaining zooms — drop a matching file in public/images to
+  // fill them; until then they fall back to the plain white zoom base.
+  kitchen_cupboard: "images/zoom_kitchen_cupboard.png",
+  cupboard_left: "images/zoom_cupboard_left.png",
+  cupboard_right: "images/zoom_cupboard_right.png",
+  kitchen_safe: "images/zoom_kitchen_safe.png",
+  corner_rack_safe: "images/zoom_corner_rack_safe.png",
+  cr_shelf_top: "images/zoom_cr_shelf_top.png",
+  cleaning_robot: "images/zoom_cleaning_robot.png",
+  bedroom_present: "images/zoom_bedroom_present.png",
+  omurice_inspect: "images/zoom_omurice_inspect.png",
+  livingroom_trash_can: "images/zoom_livingroom_trash_can.png",
+  bedroom_door: "images/zoom_bedroom_door.png",
+  workingspace_door: "images/zoom_workingspace_door.png",
 };
 
-const ZOOM_BACKGROUND_SCENES: Record<string, "sofa" | "plain" | "cornerRack" | "itemInspect"> = {
-  livingroom_sofa: "sofa",
-  livingroom_trash_can: "plain",
-  livingroom_corner_rack: "cornerRack",
-  corner_rack_safe: "plain",
+// Objects whose zoom is a small floating item close-up rather than a full
+// scene. (Other zooms just use a background image, or plain white.)
+const ZOOM_BACKGROUND_SCENES: Record<string, "itemInspect"> = {
   hint_inspect: "itemInspect",
   remote_inspect: "itemInspect",
-  workingspace_door: "plain",
-  bedroom_door: "plain",
-  kitchen_trash_can: "plain",
-  cr_shelf_bottom: "plain",
-  kitchen_fridge: "plain",
-  kitchen_counter: "plain",
-  omurice_inspect: "plain",
 };
 
 export function RoomStage({ engine, snapshot }: RoomStageProps) {
