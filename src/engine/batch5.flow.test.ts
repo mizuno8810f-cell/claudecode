@@ -62,6 +62,24 @@ describe("batch5 fixes", () => {
     expect(e.getSnapshot().navigationStack).not.toContain("corner_rack_safe");
   });
 
+  it("an active PC follows the bed: sleep -> night, wake -> morning", async () => {
+    const g = clone();
+    g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "workingspace_pc")!.defaultState = "active_morning";
+    const e = new GameEngine(g);
+    await e.touch("bedroom_bed"); // default -> sleep
+    expect(stateOf(e, "bedroom_bed")).toBe("sleep");
+    expect(stateOf(e, "workingspace_pc")).toBe("active_night");
+    expect(stateOf(e, "workingspace_curtain")).toContain("night"); // window follows too
+    await e.touch("bedroom_bed"); // sleep -> default
+    expect(stateOf(e, "workingspace_pc")).toBe("active_morning");
+  });
+
+  it("the bed coupling leaves an inactive PC untouched", async () => {
+    const e = new GameEngine(clone());
+    await e.touch("bedroom_bed"); // sleep
+    expect(stateOf(e, "workingspace_pc")).toBe("inactive"); // 'inactive' contains 'active' — must not match
+  });
+
   it("kitchen safe: solving pops back to the cupboard and reveals the battery", async () => {
     const e = new GameEngine(clone());
     expect(visibleOf(e, "battery_1")).toBe(false); // hidden at start

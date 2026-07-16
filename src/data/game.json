@@ -61125,6 +61125,24 @@
                           "value": "nightopen"
                         }
                       ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_night"
+                        }
+                      ]
                     }
                   ],
                   "image": "images/bedroom_bed__default.png"
@@ -61176,6 +61194,24 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_curtain",
                           "value": "morningopen"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "setObjectState",
+                          "targetId": "workingspace_pc",
+                          "value": "active_morning"
                         }
                       ]
                     }
@@ -62063,18 +62099,18 @@
     ],
     "projectorReplayNote": "※この動画は謎解きとはかんけいありません。",
     "sounds": {
-      "touch": "sounds/se_touch.mp3",
-      "itemGet": "sounds/se_item_get.mp3",
-      "itemUse": "sounds/se_item_use.mp3",
-      "doorOpen": "sounds/se_door.mp3",
-      "correct": "sounds/se_correct.mp3",
-      "wrong": "sounds/se_wrong.mp3",
-      "zoomIn": "sounds/se_zoom_in.mp3",
-      "zoomBack": "sounds/se_zoom_back.mp3",
-      "popupOpen": "sounds/se_popup_open.mp3",
-      "popupClose": "sounds/se_popup_close.mp3",
-      "videoStart": "sounds/se_video_start.mp3",
-      "clear": "sounds/se_clear.mp3"
+      "touch": "sounds/se_touch.wav",
+      "itemGet": "sounds/se_item_get.wav",
+      "itemUse": "sounds/se_item_use.wav",
+      "doorOpen": "sounds/se_door.wav",
+      "correct": "sounds/se_correct.wav",
+      "wrong": "sounds/se_wrong.wav",
+      "zoomIn": "sounds/se_zoom_in.wav",
+      "zoomBack": "sounds/se_zoom_back.wav",
+      "popupOpen": "sounds/se_popup_open.wav",
+      "popupClose": "sounds/se_popup_close.wav",
+      "videoStart": "sounds/se_video_start.wav",
+      "clear": "sounds/se_clear.wav"
     }
   }
 }

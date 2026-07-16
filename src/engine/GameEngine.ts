@@ -1,5 +1,6 @@
 import type { GameData, GameEvent, GameObject, Item, ObjectState, Room, Trigger } from "./types";
 import { evaluateConditions, type ConditionContext } from "./conditions";
+import { assetUrl } from "../assets";
 
 export interface ObjectRuntimeState {
   visible: boolean;
@@ -411,7 +412,7 @@ export class GameEngine {
    */
   private playSoundKey(key: string) {
     if (typeof Audio === "undefined") return;
-    const file = this.getConfig().sounds?.[key] ?? `sounds/${key}.mp3`;
+    const file = assetUrl(this.getConfig().sounds?.[key] ?? `sounds/${key}.mp3`);
     try {
       const audio = new Audio(file);
       void audio.play().catch(() => {});
