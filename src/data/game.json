@@ -4442,9 +4442,9 @@
               "name": "プロジェクター",
               "type": "object",
               "position": {
-                "x": 200,
+                "x": 130,
                 "y": 180,
-                "width": 70,
+                "width": 140,
                 "height": 60
               },
               "visible": true,

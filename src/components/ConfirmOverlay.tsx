@@ -27,20 +27,7 @@ export function ConfirmOverlay({ engine, message, yesId, noId }: ConfirmOverlayP
           ))}
         </p>
         <div className="confirm-dialog__buttons">
-          <button
-            type="button"
-            className="confirm-dialog__btn confirm-dialog__btn--yes"
-            onClick={() => {
-              // Use this real user gesture to go full-screen so the video that
-              // opens next fills the screen (best-effort; ignored if blocked).
-              try {
-                void document.documentElement.requestFullscreen?.().catch(() => {});
-              } catch {
-                // fullscreen unavailable — the video still opens inline
-              }
-              void engine.touch(yesId);
-            }}
-          >
+          <button type="button" className="confirm-dialog__btn confirm-dialog__btn--yes" onClick={() => void engine.touch(yesId)}>
             はい
           </button>
           <button type="button" className="confirm-dialog__btn confirm-dialog__btn--no" onClick={() => void engine.touch(noId)}>
