@@ -61,7 +61,7 @@ export function ObjectSprite({ def, runtime, image, devMode = 0, filterClass = "
           )}
         </span>
       )}
-      {devMode === 0 && runtime.state !== def.defaultState && (
+      {devMode > 0 && runtime.state !== def.defaultState && (
         <span className="object-sprite__state">{runtime.state}</span>
       )}
     </button>
