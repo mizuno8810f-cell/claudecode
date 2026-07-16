@@ -417,13 +417,17 @@ body {
 
 .inventory-bar__slots {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 6px;
 }
 
 .inventory-slot {
-  aspect-ratio: 1 / 1;
+  /* Fixed square size so an item's image can never grow the slot or the bar. */
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -432,11 +436,6 @@ body {
   border-radius: 6px;
   padding: 4px;
   cursor: pointer;
-  /* Keep the slot square and its size independent of the item image: without
-     min-height:0 a large icon's intrinsic size can stretch the grid row and
-     bloat the whole bar; overflow:hidden clips anything that still overshoots. */
-  min-width: 0;
-  min-height: 0;
   overflow: hidden;
 }
 

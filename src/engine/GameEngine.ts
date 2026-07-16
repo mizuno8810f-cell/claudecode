@@ -205,6 +205,7 @@ export class GameEngine {
     const triggers = this.getCurrentObjectState(objectId).triggers.filter(
       (t) => t.type === "touch" || t.type === "input",
     );
+    if (triggers.length > 0) this.playSoundKey("touch");
     await this.runTriggers(triggers);
   }
 
@@ -222,6 +223,7 @@ export class GameEngine {
       this.snapshot.navigationStack[this.snapshot.navigationStack.length - 1] === topId;
     if (stillOnTop) {
       this.emit({ navigationStack: this.snapshot.navigationStack.slice(0, -1) });
+      this.playSoundKey("zoomBack");
     }
   }
 
@@ -324,12 +326,14 @@ export class GameEngine {
       case "addItem":
         if (this.snapshot.inventory.includes(event.itemId)) return;
         this.emit({ inventory: [...this.snapshot.inventory, event.itemId] });
+        this.playSoundKey("itemGet");
         return;
       case "removeItem": {
         const inventory = this.snapshot.inventory.filter((id) => id !== event.itemId);
         const selectedItemId =
           this.snapshot.selectedItemId === event.itemId ? null : this.snapshot.selectedItemId;
         this.emit({ inventory, selectedItemId });
+        this.playSoundKey("itemUse");
         return;
       }
       case "selectItem":
@@ -340,12 +344,19 @@ export class GameEngine {
         return;
       case "navigateRoom":
         this.emit({ roomId: event.roomId, navigationStack: [] });
+        this.playSoundKey("doorOpen");
         return;
       case "pushNavigation":
         this.emit({ navigationStack: [...this.snapshot.navigationStack, event.targetId] });
+        this.playSoundKey(
+          event.targetId === "projector_video" ? "videoStart"
+            : event.targetId === "projector_confirm" ? "popupOpen"
+              : "zoomIn",
+        );
         return;
       case "popNavigation":
         this.emit({ navigationStack: this.snapshot.navigationStack.slice(0, -1) });
+        this.playSoundKey("zoomBack");
         return;
       case "showMessage":
         this.showToast(event.message);
@@ -361,7 +372,7 @@ export class GameEngine {
           this.imageResolver = resolve;
         });
       case "playSound":
-        this.playSound(event.soundId);
+        this.playSoundKey(event.soundId);
         return;
       case "wait":
         // Pause the event sequence (input stays locked) for a timed transition.
@@ -388,14 +399,21 @@ export class GameEngine {
       }
       case "clearGame":
         this.emit({ cleared: true });
+        this.playSoundKey("clear");
         return;
     }
   }
 
-  private playSound(soundId: string) {
+  /**
+   * Play a sound effect for an action key. The file comes from
+   * config.sounds[key] (data-driven, swappable), falling back to
+   * sounds/<key>.mp3. Missing files fail silently.
+   */
+  private playSoundKey(key: string) {
     if (typeof Audio === "undefined") return;
+    const file = this.getConfig().sounds?.[key] ?? `sounds/${key}.mp3`;
     try {
-      const audio = new Audio(`sounds/${soundId}.mp3`);
+      const audio = new Audio(file);
       void audio.play().catch(() => {});
     } catch {
       // ignore in environments without audio support

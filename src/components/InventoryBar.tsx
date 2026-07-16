@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { GameEngine, EngineSnapshot } from "../engine";
 import { assetUrl } from "../assets";
 
-const SLOT_COUNT = 5;
+const SLOT_COUNT = 4;
 
 interface InventoryBarProps {
   engine: GameEngine;

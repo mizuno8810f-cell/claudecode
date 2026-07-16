@@ -128,6 +128,13 @@ export interface GameConfig {
   /** Objects that glow (light-up) while roomDarkMode is on, whatever state
    * they are in (e.g. the present box, which stays in its puzzle state). */
   lightUpObjectIds?: string[];
+  /** Extra line appended to the projector confirm message on replays only. */
+  projectorReplayNote?: string;
+  /**
+   * Sound-effect files by action key (e.g. touch, itemGet, zoomIn). Values are
+   * asset paths; swap the files to change the SE. Missing files fail silently.
+   */
+  sounds?: Record<string, string>;
 }
 
 export interface GameData {

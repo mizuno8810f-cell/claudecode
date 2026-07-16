@@ -308,10 +308,10 @@
               "name": "調理台",
               "type": "decoration",
               "position": {
-                "x": 40,
-                "y": 230,
-                "width": 320,
-                "height": 150
+                "x": 0,
+                "y": 0,
+                "width": 400,
+                "height": 400
               },
               "visible": true,
               "enabled": true,
@@ -385,10 +385,10 @@
               "name": "フライパン",
               "type": "object",
               "position": {
-                "x": 130,
-                "y": 150,
-                "width": 140,
-                "height": 110
+                "x": 100,
+                "y": 50,
+                "width": 250,
+                "height": 275
               },
               "visible": true,
               "enabled": true,
@@ -667,7 +667,8 @@
                 "open": {
                   "image": "images/cupboard_left__open.png",
                   "children": [
-                    "kitchen_safe"
+                    "kitchen_safe",
+                    "battery_1"
                   ],
                   "triggers": [
                     {
@@ -759,9 +760,7 @@
                 },
                 "open": {
                   "image": "images/kitchen_safe__open.png",
-                  "children": [
-                    "battery_1"
-                  ],
+                  "children": [],
                   "triggers": []
                 }
               }
@@ -2331,8 +2330,19 @@
                           "value": "open"
                         },
                         {
+                          "type": "showObject",
+                          "targetId": "battery_1"
+                        },
+                        {
+                          "type": "popNavigation"
+                        },
+                        {
                           "type": "showMessage",
                           "message": "金庫が開いた"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     }
@@ -2345,12 +2355,12 @@
               "name": "電池①",
               "type": "item",
               "position": {
-                "x": 150,
-                "y": 150,
-                "width": 100,
-                "height": 100
+                "x": 120,
+                "y": 120,
+                "width": 70,
+                "height": 70
               },
-              "visible": true,
+              "visible": false,
               "enabled": true,
               "defaultState": "default",
               "states": {
@@ -2473,7 +2483,8 @@
                         }
                       ]
                     }
-                  ]
+                  ],
+                  "image": "images/hint.png"
                 }
               }
             },
@@ -2983,7 +2994,14 @@
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [],
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "corner_rack_safe",
+                          "operator": "notEquals",
+                          "value": "open"
+                        }
+                      ],
                       "events": [
                         {
                           "type": "pushNavigation",
@@ -3826,6 +3844,10 @@
                         {
                           "type": "showMessage",
                           "message": "金庫が開いた"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     }
@@ -4420,10 +4442,10 @@
               "name": "プロジェクター",
               "type": "object",
               "position": {
-                "x": 130,
-                "y": 120,
-                "width": 140,
-                "height": 120
+                "x": 200,
+                "y": 180,
+                "width": 70,
+                "height": 60
               },
               "visible": true,
               "enabled": true,
@@ -4577,6 +4599,11 @@
                           "type": "popNavigation"
                         },
                         {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_bed",
+                          "value": "default"
+                        },
+                        {
                           "type": "showObject",
                           "targetId": "bedroom_present"
                         },
@@ -4622,6 +4649,11 @@
                       "events": [
                         {
                           "type": "popNavigation"
+                        },
+                        {
+                          "type": "setObjectState",
+                          "targetId": "bedroom_bed",
+                          "value": "default"
                         },
                         {
                           "type": "pushNavigation",
@@ -4920,6 +4952,12 @@
                           "targetId": "book_slot_7",
                           "operator": "equals",
                           "value": "book7"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "sdcardDone",
+                          "operator": "notEquals",
+                          "value": true
                         }
                       ],
                       "events": [
@@ -4930,6 +4968,43 @@
                         {
                           "type": "addItem",
                           "itemId": "sdcard"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "itemGet"
+                        },
+                        {
+                          "type": "setGlobalState",
+                          "key": "sdcardDone",
+                          "value": true
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_1"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_2"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_3"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_4"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_5"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_6"
+                        },
+                        {
+                          "type": "disableObject",
+                          "targetId": "book_slot_7"
                         }
                       ]
                     }
@@ -5063,11 +5138,19 @@
                           "value": "open"
                         },
                         {
+                          "type": "removeItem",
+                          "itemId": "key_a"
+                        },
+                        {
                           "type": "clearSelectedItem"
                         },
                         {
                           "type": "showMessage",
                           "message": "鍵Aで扉が開いた"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "doorOpen"
                         }
                       ]
                     },
@@ -5129,9 +5212,9 @@
               "name": "PC",
               "type": "object",
               "position": {
-                "x": 100,
+                "x": 50,
                 "y": 0,
-                "width": 160,
+                "width": 260,
                 "height": 280
               },
               "visible": true,
@@ -5219,9 +5302,9 @@
                         },
                         {
                           "type": "objectState",
-                          "targetId": "workingspace_curtain",
-                          "operator": "includes",
-                          "value": "morning"
+                          "targetId": "bedroom_bed",
+                          "operator": "notEquals",
+                          "value": "sleep"
                         }
                       ],
                       "events": [
@@ -5257,9 +5340,9 @@
                         },
                         {
                           "type": "objectState",
-                          "targetId": "workingspace_curtain",
-                          "operator": "includes",
-                          "value": "night"
+                          "targetId": "bedroom_bed",
+                          "operator": "equals",
+                          "value": "sleep"
                         }
                       ],
                       "events": [
@@ -5321,9 +5404,9 @@
               "name": "パスワード1文字目",
               "type": "text",
               "position": {
-                "x": 110,
+                "x": 60,
                 "y": 75,
-                "width": 34,
+                "width": 59,
                 "height": 50
               },
               "visible": true,
@@ -5447,9 +5530,9 @@
               "name": "パスワード2文字目",
               "type": "text",
               "position": {
-                "x": 145,
+                "x": 121,
                 "y": 75,
-                "width": 34,
+                "width": 59,
                 "height": 50
               },
               "visible": true,
@@ -5573,9 +5656,9 @@
               "name": "パスワード3文字目",
               "type": "text",
               "position": {
-                "x": 180,
+                "x": 181,
                 "y": 75,
-                "width": 34,
+                "width": 59,
                 "height": 50
               },
               "visible": true,
@@ -5699,9 +5782,9 @@
               "name": "パスワード4文字目",
               "type": "text",
               "position": {
-                "x": 215,
+                "x": 240,
                 "y": 75,
-                "width": 35,
+                "width": 60,
                 "height": 50
               },
               "visible": true,
@@ -61117,7 +61200,9 @@
               "states": {
                 "default": {
                   "image": "images/bedroom_rack.png",
-                  "children": [],
+                  "children": [
+                    "bedroom_smartphone"
+                  ],
                   "triggers": [
                     {
                       "type": "touch",
@@ -61782,6 +61867,10 @@
                         {
                           "type": "showMessage",
                           "message": "プレゼントが開いた！"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     },
@@ -61799,6 +61888,10 @@
                         {
                           "type": "showMessage",
                           "message": "違うみたいだ"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -61822,6 +61915,42 @@
                         {
                           "type": "showMessage",
                           "message": "違うみたいだ"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "id": "bedroom_smartphone",
+              "name": "スマホ",
+              "type": "object",
+              "position": {
+                "x": 50,
+                "y": 150,
+                "width": 150,
+                "height": 100
+              },
+              "visible": true,
+              "enabled": true,
+              "defaultState": "default",
+              "states": {
+                "default": {
+                  "image": "images/iphone.png",
+                  "children": [],
+                  "triggers": [
+                    {
+                      "type": "touch",
+                      "conditions": [],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "いつも電話ありがとう"
                         }
                       ]
                     }
@@ -61931,6 +62060,21 @@
     "clearImage": "images/clear.png",
     "lightUpObjectIds": [
       "bedroom_present"
-    ]
+    ],
+    "projectorReplayNote": "※この動画は謎解きとはかんけいありません。",
+    "sounds": {
+      "touch": "sounds/se_touch.mp3",
+      "itemGet": "sounds/se_item_get.mp3",
+      "itemUse": "sounds/se_item_use.mp3",
+      "doorOpen": "sounds/se_door.mp3",
+      "correct": "sounds/se_correct.mp3",
+      "wrong": "sounds/se_wrong.mp3",
+      "zoomIn": "sounds/se_zoom_in.mp3",
+      "zoomBack": "sounds/se_zoom_back.mp3",
+      "popupOpen": "sounds/se_popup_open.mp3",
+      "popupClose": "sounds/se_popup_close.mp3",
+      "videoStart": "sounds/se_video_start.mp3",
+      "clear": "sounds/se_clear.mp3"
+    }
   }
 }

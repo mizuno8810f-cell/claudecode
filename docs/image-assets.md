@@ -144,6 +144,7 @@
 
 #### リビングルーム `room_livingroom`
 - `images/livingroom_sofa.png`  （グレーのソファ）
+- `images/hint.png`  （ヒントアイテム）
 - `images/livingroom_sofa_cushion.png`  （クッション）
 - `images/livingroom_desk.png`  （机 state:default）
 - `images/livingroom_desk__omurice.png`  （机 state:omurice）
@@ -429,6 +430,7 @@
 - `images/present_r_8.png`  （ボタン2 state:8）
 - `images/present_r_9.png`  （ボタン2 state:9）
 - `images/present_ok.png`  （OK）
+- `images/iphone.png`  （スマホ）
 
 > 注: `visible:false` のズーム入れ物（hint_inspect / corner_rack_safe / omurice_inspect）は画像不要。
 > 上記 `image` は主に「部屋内での見た目（スプライト）」。ズーム時の全画面背景は下記の専用画像を使う。

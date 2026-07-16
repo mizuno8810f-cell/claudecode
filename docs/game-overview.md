@@ -86,13 +86,13 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `inactive`: touch → showMessage("まだお腹空いてないな")
   - `active`: touch → addItem(ketchup), hideObject(ingredient_ketchup), showMessage("ケチャップを手に入れた")
 
-- **調理台** `cooking_station` — type:decoration, 320×150 @(40,230), default:`default`
+- **調理台** `cooking_station` — type:decoration, 400×400 @(0,0), default:`default`
 
 - **ライス** `ingredient_rice` — type:item, 130×100 @(40,180), default:`inactive`
   - `inactive`: touch → showMessage("まだお腹空いてないな")
   - `active`: touch → addItem(rice), hideObject(ingredient_rice), showMessage("ライスを手に入れた")
 
-- **フライパン** `frying_pan` — type:object, 140×110 @(130,150), default:`empty`
+- **フライパン** `frying_pan` — type:object, 250×275 @(100,50), default:`empty`
   - `empty`: touch [selectedItem == "rice"] → setObjectState(frying_pan=rice), removeItem(rice), showMessage("ライスを炒めた") / touch [selectedItem != "rice"] → showMessage("うまくいかない気がする")
   - `rice`: touch [selectedItem == "ketchup"] → setObjectState(frying_pan=chicken_rice), showMessage("ケチャップをかけた"), wait, setObjectState(frying_pan=empty2), showMessage("チキンライスが出来上がった") / touch [selectedItem != "ketchup"] → showMessage("うまくいかない気がする")
   - `empty2`: touch [selectedItem == "egg"] → setObjectState(frying_pan=egg), removeItem(egg), showMessage("破れないように慎重に…"), wait, hideObject(frying_pan), showMessage("ちょっと破けちゃったけど完成！"), setObjectState(livingroom_desk=omurice) / touch [selectedItem != "egg"] → showMessage("うまくいかない気がする")
@@ -103,14 +103,13 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 
 - **食器棚左** `cupboard_left` — type:object, 150×260 @(30,70), default:`closed`
   - `closed`: touch → setObjectState(cupboard_left=open), pushNavigation(cupboard_left)
-  - `open`: children=[kitchen_safe] / onBack → setObjectState(cupboard_left=closed)
+  - `open`: children=[kitchen_safe, battery_1] / onBack → setObjectState(cupboard_left=closed)
 
 - **マグカップ** `cupboard_mug` — type:object, 100×100 @(150,150), default:`default`
   - `default`: touch → showMessage("お気に入りのマグカップをありがとう")
 
 - **金庫** `kitchen_safe` — type:object, 170×180 @(120,110), default:`closed`
   - `closed`: children=[safe8_dial_0, safe8_dial_1, safe8_dial_2, safe8_dial_3, safe8_dial_4, safe8_dial_5, safe8_dial_6, safe8_dial_7, safe8_confirm] / touch → pushNavigation(kitchen_safe)
-  - `open`: children=[battery_1]
 
 - **ダイヤル1** `safe8_dial_0` — type:object, 50×50 @(150,100), default:`0`
   - `0`: touch → setObjectState(safe8_dial_0=1)
@@ -209,9 +208,9 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `9`: touch → setObjectState(safe8_dial_7=0)
 
 - **確定** `safe8_confirm` — type:object, 50×50 @(270,325), default:`default`
-  - `default`: touch [objectState(safe8_dial_0) == "0" & objectState(safe8_dial_1) == "2" & objectState(safe8_dial_2) == "1" & objectState(safe8_dial_3) == "4" & objectState(safe8_dial_4) == "1" & objectState(safe8_dial_5) == "3" & objectState(safe8_dial_6) == "1" & objectState(safe8_dial_7) == "2"] → setObjectState(kitchen_safe=open), showMessage("金庫が開いた")
+  - `default`: touch [objectState(safe8_dial_0) == "0" & objectState(safe8_dial_1) == "2" & objectState(safe8_dial_2) == "1" & objectState(safe8_dial_3) == "4" & objectState(safe8_dial_4) == "1" & objectState(safe8_dial_5) == "3" & objectState(safe8_dial_6) == "1" & objectState(safe8_dial_7) == "2"] → setObjectState(kitchen_safe=open), showObject(battery_1), popNavigation, showMessage("金庫が開いた"), playSound(correct)
 
-- **電池①** `battery_1` — type:item, 100×100 @(150,150), default:`default`
+- **電池①** `battery_1` — type:item, 70×70 @(120,120), default:`default` ⚠visible:false
   - `default`: touch → addItem(battery1), hideObject(battery_1), showMessage("電池①を手に入れた")
 
 ### リビングルーム `room_livingroom`
@@ -259,7 +258,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[projector] / touch → pushNavigation(cr_shelf_top)
 
 - **棚(中)** `cr_shelf_mid` — type:object, 150×150 @(125,200), default:`default`
-  - `default`: touch → pushNavigation(corner_rack_safe)
+  - `default`: touch [objectState(corner_rack_safe) != "open"] → pushNavigation(corner_rack_safe)
 
 - **金庫** `corner_rack_safe` — type:object, 0×0 @(0,0), default:`closed` ⚠visible:false
   - `closed`: children=[safe_dial_0, safe_dial_1, safe_dial_2, safe_dial_3, safe_confirm]
@@ -314,7 +313,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `9`: touch → setObjectState(safe_dial_3=0)
 
 - **確定** `safe_confirm` — type:object, 100×50 @(150,280), default:`default`
-  - `default`: touch [objectState(safe_dial_0) == "0" & objectState(safe_dial_1) == "7" & objectState(safe_dial_2) == "1" & objectState(safe_dial_3) == "3"] → setObjectState(corner_rack_safe=open), showMessage("金庫が開いた")
+  - `default`: touch [objectState(safe_dial_0) == "0" & objectState(safe_dial_1) == "7" & objectState(safe_dial_2) == "1" & objectState(safe_dial_3) == "3"] → setObjectState(corner_rack_safe=open), showMessage("金庫が開いた"), playSound(correct)
 
 - **鍵A** `safe_key_a` — type:item, 100×100 @(150,150), default:`default`
   - `default`: touch → addItem(key_a), hideObject(safe_key_a), showMessage("鍵Aを手に入れた")
@@ -345,7 +344,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
 - **リモコン(拡大)** `remote_card_back2` — type:object, 180×260 @(110,70), default:`default`
   - `default`: touch → setObjectState(remote_inspect=front)
 
-- **プロジェクター** `projector` — type:object, 140×120 @(130,120), default:`off`
+- **プロジェクター** `projector` — type:object, 70×60 @(200,180), default:`off`
   - `off`: touch [selectedItem == "remote" & objectState(remote_body) == "battery_installed"] → setObjectState(projector=on), wait, pushNavigation(projector_confirm) / touch [selectedItem == "remote" & objectState(remote_body) != "battery_installed"] → showMessage("リモコンの電池が足りないみたいだ") / touch [selectedItem != "remote"] → showMessage("リモコンで操作できそうだ")
   - `on`: touch → pushNavigation(projector_confirm)
 
@@ -353,7 +352,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `default`: children=[projector_confirm_yes, projector_confirm_no]
 
 - **はい** `projector_confirm_yes` — type:button, 0×0 @(0,0), default:`default`
-  - `default`: touch [globalState(projectorEventActivated) != true] → popNavigation, showObject(bedroom_present), setObjectState(workingspace_door=light_up), setObjectState(ws_door_panel=light_up), setGlobalState(roomDarkMode=true), disableAllExcept, setGlobalState(projectorEventActivated=true), pushNavigation(projector_video) / touch [globalState(projectorEventActivated) == true] → popNavigation, pushNavigation(projector_video)
+  - `default`: touch [globalState(projectorEventActivated) != true] → popNavigation, setObjectState(bedroom_bed=default), showObject(bedroom_present), setObjectState(workingspace_door=light_up), setObjectState(ws_door_panel=light_up), setGlobalState(roomDarkMode=true), disableAllExcept, setGlobalState(projectorEventActivated=true), pushNavigation(projector_video) / touch [globalState(projectorEventActivated) == true] → popNavigation, setObjectState(bedroom_bed=default), pushNavigation(projector_video)
 
 - **いいえ** `projector_confirm_no` — type:button, 0×0 @(0,0), default:`default`
   - `default`: touch → popNavigation, setObjectState(projector=off)
@@ -373,7 +372,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `hot`: touch → showMessage("👩暑い"), setObjectState(workingspace_aircon=cold)
 
 - **棚** `workingspace_shelf` — type:object, 80×250 @(220,150), default:`default`
-  - `default`: children=[book_slot_1, book_slot_2, book_slot_3, book_slot_4, book_slot_5, book_slot_6, book_slot_7, book_8] / touch → pushNavigation(workingspace_shelf) / watchState [objectState(book_slot_1) == "book1" & objectState(book_slot_2) == "book2" & objectState(book_slot_3) == "book3" & objectState(book_slot_4) == "book4" & objectState(book_slot_5) == "book5" & objectState(book_slot_6) == "book6" & objectState(book_slot_7) == "book7"] → showMessage("SDカードが落ちてきた"), addItem(sdcard)
+  - `default`: children=[book_slot_1, book_slot_2, book_slot_3, book_slot_4, book_slot_5, book_slot_6, book_slot_7, book_8] / touch → pushNavigation(workingspace_shelf) / watchState [objectState(book_slot_1) == "book1" & objectState(book_slot_2) == "book2" & objectState(book_slot_3) == "book3" & objectState(book_slot_4) == "book4" & objectState(book_slot_5) == "book5" & objectState(book_slot_6) == "book6" & objectState(book_slot_7) == "book7" & globalState(sdcardDone) != true] → showMessage("SDカードが落ちてきた"), addItem(sdcard), playSound(itemGet), setGlobalState(sdcardDone=true), disableObject(book_slot_1), disableObject(book_slot_2), disableObject(book_slot_3), disableObject(book_slot_4), disableObject(book_slot_5), disableObject(book_slot_6), disableObject(book_slot_7)
 
 - **仕事机** `workingspace_desk` — type:object, 100×150 @(0,250), default:`default`
   - `default`: children=[workingspace_pc, workingspace_pw1, workingspace_pw2, workingspace_pw3, workingspace_pw4, workingspace_btn_hira, workingspace_btn_symbol, workingspace_btn_enter] / touch → pushNavigation(workingspace_desk)
@@ -383,22 +382,22 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `light_up`: children=[ws_door_panel] / touch → pushNavigation(workingspace_door)
 
 - **扉** `ws_door_panel` — type:door, 300×350 @(50,50), default:`closed`
-  - `closed`: touch [selectedItem == "key_a"] → setObjectState(ws_door_panel=open), clearSelectedItem, showMessage("鍵Aで扉が開いた") / touch [selectedItem != "key_a"] → showMessage("鍵がかかっている")
+  - `closed`: touch [selectedItem == "key_a"] → setObjectState(ws_door_panel=open), removeItem(key_a), clearSelectedItem, showMessage("鍵Aで扉が開いた"), playSound(doorOpen) / touch [selectedItem != "key_a"] → showMessage("鍵がかかっている")
   - `open`: touch → navigateRoom(room_bedroom)
   - `light_up`: touch → navigateRoom(room_bedroom)
 
-- **PC** `workingspace_pc` — type:object, 160×280 @(100,0), default:`inactive`
+- **PC** `workingspace_pc` — type:object, 260×280 @(50,0), default:`inactive`
   - `active_morning`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
   - `active_night`: touch → showMessage("しおりちゃんのおかげで仕事頑張れてます。ありがとう！")
-  - `sdnone`: touch [hasItem(sdcard) == true & objectState(cleaning_robot) == "charge_complete"] → showMessage("その前に掃除しないと") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(workingspace_curtain) ⊇ "morning"] → removeItem(sdcard), setObjectState(workingspace_pc=active_morning), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(workingspace_curtain) ⊇ "night"] → removeItem(sdcard), setObjectState(workingspace_pc=active_night), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == false] → showMessage("sdカードがありません") / watchState [objectState(cleaning_robot) == "charge_complete"] → showMessage("そろそろ掃除しないと")
+  - `sdnone`: touch [hasItem(sdcard) == true & objectState(cleaning_robot) == "charge_complete"] → showMessage("その前に掃除しないと") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(bedroom_bed) != "sleep"] → removeItem(sdcard), setObjectState(workingspace_pc=active_morning), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == true & objectState(cleaning_robot) != "charge_complete" & objectState(bedroom_bed) == "sleep"] → removeItem(sdcard), setObjectState(workingspace_pc=active_night), showMessage("SDカードを挿入した") / touch [hasItem(sdcard) == false] → showMessage("sdカードがありません") / watchState [objectState(cleaning_robot) == "charge_complete"] → showMessage("そろそろ掃除しないと")
 
-- **パスワード1文字目** `workingspace_pw1` — type:text, 34×50 @(110,75), default:`active_blank`
+- **パスワード1文字目** `workingspace_pw1` — type:text, 59×50 @(60,75), default:`active_blank`
 
-- **パスワード2文字目** `workingspace_pw2` — type:text, 34×50 @(145,75), default:`inactive_blank`
+- **パスワード2文字目** `workingspace_pw2` — type:text, 59×50 @(121,75), default:`inactive_blank`
 
-- **パスワード3文字目** `workingspace_pw3` — type:text, 34×50 @(180,75), default:`inactive_blank`
+- **パスワード3文字目** `workingspace_pw3` — type:text, 59×50 @(181,75), default:`inactive_blank`
 
-- **パスワード4文字目** `workingspace_pw4` — type:text, 35×50 @(215,75), default:`inactive_blank`
+- **パスワード4文字目** `workingspace_pw4` — type:text, 60×50 @(240,75), default:`inactive_blank`
 
 - **ひらがな入力ボタン** `workingspace_btn_hira` — type:object, 50×50 @(75,170), default:`default`
   - `default`: touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_blank"] → setObjectState(workingspace_pw1=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_a"] → setObjectState(workingspace_pw1=active_ya) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ya"] → setObjectState(workingspace_pw1=active_n) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_n"] → setObjectState(workingspace_pw1=active_to) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_to"] → setObjectState(workingspace_pw1=active_o) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_o"] → setObjectState(workingspace_pw1=active_ta) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ta"] → setObjectState(workingspace_pw1=active_ha) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_ha"] → setObjectState(workingspace_pw1=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_smile"] → setObjectState(workingspace_pw1=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_skull"] → setObjectState(workingspace_pw1=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw1) == "active_apple"] → setObjectState(workingspace_pw1=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_blank"] → setObjectState(workingspace_pw2=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_a"] → setObjectState(workingspace_pw2=active_ya) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ya"] → setObjectState(workingspace_pw2=active_n) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_n"] → setObjectState(workingspace_pw2=active_to) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_to"] → setObjectState(workingspace_pw2=active_o) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_o"] → setObjectState(workingspace_pw2=active_ta) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ta"] → setObjectState(workingspace_pw2=active_ha) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_ha"] → setObjectState(workingspace_pw2=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_smile"] → setObjectState(workingspace_pw2=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_skull"] → setObjectState(workingspace_pw2=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw2) == "active_apple"] → setObjectState(workingspace_pw2=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_blank"] → setObjectState(workingspace_pw3=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_a"] → setObjectState(workingspace_pw3=active_ya) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ya"] → setObjectState(workingspace_pw3=active_n) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_n"] → setObjectState(workingspace_pw3=active_to) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_to"] → setObjectState(workingspace_pw3=active_o) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_o"] → setObjectState(workingspace_pw3=active_ta) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ta"] → setObjectState(workingspace_pw3=active_ha) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_ha"] → setObjectState(workingspace_pw3=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_smile"] → setObjectState(workingspace_pw3=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_skull"] → setObjectState(workingspace_pw3=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw3) == "active_apple"] → setObjectState(workingspace_pw3=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_blank"] → setObjectState(workingspace_pw4=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_a"] → setObjectState(workingspace_pw4=active_ya) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ya"] → setObjectState(workingspace_pw4=active_n) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_n"] → setObjectState(workingspace_pw4=active_to) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_to"] → setObjectState(workingspace_pw4=active_o) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_o"] → setObjectState(workingspace_pw4=active_ta) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ta"] → setObjectState(workingspace_pw4=active_ha) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_ha"] → setObjectState(workingspace_pw4=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_smile"] → setObjectState(workingspace_pw4=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_skull"] → setObjectState(workingspace_pw4=active_a) / touch [objectState(workingspace_pc) == "inactive" & objectState(workingspace_pw4) == "active_apple"] → setObjectState(workingspace_pw4=active_a)
@@ -538,7 +537,7 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `sleep`: touch → setObjectState(bedroom_bed=default) / touch [objectState(workingspace_curtain) == "nightclose"] → setObjectState(workingspace_curtain=morningclose) / touch [objectState(workingspace_curtain) == "nightopen"] → setObjectState(workingspace_curtain=morningopen)
 
 - **ラック** `bedroom_rack` — type:object, 60×80 @(315,320), default:`default`
-  - `default`: touch → pushNavigation(bedroom_rack), setObjectState(ingredient_rice=active), setObjectState(ingredient_egg=active), setObjectState(ingredient_ketchup=active)
+  - `default`: children=[bedroom_smartphone] / touch → pushNavigation(bedroom_rack), setObjectState(ingredient_rice=active), setObjectState(ingredient_egg=active), setObjectState(ingredient_ketchup=active)
 
 - **ゴミ箱** `bedroom_trash_can` — type:object, 30×50 @(320,350), default:`default`
   - `default`: touch → showMessage("なんか臭い…")
@@ -582,7 +581,10 @@ JSON駆動の脱出ゲーム。UIはJSON(`src/data/game.json`)を描画するだ
   - `9`: touch → setObjectState(present_dial_2=0)
 
 - **OK** `present_ok` — type:button, 90×55 @(155,285), default:`default`
-  - `default`: touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) == "1"] → setObjectState(bedroom_present_zoom=open), setObjectState(bedroom_present=open), showMessage("プレゼントが開いた！") / touch [objectState(present_dial_1) != "8"] → showMessage("違うみたいだ") / touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) != "1"] → showMessage("違うみたいだ")
+  - `default`: touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) == "1"] → setObjectState(bedroom_present_zoom=open), setObjectState(bedroom_present=open), showMessage("プレゼントが開いた！"), playSound(correct) / touch [objectState(present_dial_1) != "8"] → showMessage("違うみたいだ"), playSound(wrong) / touch [objectState(present_dial_1) == "8" & objectState(present_dial_2) != "1"] → showMessage("違うみたいだ"), playSound(wrong)
+
+- **スマホ** `bedroom_smartphone` — type:object, 150×100 @(50,150), default:`default`
+  - `default`: touch → showMessage("いつも電話ありがとう")
 
 ---
 

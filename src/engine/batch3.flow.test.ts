@@ -144,10 +144,10 @@ describe("PC SD-card gate", () => {
     expect(e.getSnapshot().toast).toBe("しおりちゃんのおかげで仕事頑張れてます。ありがとう！");
   });
 
-  it("inserts as active_night when the window shows night", async () => {
+  it("inserts as active_night when the bed is left in the sleep state", async () => {
     const g = clone();
-    const curtain = g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "workingspace_curtain")!;
-    curtain.defaultState = "nightclose";
+    const bed = g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "bedroom_bed")!;
+    bed.defaultState = "sleep";
     const e = new GameEngine(g);
     await solvePassword(e);
     await getSdCard(e);

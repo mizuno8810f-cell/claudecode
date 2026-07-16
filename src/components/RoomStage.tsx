@@ -146,7 +146,14 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
         {isConfirm ? (
           <ConfirmOverlay
             engine={engine}
-            message={config.projectorConfirmMessage ?? "準備できましたか？"}
+            message={
+              (config.projectorConfirmMessage ?? "準備できましたか？") +
+              // On replays (event already activated) append the "not part of the
+              // puzzle" note; the first time shows the plain message.
+              (snapshot.globalState.projectorEventActivated === true && config.projectorReplayNote
+                ? `\n${config.projectorReplayNote}`
+                : "")
+            }
             yesId="projector_confirm_yes"
             noId="projector_confirm_no"
           />
