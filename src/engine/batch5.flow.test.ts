@@ -43,15 +43,16 @@ describe("batch5 fixes", () => {
     expect(inv(e).length).toBe(0);
   });
 
-  it("the book puzzle can only be solved once (single SD card, books locked)", async () => {
-    const e = new GameEngine(clone());
+  it("the book puzzle can only be solved once (reveals present, then locks)", async () => {
+    const g = clone();
+    for (let n = 1; n <= 7; n++)
+      g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!.enabled = true;
+    const e = new GameEngine(g);
     await e.touch("workingspace_shelf");
     await orderBooks(e);
-    expect(inv(e).filter((i) => i === "sdcard").length).toBe(1);
-    for (let n = 1; n <= 7; n++) expect(enabledOf(e, `book_slot_${n}`)).toBe(false); // locked
-    // re-touching does nothing; no second SD card
-    await tap(e, "book_slot_1", 3);
-    expect(inv(e).filter((i) => i === "sdcard").length).toBe(1);
+    expect(e.getSnapshot().objectStates["bedroom_present"].visible).toBe(true);
+    for (let n = 1; n <= 7; n++) expect(enabledOf(e, `book_slot_${n}`)).toBe(false); // locked after solving
+    expect(inv(e)).not.toContain("sdcard"); // no SD card anymore
   });
 
   it("corner-rack mid shelf cannot be re-opened once the safe is open", async () => {

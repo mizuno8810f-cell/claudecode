@@ -29,7 +29,6 @@
 - `images/ketchup.png`  （ケチャップ）
 - `images/rice.png`  （ライス）
 - `images/battery1.png`  （電池①）
-- `images/sdcard.png`  （SDカード）
 - `images/battery2.png`  （電池②）
 - `images/remote.png`  （リモコン）
 
@@ -200,7 +199,6 @@
 - `images/workspace_pc__inactive.png`  （PC state:inactive）
 - `images/workspace_pc__active_morning.png`  （PC state:active_morning）
 - `images/workspace_pc__active_night.png`  （PC state:active_night）
-- `images/workspace_pc__sdnone.png`  （PC state:sdnone）
 - `images/password_char__active_blank.png`  （パスワード1文字目 state:active_blank）
 - `images/password_char__inactive_blank.png`  （パスワード1文字目 state:inactive_blank）
 - `images/password_char__active_a.png`  （パスワード1文字目 state:active_a）

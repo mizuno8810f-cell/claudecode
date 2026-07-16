@@ -78,8 +78,10 @@ describe("confirm outcomes", () => {
     expect(visibleOf(e, "bedroom_present")).toBe(false);
   });
 
-  it("はい plays the video and applies the one-time game changes", async () => {
+  it("はい plays the video, unlocks the books, and leaves the room untouched", async () => {
     const e = new GameEngine(clone());
+    // books start locked, no dark/light-up/disable/present side effects
+    expect(enabledOf(e, "book_slot_1")).toBe(false);
     await chargeRemote(e);
     e.pressInventoryItem("remote");
     await e.touch("projector");
@@ -87,52 +89,28 @@ describe("confirm outcomes", () => {
 
     expect(navTop(e)).toBe("projector_video");
     expect(global(e, "projectorEventActivated")).toBe(true);
-    expect(global(e, "roomDarkMode")).toBe(true);
-    expect(visibleOf(e, "bedroom_present")).toBe(true);
-    // only the workspace doors light up; the bedroom door does not
-    for (const d of ["workingspace_door", "ws_door_panel"]) expect(stateOf(e, d)).toBe("light_up");
-    expect(stateOf(e, "bedroom_door")).not.toBe("light_up");
-    expect(stateOf(e, "bedroom_door_panel")).not.toBe("light_up");
-    // the present is the lit goal (via config, while dark)
-    expect(e.getConfig().lightUpObjectIds).toContain("bedroom_present");
-    // non-excluded objects disabled, excluded ones (doors/present/projector) stay enabled
-    expect(enabledOf(e, "livingroom_sofa")).toBe(false);
-    expect(enabledOf(e, "bedroom_present")).toBe(true);
-    expect(enabledOf(e, "projector")).toBe(true);
-    expect(enabledOf(e, "bedroom_door")).toBe(true);
+    // the only game effect: the books become movable
+    for (let n = 1; n <= 7; n++) expect(enabledOf(e, `book_slot_${n}`)).toBe(true);
+    // no black-out, no light-up, no disabling, present still hidden
+    expect(global(e, "roomDarkMode")).not.toBe(true);
+    expect(stateOf(e, "workingspace_door")).not.toBe("light_up");
+    expect(visibleOf(e, "bedroom_present")).toBe(false);
+    expect(enabledOf(e, "livingroom_sofa")).toBe(true);
   });
 });
 
-describe("replay does not re-run the game changes", () => {
-  it("second play only shows the video again", async () => {
+describe("projector replay", () => {
+  it("can be replayed; the confirm reopens and the video plays again", async () => {
     const e = new GameEngine(clone());
     await chargeRemote(e);
     e.pressInventoryItem("remote");
-    await e.touch("projector"); // on + confirm
-    await e.touch("projector_confirm_yes"); // first time: changes + video
-    await e.back(); // close video
-    // projector stays on; re-tap opens confirm again with no remote needed
-    e.pressInventoryItem("remote"); // deselect not required, but clear state
-    e.pressInventoryItem("remote");
     await e.touch("projector");
+    await e.touch("projector_confirm_yes"); // first play
+    await e.back(); // close video
+    await e.touch("projector"); // projector on -> confirm again (no remote needed)
     expect(navTop(e)).toBe("projector_confirm");
-    // re-enable the sofa to prove the changes are not re-applied
-    // (simulate: it is currently disabled from the first run)
-    expect(enabledOf(e, "livingroom_sofa")).toBe(false);
     await e.touch("projector_confirm_yes"); // replay
     expect(navTop(e)).toBe("projector_video");
     expect(global(e, "projectorEventActivated")).toBe(true);
-  });
-
-  it("present is not duplicated on replay", async () => {
-    const e = new GameEngine(clone());
-    await chargeRemote(e);
-    e.pressInventoryItem("remote");
-    await e.touch("projector");
-    await e.touch("projector_confirm_yes");
-    await e.back();
-    const presentCount = () =>
-      e.getCurrentRoom() && Object.keys(e.getSnapshot().objectStates).filter((k) => k === "bedroom_present").length;
-    expect(presentCount()).toBe(1);
   });
 });

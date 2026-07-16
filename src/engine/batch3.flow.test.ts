@@ -63,9 +63,26 @@ async function sortBooks(e: GameEngine) {
   }
 }
 
+// the books are locked until the projector video plays; unlock them for these
+// unit tests so the swap mechanic can be exercised directly.
+function unlockedBooks(): GameData {
+  const g = clone();
+  for (let n = 1; n <= 7; n++)
+    g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!.enabled = true;
+  return g;
+}
+
 describe("workspace shelf book ordering (2-tap swap)", () => {
-  it("first tap selects, tapping another swaps the two books", async () => {
+  it("books are locked until the projector video has played", async () => {
     const e = new GameEngine(clone());
+    await e.touch("workingspace_shelf");
+    const before = stateOf(e, "book_slot_1");
+    await e.touch("book_slot_1"); // disabled -> no selection
+    expect(stateOf(e, "book_slot_1")).toBe(before);
+  });
+
+  it("first tap selects, tapping another swaps the two books", async () => {
+    const e = new GameEngine(unlockedBooks());
     await e.touch("workingspace_shelf");
     const a = stateOf(e, "book_slot_1");
     const b = stateOf(e, "book_slot_2");
@@ -77,7 +94,7 @@ describe("workspace shelf book ordering (2-tap swap)", () => {
   });
 
   it("tapping the selected book again deselects it", async () => {
-    const e = new GameEngine(clone());
+    const e = new GameEngine(unlockedBooks());
     const a = stateOf(e, "book_slot_3");
     await e.touch("book_slot_3");
     expect(stateOf(e, "book_slot_3")).toBe(`${a}_sel`);
@@ -85,15 +102,16 @@ describe("workspace shelf book ordering (2-tap swap)", () => {
     expect(stateOf(e, "book_slot_3")).toBe(a);
   });
 
-  it("starts scrambled and yields the SD card only when 1..7 are ordered", async () => {
-    const e = new GameEngine(clone());
+  it("ordering 1..7 makes a noise and reveals the present (no SD card)", async () => {
+    const e = new GameEngine(unlockedBooks());
     const ordered = () => [1, 2, 3, 4, 5, 6, 7].every((n) => stateOf(e, `book_slot_${n}`) === `book${n}`);
     expect(ordered()).toBe(false);
-    expect(inv(e)).not.toContain("sdcard");
+    expect(visibleOf(e, "bedroom_present")).toBe(false);
     await sortBooks(e);
     expect(ordered()).toBe(true);
-    expect(e.getSnapshot().toast).toBe("SDカードが落ちてきた");
-    expect(inv(e)).toContain("sdcard");
+    expect(e.getSnapshot().toast).toBe("キッチンで物音がした");
+    expect(visibleOf(e, "bedroom_present")).toBe(true);
+    expect(inv(e)).not.toContain("sdcard");
   });
 });
 
@@ -108,8 +126,7 @@ describe("bedroom window humidifier", () => {
   });
 });
 
-describe("PC SD-card gate", () => {
-  // drive the password puzzle to the solved (sdnone) state
+describe("PC activation (password -> active)", () => {
   async function solvePassword(e: GameEngine) {
     await tap(e, "workingspace_btn_hira", 7); // pw1 = ha
     await e.touch("workingspace_btn_enter");
@@ -120,38 +137,20 @@ describe("PC SD-card gate", () => {
     await tap(e, "workingspace_btn_symbol", 2); // pw4 = skull
     await e.touch("workingspace_btn_enter");
   }
-  // legitimately obtain the SD card by ordering the shelf books
-  async function getSdCard(e: GameEngine) {
-    await e.touch("workingspace_shelf");
-    await sortBooks(e);
-    await e.back();
-  }
 
-  it("without the SD card the PC complains; with it, the PC boots (morning)", async () => {
-    const e = new GameEngine(clone());
+  it("solving the password activates the PC directly (morning by default)", async () => {
+    const e = new GameEngine(clone()); // bed default => morning
     await solvePassword(e);
-    expect(stateOf(e, "workingspace_pc")).toBe("sdnone");
-    await e.touch("workingspace_pc");
-    expect(e.getSnapshot().toast).toBe("sdカードがありません");
-    expect(stateOf(e, "workingspace_pc")).toBe("sdnone");
-
-    await getSdCard(e);
-    expect(inv(e)).toContain("sdcard");
-    await e.touch("workingspace_pc");
     expect(stateOf(e, "workingspace_pc")).toBe("active_morning");
-    expect(inv(e)).not.toContain("sdcard"); // consumed
     await e.touch("workingspace_pc");
     expect(e.getSnapshot().toast).toBe("しおりちゃんのおかげで仕事頑張れてます。ありがとう！");
   });
 
-  it("inserts as active_night when the bed is left in the sleep state", async () => {
+  it("activates as active_night when the bed is left in the sleep state", async () => {
     const g = clone();
-    const bed = g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "bedroom_bed")!;
-    bed.defaultState = "sleep";
+    g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "bedroom_bed")!.defaultState = "sleep";
     const e = new GameEngine(g);
     await solvePassword(e);
-    await getSdCard(e);
-    await e.touch("workingspace_pc");
     expect(stateOf(e, "workingspace_pc")).toBe("active_night");
   });
 });

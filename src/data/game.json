@@ -4586,14 +4586,7 @@
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "globalState",
-                          "key": "projectorEventActivated",
-                          "operator": "notEquals",
-                          "value": true
-                        }
-                      ],
+                      "conditions": [],
                       "events": [
                         {
                           "type": "popNavigation"
@@ -4604,56 +4597,37 @@
                           "value": "default"
                         },
                         {
-                          "type": "showObject",
-                          "targetId": "bedroom_present"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "workingspace_door",
-                          "value": "light_up"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "ws_door_panel",
-                          "value": "light_up"
-                        },
-                        {
-                          "type": "setGlobalState",
-                          "key": "roomDarkMode",
-                          "value": true
-                        },
-                        {
-                          "type": "disableAllExcept"
-                        },
-                        {
                           "type": "setGlobalState",
                           "key": "projectorEventActivated",
                           "value": true
                         },
                         {
-                          "type": "pushNavigation",
-                          "targetId": "projector_video"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "globalState",
-                          "key": "projectorEventActivated",
-                          "operator": "equals",
-                          "value": true
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "popNavigation"
+                          "type": "enableObject",
+                          "targetId": "book_slot_1"
                         },
                         {
-                          "type": "setObjectState",
-                          "targetId": "bedroom_bed",
-                          "value": "default"
+                          "type": "enableObject",
+                          "targetId": "book_slot_2"
+                        },
+                        {
+                          "type": "enableObject",
+                          "targetId": "book_slot_3"
+                        },
+                        {
+                          "type": "enableObject",
+                          "targetId": "book_slot_4"
+                        },
+                        {
+                          "type": "enableObject",
+                          "targetId": "book_slot_5"
+                        },
+                        {
+                          "type": "enableObject",
+                          "targetId": "book_slot_6"
+                        },
+                        {
+                          "type": "enableObject",
+                          "targetId": "book_slot_7"
                         },
                         {
                           "type": "pushNavigation",
@@ -4955,7 +4929,7 @@
                         },
                         {
                           "type": "globalState",
-                          "key": "sdcardDone",
+                          "key": "booksSolved",
                           "operator": "notEquals",
                           "value": true
                         }
@@ -4963,19 +4937,19 @@
                       "events": [
                         {
                           "type": "showMessage",
-                          "message": "SDカードが落ちてきた"
+                          "message": "キッチンで物音がした"
                         },
                         {
-                          "type": "addItem",
-                          "itemId": "sdcard"
+                          "type": "showObject",
+                          "targetId": "bedroom_present"
                         },
                         {
                           "type": "playSound",
-                          "soundId": "itemGet"
+                          "soundId": "correct"
                         },
                         {
                           "type": "setGlobalState",
-                          "key": "sdcardDone",
+                          "key": "booksSolved",
                           "value": true
                         },
                         {
@@ -5253,145 +5227,6 @@
                         {
                           "type": "showMessage",
                           "message": "しおりちゃんのおかげで仕事頑張れてます。ありがとう！"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "sdnone": {
-                  "image": "images/workspace_pc__sdnone.png",
-                  "children": [],
-                  "triggers": [
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "sdcard",
-                          "operator": "equals",
-                          "value": true
-                        },
-                        {
-                          "type": "objectState",
-                          "targetId": "cleaning_robot",
-                          "operator": "equals",
-                          "value": "charge_complete"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "その前に掃除しないと"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "sdcard",
-                          "operator": "equals",
-                          "value": true
-                        },
-                        {
-                          "type": "objectState",
-                          "targetId": "cleaning_robot",
-                          "operator": "notEquals",
-                          "value": "charge_complete"
-                        },
-                        {
-                          "type": "objectState",
-                          "targetId": "bedroom_bed",
-                          "operator": "notEquals",
-                          "value": "sleep"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "removeItem",
-                          "itemId": "sdcard"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "workingspace_pc",
-                          "value": "active_morning"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "SDカードを挿入した"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "sdcard",
-                          "operator": "equals",
-                          "value": true
-                        },
-                        {
-                          "type": "objectState",
-                          "targetId": "cleaning_robot",
-                          "operator": "notEquals",
-                          "value": "charge_complete"
-                        },
-                        {
-                          "type": "objectState",
-                          "targetId": "bedroom_bed",
-                          "operator": "equals",
-                          "value": "sleep"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "removeItem",
-                          "itemId": "sdcard"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "workingspace_pc",
-                          "value": "active_night"
-                        },
-                        {
-                          "type": "showMessage",
-                          "message": "SDカードを挿入した"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "touch",
-                      "conditions": [
-                        {
-                          "type": "hasItem",
-                          "itemId": "sdcard",
-                          "operator": "equals",
-                          "value": false
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "sdカードがありません"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "watchState",
-                      "conditions": [
-                        {
-                          "type": "objectState",
-                          "targetId": "cleaning_robot",
-                          "operator": "equals",
-                          "value": "charge_complete"
-                        }
-                      ],
-                      "events": [
-                        {
-                          "type": "showMessage",
-                          "message": "そろそろ掃除しないと"
                         }
                       ]
                     }
@@ -9612,16 +9447,16 @@
                         },
                         {
                           "type": "objectState",
-                          "targetId": "workingspace_curtain",
-                          "operator": "includes",
-                          "value": "morning"
+                          "targetId": "bedroom_bed",
+                          "operator": "notEquals",
+                          "value": "sleep"
                         }
                       ],
                       "events": [
                         {
                           "type": "setObjectState",
                           "targetId": "workingspace_pc",
-                          "value": "sdnone"
+                          "value": "active_morning"
                         },
                         {
                           "type": "hideObject",
@@ -9676,16 +9511,16 @@
                         },
                         {
                           "type": "objectState",
-                          "targetId": "workingspace_curtain",
-                          "operator": "includes",
-                          "value": "night"
+                          "targetId": "bedroom_bed",
+                          "operator": "equals",
+                          "value": "sleep"
                         }
                       ],
                       "events": [
                         {
                           "type": "setObjectState",
                           "targetId": "workingspace_pc",
-                          "value": "sdnone"
+                          "value": "active_night"
                         },
                         {
                           "type": "hideObject",
@@ -9720,7 +9555,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book3",
               "states": {
                 "book1": {
@@ -17037,7 +16872,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book1",
               "states": {
                 "book1": {
@@ -24354,7 +24189,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book5",
               "states": {
                 "book1": {
@@ -31671,7 +31506,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book2",
               "states": {
                 "book1": {
@@ -38988,7 +38823,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book7",
               "states": {
                 "book1": {
@@ -46305,7 +46140,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book4",
               "states": {
                 "book1": {
@@ -53622,7 +53457,7 @@
                 "height": 210
               },
               "visible": true,
-              "enabled": true,
+              "enabled": false,
               "defaultState": "book6",
               "states": {
                 "book1": {
@@ -62043,12 +61878,6 @@
       "description": "キッチンの金庫にあった電池"
     },
     {
-      "id": "sdcard",
-      "name": "SDカード",
-      "image": "images/sdcard.png",
-      "description": "棚の本の奥から落ちてきたSDカード"
-    },
-    {
       "id": "battery2",
       "name": "電池②",
       "image": "images/battery2.png",
@@ -62094,10 +61923,7 @@
       "present_ok"
     ],
     "clearImage": "images/clear.png",
-    "lightUpObjectIds": [
-      "bedroom_present"
-    ],
-    "projectorReplayNote": "※この動画は謎解きとはかんけいありません。",
+    "lightUpObjectIds": [],
     "sounds": {
       "touch": "sounds/se_touch.wav",
       "itemGet": "sounds/se_item_get.wav",

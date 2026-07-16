@@ -71,10 +71,10 @@ describe("workspace PC password puzzle", () => {
     expect(stateOf(e, PWS[1])).toBe("active_blank");
   });
 
-  it("correct password turns the PC on to the SD-card-missing state and hides the chars", async () => {
-    const e = new GameEngine(clone()); // curtain default = morningclose
+  it("correct password activates the PC directly (morning by default) and hides the chars", async () => {
+    const e = new GameEngine(clone()); // bed default => morning
     await enterCorrect(e);
-    expect(stateOf(e, PC)).toBe("sdnone");
+    expect(stateOf(e, PC)).toBe("active_morning");
     for (const pw of PWS) expect(visibleOf(e, pw)).toBe(false);
   });
 
@@ -96,15 +96,15 @@ describe("workspace PC password puzzle", () => {
     expect(stateOf(e, PWS[3])).toBe("inactive_blank");
   });
 
-  it("buttons are inert once the PC is on, and touching it without the SD card complains", async () => {
+  it("buttons are inert once the PC is on, and touching it thanks the player", async () => {
     const e = new GameEngine(clone());
     await enterCorrect(e);
-    expect(stateOf(e, PC)).toBe("sdnone");
+    expect(stateOf(e, PC)).toBe("active_morning");
     await press(e, HIRA, 3);
     await press(e, SYM, 3);
     await e.touch(ENTER);
-    expect(stateOf(e, PC)).toBe("sdnone"); // unchanged
+    expect(stateOf(e, PC)).toBe("active_morning"); // unchanged
     await e.touch(PC);
-    expect(e.getSnapshot().toast).toBe("sdカードがありません");
+    expect(e.getSnapshot().toast).toBe("しおりちゃんのおかげで仕事頑張れてます。ありがとう！");
   });
 });
