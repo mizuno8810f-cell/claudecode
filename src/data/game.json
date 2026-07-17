@@ -3910,16 +3910,20 @@
                       ],
                       "events": [
                         {
+                          "type": "playSound",
+                          "soundId": "success"
+                        },
+                        {
+                          "type": "wait",
+                          "ms": 1000
+                        },
+                        {
                           "type": "popNavigation"
                         },
                         {
                           "type": "setObjectState",
                           "targetId": "livingroom_desk_box",
                           "value": "no_remote"
-                        },
-                        {
-                          "type": "playSound",
-                          "soundId": "success"
                         }
                       ]
                     }
