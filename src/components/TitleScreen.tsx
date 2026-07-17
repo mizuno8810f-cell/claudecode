@@ -30,7 +30,18 @@ export function TitleScreen({ title, image, onStart }: TitleScreenProps) {
         />
       )}
       <div className="title-screen__content">
-        <h1 className="title-screen__title">{title}</h1>
+        <h1 className="title-screen__title">
+          {/* Break the main title and the "〜…〜" subtitle onto separate lines. */}
+          {title.includes("〜") ? (
+            <>
+              {title.slice(0, title.indexOf("〜"))}
+              <br />
+              {title.slice(title.indexOf("〜"))}
+            </>
+          ) : (
+            title
+          )}
+        </h1>
         <button type="button" className="title-screen__start" onClick={() => setShowDialog(true)}>
           はじめる
         </button>
