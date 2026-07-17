@@ -27,6 +27,8 @@ export type Condition =
 export type GameEvent =
   | { type: "setObjectState"; targetId: string; value: string }
   | { type: "setGlobalState"; key: string; value: unknown }
+  // Increment a numeric global (default +1); used for attempt/touch counters.
+  | { type: "incrementGlobal"; key: string; by?: number }
   | { type: "showObject"; targetId: string }
   | { type: "hideObject"; targetId: string }
   | { type: "enableObject"; targetId: string }
@@ -123,6 +125,8 @@ export interface GameConfig {
   darkModeExclusionObjectIds?: string[];
   /** Objects that stay enabled when a "disableAllExcept" event fires. */
   disableExclusionObjectIds?: string[];
+  /** Full-screen background art for the title screen (empty = none). */
+  titleImage?: string;
   /** Full-screen image the clear screen fades into. */
   clearImage?: string;
   /** Objects that glow (light-up) while roomDarkMode is on, whatever state

@@ -261,10 +261,14 @@ export class GameEngine {
     const targetId = direction === "left" ? room.leftRoomId : room.rightRoomId;
     if (!targetId) return;
     this.emit({ roomId: targetId, navigationStack: [] });
+    this.playSoundKey("roomMove");
   }
 
   /** Fire-and-forget toast: shows briefly at the top, then auto-clears. */
   private showToast(text: string): void {
+    // Blank entries are used by random-hint lists to represent "show nothing"
+    // (e.g. a 1/10 chance of a hint); skip them so no empty toast flashes.
+    if (!text || !text.trim()) return;
     const seq = ++this.toastSeq;
     this.emit({ toast: text });
     setTimeout(() => {
@@ -312,6 +316,13 @@ export class GameEngine {
       case "setGlobalState":
         this.emit({ globalState: { ...this.snapshot.globalState, [event.key]: event.value } });
         return;
+      case "incrementGlobal": {
+        const current = Number(this.snapshot.globalState[event.key]) || 0;
+        this.emit({
+          globalState: { ...this.snapshot.globalState, [event.key]: current + (event.by ?? 1) },
+        });
+        return;
+      }
       case "showObject":
         this.patchObjectState(event.targetId, { visible: true });
         return;
@@ -345,7 +356,9 @@ export class GameEngine {
         return;
       case "navigateRoom":
         this.emit({ roomId: event.roomId, navigationStack: [] });
-        this.playSoundKey("doorOpen");
+        // Door-to-door navigation between rooms uses the same SE as walking
+        // left/right between rooms, not a distinct "door open" cue.
+        this.playSoundKey("roomMove");
         return;
       case "pushNavigation":
         this.emit({ navigationStack: [...this.snapshot.navigationStack, event.targetId] });

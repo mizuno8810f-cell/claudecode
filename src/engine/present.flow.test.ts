@@ -53,8 +53,9 @@ describe("present box combination puzzle", () => {
     expect(e.getSnapshot().cleared).toBe(true);
   });
 
-  it("game data configures a clear image", () => {
+  it("exposes an (embeddable) clear image slot in config", () => {
     const e = new GameEngine(clone());
-    expect(e.getConfig().clearImage).toBe("images/clear.png");
+    // Empty by default — the clear screen stays light until real art is set.
+    expect(typeof e.getConfig().clearImage).toBe("string");
   });
 });

@@ -48,11 +48,22 @@ describe("batch5 fixes", () => {
     for (let n = 1; n <= 7; n++)
       g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!.enabled = true;
     const e = new GameEngine(g);
+    await e.touch("bedroom_bed"); // leave the bed in the sleep state first
+    expect(stateOf(e, "bedroom_bed")).toBe("sleep");
     await e.touch("workingspace_shelf");
     await orderBooks(e);
     expect(e.getSnapshot().objectStates["bedroom_present"].visible).toBe(true);
     for (let n = 1; n <= 7; n++) expect(enabledOf(e, `book_slot_${n}`)).toBe(false); // locked after solving
     expect(inv(e)).not.toContain("sdcard"); // no SD card anymore
+    // solving resets the bed to default and funnels the player to the present:
+    expect(stateOf(e, "bedroom_bed")).toBe("default");
+    // everything except the door-zoom + present objects is disabled...
+    expect(enabledOf(e, "kitchen_fridge")).toBe(false);
+    expect(enabledOf(e, "livingroom_sofa")).toBe(false);
+    // ...while the present and the doors stay reachable
+    expect(enabledOf(e, "bedroom_present")).toBe(true);
+    expect(enabledOf(e, "ws_door_panel")).toBe(true);
+    expect(enabledOf(e, "bedroom_door_panel")).toBe(true);
   });
 
   it("corner-rack mid shelf cannot be re-opened once the safe is open", async () => {

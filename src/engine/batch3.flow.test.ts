@@ -109,7 +109,7 @@ describe("workspace shelf book ordering (2-tap swap)", () => {
     expect(visibleOf(e, "bedroom_present")).toBe(false);
     await sortBooks(e);
     expect(ordered()).toBe(true);
-    expect(e.getSnapshot().toast).toBe("キッチンで物音がした");
+    expect(e.getSnapshot().toast).toBe("寝室で物音がした");
     expect(visibleOf(e, "bedroom_present")).toBe(true);
     expect(inv(e)).not.toContain("sdcard");
   });

@@ -1,8 +1,8 @@
 {
   "gameId": "escape_game_001",
-  "title": "脱出ゲーム",
+  "title": "脱出ゲーム〜1年記念日の1日〜",
   "initialStageId": "stage_1",
-  "initialRoomId": "room_livingroom",
+  "initialRoomId": "room_kitchen",
   "stages": [
     {
       "id": "stage_1",
@@ -405,6 +405,12 @@
                           "type": "selectedItem",
                           "operator": "equals",
                           "value": "rice"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "includes",
+                          "value": "cleaning"
                         }
                       ],
                       "events": [
@@ -428,6 +434,28 @@
                       "conditions": [
                         {
                           "type": "selectedItem",
+                          "operator": "equals",
+                          "value": "rice"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "cleaning_robot",
+                          "operator": "notIncludes",
+                          "value": "cleaning"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "先にお掃除しなきゃ"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "selectedItem",
                           "operator": "notEquals",
                           "value": "rice"
                         }
@@ -436,6 +464,10 @@
                         {
                           "type": "showMessage",
                           "message": "うまくいかない気がする"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     }
@@ -476,6 +508,10 @@
                         {
                           "type": "showMessage",
                           "message": "チキンライスが出来上がった"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     },
@@ -492,6 +528,10 @@
                         {
                           "type": "showMessage",
                           "message": "うまくいかない気がする"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     }
@@ -542,6 +582,10 @@
                           "message": "ちょっと破けちゃったけど完成！"
                         },
                         {
+                          "type": "playSound",
+                          "soundId": "correct"
+                        },
+                        {
                           "type": "setObjectState",
                           "targetId": "livingroom_desk",
                           "value": "omurice"
@@ -561,6 +605,10 @@
                         {
                           "type": "showMessage",
                           "message": "うまくいかない気がする"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     }
@@ -2342,7 +2390,823 @@
                         },
                         {
                           "type": "playSound",
-                          "soundId": "correct"
+                          "soundId": "success"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "notEquals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "notEquals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "notEquals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "notEquals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "notEquals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "notEquals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "notEquals",
+                          "value": "4"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "notEquals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "notEquals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "notEquals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "notEquals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "notEquals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_6",
+                          "operator": "notEquals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_6",
+                          "operator": "notEquals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_6",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_7",
+                          "operator": "notEquals",
+                          "value": "2"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "kitchenSafeFails"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_1",
+                          "operator": "equals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_3",
+                          "operator": "equals",
+                          "value": "4"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_4",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_5",
+                          "operator": "equals",
+                          "value": "3"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_6",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe8_dial_7",
+                          "operator": "notEquals",
+                          "value": "2"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "workingspace_pc",
+                          "operator": "includes",
+                          "value": "active_"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "bedroom_humidifier",
+                          "operator": "equals",
+                          "value": "active"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "kitchenSafeFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "写真を撮ったのはいつだっけ…",
+                            "一回寝るか…",
+                            "奇妙な跡が…"
+                          ]
                         }
                       ]
                     }
@@ -2355,10 +3219,10 @@
               "name": "電池①",
               "type": "item",
               "position": {
-                "x": 120,
-                "y": 120,
-                "width": 70,
-                "height": 70
+                "x": 150,
+                "y": 150,
+                "width": 100,
+                "height": 100
               },
               "visible": false,
               "enabled": true,
@@ -2513,6 +3377,12 @@
                           "itemId": "hint",
                           "operator": "equals",
                           "value": false
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "hintRetired",
+                          "operator": "notEquals",
+                          "value": true
                         }
                       ],
                       "events": [
@@ -2825,6 +3695,14 @@
                           "type": "setObjectState",
                           "targetId": "cleaning_robot",
                           "value": "cleaning"
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "掃除を開始しました"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         },
                         {
                           "type": "hideObject",
@@ -3847,7 +4725,124 @@
                         },
                         {
                           "type": "playSound",
-                          "soundId": "correct"
+                          "soundId": "success"
+                        },
+                        {
+                          "type": "removeItem",
+                          "itemId": "hint"
+                        },
+                        {
+                          "type": "hideObject",
+                          "targetId": "livingroom_sofa_hint"
+                        },
+                        {
+                          "type": "setGlobalState",
+                          "key": "hintRetired",
+                          "value": true
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_0",
+                          "operator": "notEquals",
+                          "value": "0"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_1",
+                          "operator": "notEquals",
+                          "value": "7"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_2",
+                          "operator": "notEquals",
+                          "value": "1"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_0",
+                          "operator": "equals",
+                          "value": "0"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_1",
+                          "operator": "equals",
+                          "value": "7"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_2",
+                          "operator": "equals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "safe_dial_3",
+                          "operator": "notEquals",
+                          "value": "3"
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     }
@@ -3936,6 +4931,10 @@
                         {
                           "type": "showMessage",
                           "message": "ケチャップで文字を書いた"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "success"
                         }
                       ]
                     },
@@ -3952,6 +4951,10 @@
                         {
                           "type": "showMessage",
                           "message": "ケチャップをかけたほうがよさそうだ"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     }
@@ -4345,6 +5348,10 @@
                         {
                           "type": "showMessage",
                           "message": "電池が2個入った！リモコンが使えるようになった"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     },
@@ -4375,6 +5382,10 @@
                         {
                           "type": "showMessage",
                           "message": "電池が2個入った！リモコンが使えるようになった"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     },
@@ -4592,11 +5603,6 @@
                           "type": "popNavigation"
                         },
                         {
-                          "type": "setObjectState",
-                          "targetId": "bedroom_bed",
-                          "value": "default"
-                        },
-                        {
                           "type": "setGlobalState",
                           "key": "projectorEventActivated",
                           "value": true
@@ -4810,12 +5816,7 @@
                       "events": [
                         {
                           "type": "showMessage",
-                          "message": "👦寒い"
-                        },
-                        {
-                          "type": "setObjectState",
-                          "targetId": "workingspace_aircon",
-                          "value": "hot"
+                          "message": "節約、節約、、"
                         }
                       ]
                     }
@@ -4937,7 +5938,7 @@
                       "events": [
                         {
                           "type": "showMessage",
-                          "message": "キッチンで物音がした"
+                          "message": "寝室で物音がした"
                         },
                         {
                           "type": "showObject",
@@ -4945,7 +5946,7 @@
                         },
                         {
                           "type": "playSound",
-                          "soundId": "correct"
+                          "soundId": "success"
                         },
                         {
                           "type": "setGlobalState",
@@ -4953,32 +5954,12 @@
                           "value": true
                         },
                         {
-                          "type": "disableObject",
-                          "targetId": "book_slot_1"
+                          "type": "setObjectState",
+                          "targetId": "bedroom_bed",
+                          "value": "default"
                         },
                         {
-                          "type": "disableObject",
-                          "targetId": "book_slot_2"
-                        },
-                        {
-                          "type": "disableObject",
-                          "targetId": "book_slot_3"
-                        },
-                        {
-                          "type": "disableObject",
-                          "targetId": "book_slot_4"
-                        },
-                        {
-                          "type": "disableObject",
-                          "targetId": "book_slot_5"
-                        },
-                        {
-                          "type": "disableObject",
-                          "targetId": "book_slot_6"
-                        },
-                        {
-                          "type": "disableObject",
-                          "targetId": "book_slot_7"
+                          "type": "disableAllExcept"
                         }
                       ]
                     }
@@ -5124,7 +6105,7 @@
                         },
                         {
                           "type": "playSound",
-                          "soundId": "doorOpen"
+                          "soundId": "correct"
                         }
                       ]
                     },
@@ -8905,6 +9886,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -8944,6 +9929,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -8983,6 +9972,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9022,6 +10015,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9061,6 +10058,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9100,6 +10101,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9139,6 +10144,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9178,6 +10187,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9217,6 +10230,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9256,6 +10273,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9301,6 +10322,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9352,6 +10377,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9409,6 +10438,10 @@
                           "type": "setObjectState",
                           "targetId": "workingspace_pw4",
                           "value": "inactive_blank"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "wrong"
                         }
                       ]
                     },
@@ -9473,6 +10506,10 @@
                         {
                           "type": "hideObject",
                           "targetId": "workingspace_pw4"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "success"
                         }
                       ]
                     },
@@ -9537,6 +10574,10 @@
                         {
                           "type": "hideObject",
                           "targetId": "workingspace_pw4"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "success"
                         }
                       ]
                     }
@@ -11699,6 +12740,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_1",
                           "value": "book3_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -12665,6 +13710,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_1",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -16930,6 +18051,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_2",
                           "value": "book1_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -17896,6 +19021,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_2",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -28419,6 +29620,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_3",
                           "value": "book5_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -29385,6 +30590,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_3",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -32607,6 +33888,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_4",
                           "value": "book2_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -33573,6 +34858,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_4",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -45139,6 +46500,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_5",
                           "value": "book7_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -46105,6 +47470,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_5",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -49327,6 +50768,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_6",
                           "value": "book4_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -50293,6 +51738,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_6",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -58730,6 +60251,10 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_7",
                           "value": "book6_sel"
+                        },
+                        {
+                          "type": "incrementGlobal",
+                          "key": "booksTouched"
                         }
                       ]
                     },
@@ -59696,6 +61221,82 @@
                           "type": "setObjectState",
                           "targetId": "book_slot_7",
                           "value": "book7"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_1",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_2",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_3",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_4",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_5",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_6",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "book_slot_7",
+                          "operator": "notIncludes",
+                          "value": "_sel"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "projectorEventActivated",
+                          "operator": "equals",
+                          "value": true
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "booksTouched",
+                          "operator": "greaterThan",
+                          "value": 1
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showRandomMessage",
+                          "messages": [
+                            "時系列順に並び替えなきゃ",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                          ]
                         }
                       ]
                     }
@@ -61077,7 +62678,14 @@
                   "triggers": [
                     {
                       "type": "touch",
-                      "conditions": [],
+                      "conditions": [
+                        {
+                          "type": "globalState",
+                          "key": "rackTouched",
+                          "operator": "notEquals",
+                          "value": true
+                        }
+                      ],
                       "events": [
                         {
                           "type": "pushNavigation",
@@ -61097,6 +62705,32 @@
                           "type": "setObjectState",
                           "targetId": "ingredient_ketchup",
                           "value": "active"
+                        },
+                        {
+                          "type": "setGlobalState",
+                          "key": "rackTouched",
+                          "value": true
+                        },
+                        {
+                          "type": "showMessage",
+                          "message": "そろそろご飯とお掃除しないと"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "globalState",
+                          "key": "rackTouched",
+                          "operator": "equals",
+                          "value": true
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "pushNavigation",
+                          "targetId": "bedroom_rack"
                         }
                       ]
                     }
@@ -61215,6 +62849,10 @@
                           "type": "setObjectState",
                           "targetId": "bedroom_window",
                           "value": "cloudy"
+                        },
+                        {
+                          "type": "playSound",
+                          "soundId": "correct"
                         }
                       ]
                     }
@@ -61233,7 +62871,7 @@
               "type": "object",
               "position": {
                 "x": 143,
-                "y": 286,
+                "y": 300,
                 "width": 45,
                 "height": 35
               },
@@ -61741,7 +63379,7 @@
                         },
                         {
                           "type": "playSound",
-                          "soundId": "correct"
+                          "soundId": "success"
                         }
                       ]
                     },
@@ -61756,6 +63394,10 @@
                         }
                       ],
                       "events": [
+                        {
+                          "type": "incrementGlobal",
+                          "key": "presentFails"
+                        },
                         {
                           "type": "showMessage",
                           "message": "違うみたいだ"
@@ -61784,12 +63426,68 @@
                       ],
                       "events": [
                         {
+                          "type": "incrementGlobal",
+                          "key": "presentFails"
+                        },
+                        {
                           "type": "showMessage",
                           "message": "違うみたいだ"
                         },
                         {
                           "type": "playSound",
                           "soundId": "wrong"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_1",
+                          "operator": "notEquals",
+                          "value": "8"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "presentFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "寝室にヒントがあるかも"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "touch",
+                      "conditions": [
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_1",
+                          "operator": "equals",
+                          "value": "8"
+                        },
+                        {
+                          "type": "objectState",
+                          "targetId": "present_dial_2",
+                          "operator": "notEquals",
+                          "value": "1"
+                        },
+                        {
+                          "type": "globalState",
+                          "key": "presentFails",
+                          "operator": "greaterThan",
+                          "value": 0
+                        }
+                      ],
+                      "events": [
+                        {
+                          "type": "showMessage",
+                          "message": "寝室にヒントがあるかも"
                         }
                       ]
                     }
@@ -61905,25 +63603,20 @@
       "present_ok"
     ],
     "disableExclusionObjectIds": [
-      "bedroom_door",
-      "bedroom_door_panel",
       "workingspace_door",
       "ws_door_panel",
+      "bedroom_door",
+      "bedroom_door_panel",
       "bedroom_present",
       "bedroom_present_zoom",
-      "projector",
-      "livingroom_corner_rack",
-      "cr_shelf_top",
-      "projector_confirm",
-      "projector_confirm_yes",
-      "projector_confirm_no",
-      "projector_video",
       "present_dial_1",
       "present_dial_2",
       "present_ok"
     ],
-    "clearImage": "images/clear.png",
-    "lightUpObjectIds": [],
+    "clearImage": "",
+    "lightUpObjectIds": [
+      "bedroom_present"
+    ],
     "sounds": {
       "touch": "sounds/se_touch.wav",
       "itemGet": "sounds/se_item_get.wav",
@@ -61936,7 +63629,10 @@
       "popupOpen": "sounds/se_popup_open.wav",
       "popupClose": "sounds/se_popup_close.wav",
       "videoStart": "sounds/se_video_start.wav",
-      "clear": "sounds/se_clear.wav"
-    }
+      "clear": "sounds/se_clear.wav",
+      "success": "sounds/se_success.wav",
+      "roomMove": "sounds/se_roommove.wav"
+    },
+    "titleImage": ""
   }
 }

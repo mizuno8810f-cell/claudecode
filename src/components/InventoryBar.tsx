@@ -29,6 +29,9 @@ export function InventoryBar({ engine, snapshot }: InventoryBarProps) {
         className="inventory-bar__arrow"
         onClick={() => setPage(currentPage - 1)}
         disabled={!canGoLeft}
+        // Hide (keep the space) when there is no page that way, so the slots
+        // stay put instead of shifting when an arrow appears/disappears.
+        style={canGoLeft ? undefined : { visibility: "hidden" }}
         aria-label="前のアイテム"
       >
         ‹
@@ -71,6 +74,7 @@ export function InventoryBar({ engine, snapshot }: InventoryBarProps) {
         className="inventory-bar__arrow"
         onClick={() => setPage(currentPage + 1)}
         disabled={!canGoRight}
+        style={canGoRight ? undefined : { visibility: "hidden" }}
         aria-label="次のアイテム"
       >
         ›

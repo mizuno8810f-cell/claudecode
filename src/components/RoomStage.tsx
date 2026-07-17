@@ -36,7 +36,7 @@ const ROOM_BG_VLINES: Record<string, number[]> = {
  * (looked up before the plain `"<id>"` key); this lets a zoomed scene change
  * with the object's state (e.g. the bedroom window fogging up).
  */
-const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
+export const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   workingspace_desk: "images/zoom_workingspace_desk.png",
   kitchen_fridge: "images/zoom_kitchen_fridge.png",
   kitchen_counter: "images/zoom_kitchen_counter.png",
@@ -101,11 +101,13 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
   const roomDarkMode = snapshot.globalState.roomDarkMode === true;
   const darkExcluded = new Set(config.darkModeExclusionObjectIds ?? []);
   const lightUpIds = new Set(config.lightUpObjectIds ?? []);
-  // Priority: a light_up state or a configured light-up object (while dark)
-  // glows; then dark-mode exclusions stay normal; then everything else darkens.
+  // Priority: a light_up state, or a configured light-up object (e.g. the
+  // present box, which glows to draw the eye once it appears — regardless of
+  // the room black-out); then dark-mode exclusions stay normal; then
+  // everything else darkens while the black-out is active.
   const filterClassFor = (id: string, state: string): string => {
     if (state === "light_up") return "object-light-up";
-    if (roomDarkMode && lightUpIds.has(id)) return "object-light-up";
+    if (lightUpIds.has(id)) return "object-light-up";
     if (darkExcluded.has(id)) return "";
     return roomDarkMode ? "object-darkened" : "";
   };
@@ -162,7 +164,12 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
           <>
             {background && !bgFailed ? (
               <img
-                className={`room-stage__background${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
+                // Keying by src remounts on a scene change (room move / zoom in
+                // or out) so the new background fades in; taps that only change
+                // an object's image (e.g. safe dials) leave the key untouched
+                // and stay instant.
+                key={background}
+                className={`room-stage__background room-stage__background--fade${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
                 src={assetUrl(background)}
                 alt={room.name}
                 draggable={false}
@@ -172,7 +179,8 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
               // No background photo set (or it failed to load): plain white,
               // darkened along with the room when the black-out is active.
               <div
-                className={`room-stage__background room-stage__background--fallback${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
+                key={`fallback-${isZoomed ? zoomTargetId : room.id}`}
+                className={`room-stage__background room-stage__background--fallback room-stage__background--fade${roomDarkMode && !isZoomed ? " room-darkened" : ""}`}
               />
             )}
 
@@ -211,6 +219,9 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             className="room-stage__navbar-btn"
             onClick={() => engine.moveRoom("left")}
             disabled={snapshot.locked || !room.leftRoomId}
+            // Hide (not just disable) when there is no room that way, so the
+            // arrow leaves no gap and other controls keep their position.
+            style={room.leftRoomId ? undefined : { visibility: "hidden" }}
             aria-label="左の部屋へ"
           >
             ‹
@@ -220,6 +231,7 @@ export function RoomStage({ engine, snapshot }: RoomStageProps) {
             className="room-stage__navbar-btn"
             onClick={() => engine.moveRoom("right")}
             disabled={snapshot.locked || !room.rightRoomId}
+            style={room.rightRoomId ? undefined : { visibility: "hidden" }}
             aria-label="右の部屋へ"
           >
             ›
