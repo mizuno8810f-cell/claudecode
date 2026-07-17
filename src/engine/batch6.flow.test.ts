@@ -90,7 +90,8 @@ describe("ver2 batch behaviors", () => {
     expect(e.getSnapshot().objectStates["livingroom_sofa_hint"].visible).toBe(false);
   });
 
-  it("a wrong kitchen-safe confirm counts a failure without opening it", async () => {
+  it("a wrong kitchen-safe confirm does not open it, and only counts once the prereqs are met", async () => {
+    // Without PC-unlock + humidifier, a wrong confirm does not accrue a fail.
     const e = new GameEngine(clone());
     await e.touch("kitchen_cupboard");
     await e.touch("cupboard_left");
@@ -98,6 +99,19 @@ describe("ver2 batch behaviors", () => {
     await tap(e, "safe8_dial_0", 5); // wrong first dial
     await e.touch("safe8_confirm");
     expect(stateOf(e, "kitchen_safe")).toBe("closed");
-    expect(e.getSnapshot().globalState.kitchenSafeFails).toBe(1);
+    expect(e.getSnapshot().globalState.kitchenSafeFails).toBeUndefined();
+
+    // With both prerequisites satisfied, wrong confirms start counting.
+    const g = clone();
+    findObj(g, "workingspace_pc").defaultState = "active_morning"; // PC unlocked
+    findObj(g, "bedroom_humidifier").defaultState = "active"; // humidifier on
+    const e2 = new GameEngine(g);
+    await e2.touch("kitchen_cupboard");
+    await e2.touch("cupboard_left");
+    await e2.touch("kitchen_safe");
+    await tap(e2, "safe8_dial_0", 5);
+    await e2.touch("safe8_confirm");
+    expect(e2.getSnapshot().globalState.kitchenSafeFails).toBe(1);
+    expect(stateOf(e2, "kitchen_safe")).toBe("closed");
   });
 });

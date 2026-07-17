@@ -18,6 +18,24 @@ async function orderBooks(e: GameEngine) {
     await e.touch(`book_slot_${p}`); await e.touch(`book_slot_${s}`);
   }
 }
+// charge the remote, play + close the projector video (satisfies the shelf's
+// "projector was on" gate). Requires the desk box to be unlocked first.
+async function watchProjector(e: GameEngine) {
+  await e.touch("battery_1");
+  await e.touch("battery_2");
+  await e.touch("livingroom_desk_box");
+  e.pressInventoryItem("remote");
+  e.pressInventoryItem("remote");
+  await e.touch("remote_card_front");
+  e.pressInventoryItem("battery1");
+  await e.touch("remote_card_back0");
+  e.pressInventoryItem("battery2");
+  await e.touch("remote_card_back1");
+  await e.back();
+  e.pressInventoryItem("remote");
+  await e.touch("projector");
+  await e.back();
+}
 
 describe("batch5 fixes", () => {
   it("unlocking the workspace door consumes the key and clears the selection", async () => {
@@ -45,9 +63,10 @@ describe("batch5 fixes", () => {
 
   it("the book puzzle can only be solved once (reveals present, then locks)", async () => {
     const g = clone();
-    for (let n = 1; n <= 7; n++)
-      g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!.enabled = true;
+    g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "livingroom_desk_box")!.defaultState =
+      "no_remote";
     const e = new GameEngine(g);
+    await watchProjector(e); // satisfy the "projector was on" gate
     await e.touch("bedroom_bed"); // leave the bed in the sleep state first
     expect(stateOf(e, "bedroom_bed")).toBe("sleep");
     await e.touch("workingspace_shelf");

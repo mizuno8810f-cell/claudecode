@@ -41,6 +41,7 @@ export const ZOOM_BACKGROUND_IMAGES: Record<string, string> = {
   kitchen_fridge: "images/zoom_kitchen_fridge.png",
   kitchen_counter: "images/zoom_kitchen_counter.png",
   livingroom_desk: "images/zoom_livingroom_desk.png",
+  livingroom_desk_box: "images/zoom_livingroom_desk_box.png",
   livingroom_corner_rack: "images/zoom_livingroom_corner_rack.png",
   livingroom_sofa: "images/zoom_livingroom_sofa.png",
   kitchen_trash_can: "images/zoom_kitchen_trash_can.png",

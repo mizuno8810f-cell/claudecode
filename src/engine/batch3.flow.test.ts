@@ -63,22 +63,41 @@ async function sortBooks(e: GameEngine) {
   }
 }
 
-// the books are locked until the projector video plays; unlock them for these
-// unit tests so the swap mechanic can be exercised directly.
+// Books are swappable from the start now; this clone also unlocks the desk box
+// so the projector can be reached (needed for the solve).
 function unlockedBooks(): GameData {
   const g = clone();
-  for (let n = 1; n <= 7; n++)
-    g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!.enabled = true;
+  g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === "livingroom_desk_box")!.defaultState =
+    "no_remote";
   return g;
 }
 
+// charge the remote, play the projector video and close it, so the shelf's
+// "projector has been on" gate is satisfied.
+async function watchProjector(e: GameEngine) {
+  await e.touch("battery_1");
+  await e.touch("battery_2");
+  await e.touch("livingroom_desk_box");
+  e.pressInventoryItem("remote");
+  e.pressInventoryItem("remote");
+  await e.touch("remote_card_front");
+  e.pressInventoryItem("battery1");
+  await e.touch("remote_card_back0");
+  e.pressInventoryItem("battery2");
+  await e.touch("remote_card_back1");
+  await e.back();
+  e.pressInventoryItem("remote");
+  await e.touch("projector"); // on -> 1s -> video
+  await e.back(); // close video -> projectorEventActivated
+}
+
 describe("workspace shelf book ordering (2-tap swap)", () => {
-  it("books are locked until the projector video has played", async () => {
+  it("books are swappable straight away (no projector needed to move them)", async () => {
     const e = new GameEngine(clone());
     await e.touch("workingspace_shelf");
-    const before = stateOf(e, "book_slot_1");
-    await e.touch("book_slot_1"); // disabled -> no selection
-    expect(stateOf(e, "book_slot_1")).toBe(before);
+    const a = stateOf(e, "book_slot_1");
+    await e.touch("book_slot_1"); // selectable from the start
+    expect(stateOf(e, "book_slot_1")).toBe(`${a}_sel`);
   });
 
   it("first tap selects, tapping another swaps the two books", async () => {
@@ -102,11 +121,12 @@ describe("workspace shelf book ordering (2-tap swap)", () => {
     expect(stateOf(e, "book_slot_3")).toBe(a);
   });
 
-  it("ordering 1..7 makes a noise and reveals the present (no SD card)", async () => {
+  it("ordering 1..7 after the projector has been on makes a noise and reveals the present", async () => {
     const e = new GameEngine(unlockedBooks());
     const ordered = () => [1, 2, 3, 4, 5, 6, 7].every((n) => stateOf(e, `book_slot_${n}`) === `book${n}`);
     expect(ordered()).toBe(false);
     expect(visibleOf(e, "bedroom_present")).toBe(false);
+    await watchProjector(e); // satisfy the "projector was on" gate
     await sortBooks(e);
     expect(ordered()).toBe(true);
     expect(e.getSnapshot().toast).toBe("寝室で物音がした");

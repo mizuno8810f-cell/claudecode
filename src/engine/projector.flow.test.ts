@@ -4,7 +4,12 @@ import type { GameData } from "./types";
 import gameJson from "../data/game.json";
 
 function clone(): GameData {
-  return JSON.parse(JSON.stringify(gameJson)) as GameData;
+  const g = JSON.parse(JSON.stringify(gameJson)) as GameData;
+  // Start the desk box unlocked so the remote flow is reachable directly.
+  g.stages[0].rooms
+    .flatMap((r) => r.objects)
+    .find((o) => o.id === "livingroom_desk_box")!.defaultState = "no_remote";
+  return g;
 }
 const stateOf = (e: GameEngine, id: string) => e.getSnapshot().objectStates[id]?.state;
 const visibleOf = (e: GameEngine, id: string) => e.getSnapshot().objectStates[id]?.visible;
@@ -55,62 +60,62 @@ describe("projector activation gating", () => {
     expect(e.getSnapshot().toast).toBe("リモコンの電池が足りないみたいだ");
   });
 
-  it("charged remote turns it on and opens the confirm after the wait", async () => {
+  it("a charged remote turns it on and plays the video after the wait (no dialog)", async () => {
     const e = new GameEngine(clone());
     await chargeRemote(e);
     e.pressInventoryItem("remote");
-    await e.touch("projector");
+    await e.touch("projector"); // on -> wait 1s -> video
     expect(stateOf(e, "projector")).toBe("on");
-    expect(navTop(e)).toBe("projector_confirm");
+    expect(navTop(e)).toBe("projector_video");
   });
 });
 
-describe("confirm outcomes", () => {
-  it("いいえ closes the dialog and turns the projector back off", async () => {
+describe("projector video + book solve gating", () => {
+  it("the confirm dialog objects are gone", () => {
     const e = new GameEngine(clone());
-    await chargeRemote(e);
-    e.pressInventoryItem("remote");
-    await e.touch("projector");
-    await e.touch("projector_confirm_no");
-    expect(navTop(e)).toBeUndefined();
-    expect(stateOf(e, "projector")).toBe("off");
-    expect(global(e, "roomDarkMode")).not.toBe(true);
-    expect(visibleOf(e, "bedroom_present")).toBe(false);
+    expect(e.getSnapshot().objectStates["projector_confirm"]).toBeUndefined();
+    expect(e.getSnapshot().objectStates["projector_confirm_yes"]).toBeUndefined();
   });
 
-  it("はい plays the video, unlocks the books, and leaves the room untouched", async () => {
+  it("books are swappable from the start, but only solve after the projector has been on", async () => {
     const e = new GameEngine(clone());
-    // books start locked, no dark/light-up/disable/present side effects
-    expect(enabledOf(e, "book_slot_1")).toBe(false);
-    await chargeRemote(e);
-    e.pressInventoryItem("remote");
-    await e.touch("projector");
-    await e.touch("projector_confirm_yes");
-
-    expect(navTop(e)).toBe("projector_video");
-    expect(global(e, "projectorEventActivated")).toBe(true);
-    // the only game effect: the books become movable
     for (let n = 1; n <= 7; n++) expect(enabledOf(e, `book_slot_${n}`)).toBe(true);
-    // no black-out, no light-up, no disabling, present still hidden
-    expect(global(e, "roomDarkMode")).not.toBe(true);
-    expect(stateOf(e, "workingspace_door")).not.toBe("light_up");
-    expect(visibleOf(e, "bedroom_present")).toBe(false);
-    expect(enabledOf(e, "livingroom_sofa")).toBe(true);
-  });
-});
+    expect(global(e, "projectorEventActivated")).not.toBe(true);
 
-describe("projector replay", () => {
-  it("can be replayed; the confirm reopens and the video plays again", async () => {
+    await chargeRemote(e);
+    e.pressInventoryItem("remote");
+    await e.touch("projector"); // on -> video
+    expect(navTop(e)).toBe("projector_video");
+    await e.back(); // close the video -> projector counted as watched
+    expect(global(e, "projectorEventActivated")).toBe(true);
+    // present still hidden until the books are actually ordered
+    expect(visibleOf(e, "bedroom_present")).toBe(false);
+  });
+
+  it("closing the video solves immediately when the books are already ordered", async () => {
+    const g = clone();
+    // pre-order the books in the data so the puzzle is already correct
+    for (let n = 1; n <= 7; n++) {
+      const slot = g.stages[0].rooms.flatMap((r) => r.objects).find((o) => o.id === `book_slot_${n}`)!;
+      slot.defaultState = `book${n}`;
+    }
+    const e = new GameEngine(g);
+    expect(visibleOf(e, "bedroom_present")).toBe(false); // not yet: projector never on
+    await chargeRemote(e);
+    e.pressInventoryItem("remote");
+    await e.touch("projector"); // on -> video
+    await e.back(); // closing the video re-checks the order -> solved
+    expect(e.getSnapshot().toast).toBe("寝室で物音がした");
+    expect(visibleOf(e, "bedroom_present")).toBe(true);
+  });
+
+  it("can be replayed; the video plays again directly", async () => {
     const e = new GameEngine(clone());
     await chargeRemote(e);
     e.pressInventoryItem("remote");
-    await e.touch("projector");
-    await e.touch("projector_confirm_yes"); // first play
+    await e.touch("projector"); // first play
     await e.back(); // close video
-    await e.touch("projector"); // projector on -> confirm again (no remote needed)
-    expect(navTop(e)).toBe("projector_confirm");
-    await e.touch("projector_confirm_yes"); // replay
+    await e.touch("projector"); // projector on -> video again (no remote needed)
     expect(navTop(e)).toBe("projector_video");
-    expect(global(e, "projectorEventActivated")).toBe(true);
   });
 });

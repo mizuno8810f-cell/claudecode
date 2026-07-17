@@ -4,7 +4,13 @@ import type { GameData } from "./types";
 import gameJson from "../data/game.json";
 
 function clone(): GameData {
-  return JSON.parse(JSON.stringify(gameJson)) as GameData;
+  const g = JSON.parse(JSON.stringify(gameJson)) as GameData;
+  // These tests exercise the remote/battery flow, not the box lock puzzle, so
+  // start the desk box already unlocked (skip straight to the remote-grant).
+  g.stages[0].rooms
+    .flatMap((r) => r.objects)
+    .find((o) => o.id === "livingroom_desk_box")!.defaultState = "no_remote";
+  return g;
 }
 const stateOf = (e: GameEngine, id: string) => e.getSnapshot().objectStates[id]?.state;
 const inv = (e: GameEngine) => e.getSnapshot().inventory;
